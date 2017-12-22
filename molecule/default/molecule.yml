@@ -62,7 +62,6 @@ platforms:
     image: ubuntu:artful
   - name: ubuntu-artful-tomcat-9
     image: ubuntu:artful
-
 provisioner:
   name: ansible
   lint:

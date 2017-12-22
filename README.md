@@ -21,6 +21,11 @@ Role Variables
 - tomcat_xms: 512M
 - tomcat_xmx: 1024M
 - tomcat_war_url: The URL to a WAR to deploy, optional.
+- tomcat_non_ssl_connector_port: The clear text tcp port, default: 8080
+- tomcat_ssl_connector_port: The encrypted tcp port, default: 8443
+- tomcat_shutdown_port: The shutdown server port, default: 8005
+- tomcat_ajp_port: The AJP clear text tcp port: 8009
+
 
 Dependencies
 ------------

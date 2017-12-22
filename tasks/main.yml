@@ -21,6 +21,11 @@
     group: "{{ tomcat_group }}"
     owner: "{{ tomcat_user }}"
 
+- name: configure tomcat
+  template:
+    src: templates/server.xml.j2
+    dest: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/conf/server.xml"
+
 - name: deploy application
   get_url:
     url: "{{ tomcat_war_url }}"
