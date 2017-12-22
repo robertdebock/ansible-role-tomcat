@@ -3,7 +3,7 @@ Tomcat
 
 [![Build Status](https://travis-ci.org/robertdebock/ansible-role-tomcat.svg?branch=master)](https://travis-ci.org/robertdebock/ansible-role-tomcat)
 
-Provides Tomcat for your system.
+Provides Apache Tomcat 7, 8 (default) or 9 for your system.
 
 Requirements
 ------------
@@ -20,7 +20,7 @@ Role Variables
 - tomcat_group: the group to run tomcat as, default: tomcat
 - tomcat_xms: 512M
 - tomcat_xmx: 1024M
-- tomcat_java_home: iets
+- tomcat_war_url: The URL to a WAR to deploy, optional.
 
 Dependencies
 ------------
@@ -55,6 +55,16 @@ You can also install multiple instances:
     - role: robertdebock.tomcat
       tomcat_version: 8
       tomcat_directory: /opt/myapp2
+```
+
+To deploy an application (war) into tomcat:
+
+```
+- hosts: servers
+
+  roles:
+    - role: robertdebock.tomcat
+      tomcat_war_url: http://download.rundeck.org/war/rundeck-2.10.2.war
 ```
 
 Install this role using `galaxy install robertdebock.tomcat`.

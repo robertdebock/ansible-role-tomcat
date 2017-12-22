@@ -21,6 +21,15 @@
     group: "{{ tomcat_group }}"
     owner: "{{ tomcat_user }}"
 
+- name: deploy application
+  get_url:
+    url: "{{ tomcat_war_url }}"
+    dest: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/webapps/"
+    owner: "{{ tomcat_user }}"
+    group: "{{ tomcat_group }}"
+  when:
+    - tomcat_war_url is defined
+
 - name: start tomcat
   command: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/bin/startup.sh"
   args:
