@@ -1,0 +1,10 @@
+---
+- name: Converge
+  hosts: all
+  gather_facts: no
+  become: yes
+
+  roles:
+    - role: robertdebock.java
+      java_version: 8
+    - role: ansible-role-tomcat

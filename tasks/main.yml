@@ -1,0 +1,31 @@
+---
+# tasks file for tomcat
+- name: ensure tomcat_group exists
+  group:
+    name: "{{ tomcat_group }}"
+
+- name: ensure tomcat_user exists
+  user:
+    name: "{{ tomcat_user }}"
+
+- name: ensure tomcat_directory exists
+  file:
+    path: "{{ tomcat_directory }}"
+    state: directory
+
+- name: install tomcat
+  unarchive:
+    src: "{{ tomcat_archive[tomcat_version]['targz'] }}"
+    dest: "{{ tomcat_directory }}"
+    remote_src: yes
+    group: "{{ tomcat_group }}"
+    owner: "{{ tomcat_user }}"
+
+- name: start tomcat
+  command: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/bin/startup.sh"
+  args:
+    creates: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/temp/tomcat.pid"
+  become: yes
+  become_user: "{{ tomcat_user }}"
+  environment:
+    CATALINA_PID: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/temp/tomcat.pid"

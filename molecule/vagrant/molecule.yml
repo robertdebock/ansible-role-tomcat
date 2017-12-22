@@ -1,0 +1,34 @@
+---
+dependency:
+  name: galaxy
+  options:
+    role-file: requirements.yml
+driver:
+  name: vagrant
+  provider:
+    name: virtualbox
+lint:
+  name: yamllint
+platforms:
+  - name: centos-6
+    box: centos/6
+  - name: centos-7
+    box: centos/7
+  - name: debian-buster64
+    box: desc/buster64
+  - name: fedora-26-cloud-base
+    box: fedora/26-cloud-base
+  - name: fedora-27-cloud-base
+    box: fedora/27-cloud-base
+  - name: ubuntu-zesty
+    box: ubuntu/zesty64
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+scenario:
+  name: vagrant
+verifier:
+  name: testinfra
+  lint:
+    name: flake8

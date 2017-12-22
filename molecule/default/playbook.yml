@@ -1,0 +1,27 @@
+---
+- name: Converge tomcat 7
+  hosts: "*-tomcat-7"
+  become: yes
+  gather_facts: no
+
+  roles:
+    - role: ansible-role-tomcat
+      tomcat_version: 7
+
+- name: Converge tomcat 8
+  hosts: "*-tomcat-8"
+  become: yes
+  gather_facts: no
+
+  roles:
+    - role: ansible-role-tomcat
+      tomcat_version: 8
+
+- name: Converge tomcat 9
+  hosts: "*-tomcat-9"
+  become: yes
+  gather_facts: no
+
+  roles:
+    - role: ansible-role-tomcat
+      tomcat_version: 9

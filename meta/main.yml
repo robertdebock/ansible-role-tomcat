@@ -1,0 +1,42 @@
+---
+galaxy_info:
+  author: Robert de Bock
+  description: Provides Tomcat for your system.
+  license: Apache License, Version 2.0
+  min_ansible_version: 2.2
+  min_ansible_container_version: 0.2.0
+
+  platforms:
+    - name: Alpine
+      versions:
+        - all
+    - name: centos
+      version:
+        - 6
+        - 7
+    - name: Debian
+      versions:
+        - all
+    - name: EL
+      versions:
+        - 6
+        - 7
+    - name: Fedora
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - zesty
+        - artful
+
+  galaxy_tags:
+    - Tomcat
+    - Alpine
+    - CentOS
+    - Debian
+    - Fedora
+    - Ubuntu
+
+dependencies:
+  - role: robertdebock.java
+    java_version: 8
