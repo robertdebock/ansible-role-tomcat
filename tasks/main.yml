@@ -20,6 +20,7 @@
     remote_src: yes
     group: "{{ tomcat_group }}"
     owner: "{{ tomcat_user }}"
+    creates: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}"
 
 - name: configure tomcat
   template:
