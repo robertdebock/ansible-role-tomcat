@@ -37,7 +37,7 @@
     - tomcat_war_url is defined
 
 - name: start tomcat
-  command: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/bin/startup.sh"
+  command: nohup "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/bin/startup.sh"
   args:
     creates: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/temp/tomcat.pid"
   become: yes
