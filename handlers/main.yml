@@ -1,2 +1,20 @@
 ---
 # handlers file for tomcat
+- name: restart software
+  command: nohup "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/bin/stop.sh"
+  args:
+    removes: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/temp/tomcat.pid"
+  become: yes
+  become_user: "{{ tomcat_user }}"
+  environment:
+    CATALINA_PID: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/temp/tomcat.pid"
+  notify: start software
+
+- name: start software
+  command: nohup "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/bin/start.sh"
+  args:
+    creates: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/temp/tomcat.pid"
+  become: yes
+  become_user: "{{ tomcat_user }}"
+  environment:
+    CATALINA_PID: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/temp/tomcat.pid"

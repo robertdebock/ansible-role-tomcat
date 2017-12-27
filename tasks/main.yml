@@ -26,6 +26,7 @@
   template:
     src: templates/server.xml.j2
     dest: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/conf/server.xml"
+  notify: restart software
 
 - name: deploy application
   get_url:
