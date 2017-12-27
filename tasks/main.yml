@@ -38,10 +38,11 @@
     - tomcat_war_url is defined
 
 - name: start tomcat
-  command: nohup "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/bin/startup.sh"
+  command: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/bin/startup.sh"
   args:
     creates: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/temp/tomcat.pid"
   become: yes
   become_user: "{{ tomcat_user }}"
   environment:
     CATALINA_PID: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/temp/tomcat.pid"
+    USE_NOHUP: true
