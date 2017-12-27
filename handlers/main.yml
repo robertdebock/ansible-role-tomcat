@@ -1,7 +1,7 @@
 ---
 # handlers file for tomcat
 - name: restart software
-  command: nohup "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/bin/stop.sh"
+  command: nohup "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/bin/shutdown.sh"
   args:
     removes: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/temp/tomcat.pid"
   become: yes
