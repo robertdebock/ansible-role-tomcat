@@ -21,6 +21,9 @@
     group: "{{ tomcat_group }}"
     owner: "{{ tomcat_user }}"
     creates: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}"
+  retries: 3
+  register: result
+  until: result | success
 
 - name: configure tomcat
   template:
@@ -36,6 +39,9 @@
     group: "{{ tomcat_group }}"
   when:
     - tomcat_war_url is defined
+  retries: 3
+  register: result
+  until: result | success
 
 - name: start tomcat
   command: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/bin/startup.sh"

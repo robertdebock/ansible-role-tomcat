@@ -25,3 +25,4 @@
   roles:
     - role: ansible-role-tomcat
       tomcat_version: 9
+      tomcat_war_url: https://tomcat.apache.org/tomcat-6.0-doc/appdev/sample/sample.war
