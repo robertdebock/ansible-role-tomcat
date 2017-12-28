@@ -7,6 +7,7 @@
   roles:
     - role: ansible-role-tomcat
       tomcat_version: 7
+      tomcat_war_url: https://tomcat.apache.org/tomcat-6.0-doc/appdev/sample/sample.war
 
 - name: Converge tomcat 8
   hosts: "*-tomcat-8"
@@ -16,6 +17,7 @@
   roles:
     - role: ansible-role-tomcat
       tomcat_version: 8
+      tomcat_war_url: https://tomcat.apache.org/tomcat-6.0-doc/appdev/sample/sample.war
 
 - name: Converge tomcat 9
   hosts: "*-tomcat-9"
@@ -25,3 +27,4 @@
   roles:
     - role: ansible-role-tomcat
       tomcat_version: 9
+      tomcat_war_url: https://tomcat.apache.org/tomcat-6.0-doc/appdev/sample/sample.war

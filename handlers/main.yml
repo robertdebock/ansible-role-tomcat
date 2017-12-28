@@ -20,3 +20,6 @@
   environment:
     CATALINA_PID: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/temp/tomcat.pid"
     USE_NOHUP: true
+
+- name: initctl reload-configuration
+  command: initctl reload-configuration

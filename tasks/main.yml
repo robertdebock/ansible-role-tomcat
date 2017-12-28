@@ -23,7 +23,7 @@
     group: "{{ tomcat_group }}"
     owner: "{{ tomcat_user }}"
     creates: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}"
-  retries: 3
+  retries: 5
   delay: 30
   register: result
   until: result | success
@@ -42,16 +42,44 @@
     group: "{{ tomcat_group }}"
   when:
     - tomcat_war_url is defined
-  retries: 3
+  retries: 5
+  delay: 30
   register: result
   until: result | success
 
-- name: start tomcat
-  command: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/bin/startup.sh"
-  args:
-    creates: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/temp/tomcat.pid"
-  become: yes
-  become_user: "{{ tomcat_user }}"
-  environment:
-    CATALINA_PID: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/temp/tomcat.pid"
-    USE_NOHUP: true
+- name: register tomcat to a sysvinit system
+  file:
+    src: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/bin/daemon.sh"
+    dest: /etc/init.d/tomcat
+    state: link
+  when:
+    - ansible_service_mgr == "sysvinit" or ansible_service_mgr == "upstart"
+
+- name: register tomcat to a systemd system
+  template:
+    src: templates/tomcat.service.j2
+    dest: /etc/systemd/system/tomcat.service
+  when:
+    - ansible_service_mgr == "systemd"
+
+- name: start and enable software
+  service:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+  with_items:
+    - "{{ tomcat_services[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
+      | default(tomcat_services[ansible_distribution]
+      | default(tomcat_services['default'] )) }}"
+  when:
+    - ansible_virtualization_type != "docker"
+
+# - name: start tomcat
+#   command: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/bin/startup.sh"
+#   args:
+#     creates: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/temp/tomcat.pid"
+#   become: yes
+#   become_user: "{{ tomcat_user }}"
+#   environment:
+#     CATALINA_PID: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/temp/tomcat.pid"
+#     USE_NOHUP: true

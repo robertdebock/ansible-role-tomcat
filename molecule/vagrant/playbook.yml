@@ -5,6 +5,5 @@
   become: yes
 
   roles:
-    - role: robertdebock.java
-      java_version: 8
     - role: ansible-role-tomcat
+      tomcat_war_url: https://tomcat.apache.org/tomcat-6.0-doc/appdev/sample/sample.war

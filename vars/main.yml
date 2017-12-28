@@ -10,3 +10,7 @@ tomcat_archive:
   9:
     targz: http://www-us.apache.org/dist/tomcat/tomcat-9/v9.0.2/bin/apache-tomcat-9.0.2.tar.gz
     dir: apache-tomcat-9.0.2
+
+tomcat_services:
+  default:
+    - tomcat
