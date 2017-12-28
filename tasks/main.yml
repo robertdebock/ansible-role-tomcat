@@ -24,6 +24,7 @@
     owner: "{{ tomcat_user }}"
     creates: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}"
   retries: 3
+  delay: 30
   register: result
   until: result | success
 
