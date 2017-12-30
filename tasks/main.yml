@@ -1,85 +1,88 @@
 ---
 # tasks file for tomcat
-- name: ensure tomcat_group exists
+- name: ensure group exists
   group:
-    name: "{{ tomcat_group }}"
+    name: "{{ item.group }}"
+  with_items:
+    - "{{ tomcat_layout }}"
 
-- name: ensure tomcat_user exists
+- name: ensure user exists
   user:
-    name: "{{ tomcat_user }}"
+    name: "{{ item.user }}"
     createhome: no
     system: yes
+  with_items:
+    - "{{ tomcat_layout }}"
 
 - name: ensure tomcat_directory exists
   file:
-    path: "{{ tomcat_directory }}"
+    path: "{{ item.directory }}"
     state: directory
+  with_items:
+    - "{{ tomcat_layout }}"
+
+- name: copy tomcat
+  copy:
+    src: "files/{{ tomcat_archive[item.version]['targz'] }}"
+    dest: "{{ item.directory }}"
+  with_items:
+    - "{{ tomcat_layout }}"
 
 - name: install tomcat
   unarchive:
-    src: "{{ tomcat_archive[tomcat_version]['targz'] }}"
-    dest: "{{ tomcat_directory }}"
+    src: "{{ item.directory }}/{{ tomcat_archive[item.version]['targz'] }}"
+    dest: "{{ item.directory }}"
+    group: "{{ item.group }}"
+    owner: "{{ item.user }}"
     remote_src: yes
-    group: "{{ tomcat_group }}"
-    owner: "{{ tomcat_user }}"
-    creates: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}"
-  retries: 5
-  delay: 30
-  register: result
-  until: result | success
+    creates: "{{ item.directory }}/{{ tomcat_archive[item.version]['dir'] }}"
+  with_items:
+    - "{{ tomcat_layout }}"
 
 - name: configure tomcat
   template:
     src: templates/server.xml.j2
-    dest: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/conf/server.xml"
-  notify: restart software
+    dest: "{{ item.directory }}/{{ tomcat_archive[item.version]['dir'] }}/conf/server.xml"
+  with_items:
+    - "{{ tomcat_layout }}"
 
-- name: deploy application
-  get_url:
-    url: "{{ tomcat_war_url }}"
-    dest: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/webapps/"
-    owner: "{{ tomcat_user }}"
-    group: "{{ tomcat_group }}"
+- name: deploy war files
+  copy:
+    src: "files/{{ item }}"
+    dest: "{{ item.directory }}/{{ tomcat_archive[item.version]['dir'] }}/webapps/"
+    owner: "{{ item.user }}"
+    group: "{{ item.group }}"
   when:
-    - tomcat_war_url is defined
-  retries: 5
-  delay: 30
-  register: result
-  until: result | success
+    - tomcat_layout.wars is defined
+  with_subelements:
+    - "{{ tomcat_layout }}"
+    - wars
 
 - name: register tomcat to a sysvinit system
-  file:
-    src: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/bin/daemon.sh"
-    dest: /etc/init.d/tomcat
-    state: link
+  template:
+    src: templates/tomcat.j2
+    dest: "/etc/init.d/{{ item.name }}"
+    mode: 0750
   when:
     - ansible_service_mgr == "sysvinit" or ansible_service_mgr == "upstart"
+  with_items:
+    - "{{ tomcat_layout }}"
 
 - name: register tomcat to a systemd system
   template:
     src: templates/tomcat.service.j2
-    dest: /etc/systemd/system/tomcat.service
+    dest: /etc/systemd/system/{{ item.name }}.service
   when:
     - ansible_service_mgr == "systemd"
+  with_items:
+    - "{{ tomcat_layout }}"
 
 - name: start and enable software
   service:
-    name: "{{ item }}"
+    name: "{{ item.name }}"
     state: started
     enabled: yes
   with_items:
-    - "{{ tomcat_services[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
-      | default(tomcat_services[ansible_distribution]
-      | default(tomcat_services['default'] )) }}"
+    - "{{ tomcat_layout }}"
   when:
     - ansible_virtualization_type != "docker"
-
-# - name: start tomcat
-#   command: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/bin/startup.sh"
-#   args:
-#     creates: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/temp/tomcat.pid"
-#   become: yes
-#   become_user: "{{ tomcat_user }}"
-#   environment:
-#     CATALINA_PID: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/temp/tomcat.pid"
-#     USE_NOHUP: true

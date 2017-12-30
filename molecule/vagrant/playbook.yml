@@ -6,4 +6,43 @@
 
   roles:
     - role: ansible-role-tomcat
-      tomcat_war_url: https://tomcat.apache.org/tomcat-6.0-doc/appdev/sample/sample.war
+      tomcat_layout:
+        - name: tomcat7
+          directory: /opt/tomcat7
+          version: 7
+          user: tomcat7
+          group: tomcat7
+          xms: 512M
+          xmx: 1024M
+          non_ssl_connector_port: 8080
+          ssl_connector_port: 8443
+          shutdown_port: 8005
+          ajp_port: 8009
+          wars:
+            - sample.war
+        - name: tomcat8
+          directory: /opt/tomcat8
+          version: 8
+          user: tomcat8
+          group: tomcat8
+          xms: 512M
+          xmx: 1024M
+          non_ssl_connector_port: 8081
+          ssl_connector_port: 8444
+          shutdown_port: 8006
+          ajp_port: 8010
+          wars:
+            - sample.war
+        - name: tomcat9
+          directory: /opt/tomcat9
+          version: 9
+          user: tomcat9
+          group: tomcat9
+          xms: 512M
+          xmx: 1024M
+          non_ssl_connector_port: 8082
+          ssl_connector_port: 8445
+          shutdown_port: 8007
+          ajp_port: 8011
+          wars:
+            - sample.war

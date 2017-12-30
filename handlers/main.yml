@@ -1,25 +1,4 @@
 ---
 # handlers file for tomcat
-- name: restart software
-  command: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/bin/shutdown.sh"
-  args:
-    removes: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/temp/tomcat.pid"
-  become: yes
-  become_user: "{{ tomcat_user }}"
-  environment:
-    CATALINA_PID: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/temp/tomcat.pid"
-    USE_NOHUP: true
-  notify: start software
-
-- name: start software
-  command: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/bin/startup.sh"
-  args:
-    creates: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/temp/tomcat.pid"
-  become: yes
-  become_user: "{{ tomcat_user }}"
-  environment:
-    CATALINA_PID: "{{ tomcat_directory }}/{{ tomcat_archive[tomcat_version]['dir'] }}/temp/tomcat.pid"
-    USE_NOHUP: true
-
 - name: initctl reload-configuration
   command: initctl reload-configuration

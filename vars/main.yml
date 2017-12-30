@@ -2,15 +2,11 @@
 # vars file for tomcat
 tomcat_archive:
   7:
-    targz: http://www-eu.apache.org/dist/tomcat/tomcat-7/v7.0.82/bin/apache-tomcat-7.0.82.tar.gz
+    targz: apache-tomcat-7.0.82.tar.gz
     dir: apache-tomcat-7.0.82
   8:
-    targz: http://www-eu.apache.org/dist/tomcat/tomcat-8/v8.5.24/bin/apache-tomcat-8.5.24.tar.gz
+    targz: apache-tomcat-8.5.24.tar.gz
     dir: apache-tomcat-8.5.24
   9:
-    targz: http://www-us.apache.org/dist/tomcat/tomcat-9/v9.0.2/bin/apache-tomcat-9.0.2.tar.gz
+    targz: apache-tomcat-9.0.2.tar.gz
     dir: apache-tomcat-9.0.2
-
-tomcat_services:
-  default:
-    - tomcat

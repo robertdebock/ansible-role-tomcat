@@ -8,24 +8,33 @@ Provides Apache Tomcat 7, 8 (default) or 9 for your system.
 Requirements
 ------------
 
-Access to a repository containing packages, likely on the internet.
+Downloaded releases of tomcat in the `files` directory. Hint:
+```
+cd files
+wget http://www-eu.apache.org/dist/tomcat/tomcat-7/v7.0.82/bin/apache-tomcat-7.0.82.tar.gz
+wget http://www-eu.apache.org/dist/tomcat/tomcat-8/v8.5.24/bin/apache-tomcat-8.5.24.tar.gz
+wget http://www-eu.apache.org/dist/tomcat/tomcat-9/v9.0.2/bin/apache-tomcat-9.0.2.tar.gz
+```
+
+Also place all war files into the `files` directory.
 
 Role Variables
 --------------
 
-
-- tomcat_version: 7, 8 or 9, default: 8
-- tomcat_directory: a path where to unpack, default: /opt
-- tomcat_user: the user to run tomcat as, default: tomcat
-- tomcat_group: the group to run tomcat as, default: tomcat
-- tomcat_xms: 512M
-- tomcat_xmx: 1024M
-- tomcat_war_url: The URL to a WAR to deploy, optional.
-- tomcat_non_ssl_connector_port: The clear text tcp port, default: 8080
-- tomcat_ssl_connector_port: The encrypted tcp port, default: 8443
-- tomcat_shutdown_port: The shutdown server port, default: 8005
-- tomcat_ajp_port: The AJP clear text tcp port: 8009
-
+tomcat_layout:
+  - name: tomcat # Any name you'd like to identify the application with.
+    directory: /opt
+    version: 7 # Either 7, 8 or 9.
+    user: tomcat
+    group: tomcat
+    xms: 512M
+    xmx: 1024M
+    non_ssl_connector_port: 8080
+    ssl_connector_port: 8443
+    shutdown_port: 8005
+    ajp_port: 8009
+    wars: # A list of war files you'd like to have deployed in the structure.
+      - sample.war
 
 Dependencies
 ------------
@@ -45,31 +54,49 @@ Example Playbook
 
   roles:
     - role: robertdebock.tomcat
-      tomcat_directory: /usr/local
-```
-
-You can also install multiple instances:
-
-```
-- hosts: servers
-
-  roles:
-    - role: robertdebock.tomcat
-      tomcat_version: 7
-      tomcat_directory: /opt/myapp1
-    - role: robertdebock.tomcat
-      tomcat_version: 8
-      tomcat_directory: /opt/myapp2
-```
-
-To deploy an application (war) into tomcat:
-
-```
-- hosts: servers
-
-  roles:
-    - role: robertdebock.tomcat
-      tomcat_war_url: http://download.rundeck.org/war/rundeck-2.10.2.war
+      tomcat_layout:
+        - name: appone
+          directory: /opt/appone
+          version: 7
+          user: appone
+          group: appone
+          xms: 512M
+          xmx: 1024M
+          non_ssl_connector_port: 8080
+          ssl_connector_port: 8443
+          shutdown_port: 8005
+          ajp_port: 8009
+          wars:
+            - apponea.war
+            - apponeb.war
+        - name: apptwo
+          directory: /opt/apptwo
+          version: 8
+          user: tomcat
+          group: tomcat
+          xms: 512M
+          xmx: 1024M
+          non_ssl_connector_port: 8081
+          ssl_connector_port: 8444
+          shutdown_port: 8006
+          ajp_port: 8010
+          wars:
+            - apptwo.war
+        - name: appthree
+          directory: /opt/appthree
+          version: 9
+          user: appthree
+          group: appthree
+          xms: 512M
+          xmx: 1024M
+          non_ssl_connector_port: 8082
+          ssl_connector_port: 8445
+          shutdown_port: 8007
+          ajp_port: 8011
+          wars:
+            - appthreea.war
+            - appthreeb.war
+            - appthreec.war
 ```
 
 Install this role using `galaxy install robertdebock.tomcat`.

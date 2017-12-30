@@ -8,59 +8,23 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: alpine-3.5-tomcat-7
+  - name: alpine-3.5
     image: alpine:3.5
-  - name: alpine-3.5-tomcat-8
-    image: alpine:3.5
-  - name: alpine-3.5-tomcat-9
-    image: alpine:3.5
-  - name: alpine-3.6-tomcat-7
+  - name: alpine-3.6
     image: alpine:3.6
-  - name: alpine-3.6-tomcat-8
-    image: alpine:3.6
-  - name: alpine-3.6-tomcat-9
-    image: alpine:3.6
-  - name: centos-6-tomcat-7
+  - name: centos-6
     image: centos:6
-  - name: centos-6-tomcat-8
-    image: centos:6
-  - name: centos-6-tomcat-9
-    image: centos:6
-  - name: centos-7-tomcat-7
+  - name: centos-7
     image: centos:7
-  - name: centos-7-tomcat-8
-    image: centos:7
-  - name: centos-7-tomcat-9
-    image: centos:7
-  - name: debian-buster-tomcat-7
+  - name: debian-buster
     image: debian:buster
-  - name: debian-buster-tomcat-8
-    image: debian:buster
-  - name: debian-buster-tomcat-9
-    image: debian:buster
-  - name: fedora-26-tomcat-7
+  - name: fedora-26
     image: fedora:26
-  - name: fedora-26-tomcat-8
-    image: fedora:26
-  - name: fedora-26-tomcat-9
-    image: fedora:26
-  - name: fedora-27-tomcat-7
+  - name: fedora-27
     image: fedora:27
-  - name: fedora-27-tomcat-8
-    image: fedora:27
-  - name: fedora-27-tomcat-9
-    image: fedora:27
-  - name: ubuntu-zesty-tomcat-7
+  - name: ubuntu-zesty
     image: ubuntu:zesty
-  - name: ubuntu-zesty-tomcat-8
-    image: ubuntu:zesty
-  - name: ubuntu-zesty-tomcat-9
-    image: ubuntu:zesty
-  - name: ubuntu-artful-tomcat-7
-    image: ubuntu:artful
-  - name: ubuntu-artful-tomcat-8
-    image: ubuntu:artful
-  - name: ubuntu-artful-tomcat-9
+  - name: ubuntu-artful
     image: ubuntu:artful
 provisioner:
   name: ansible
