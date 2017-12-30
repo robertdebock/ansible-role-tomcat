@@ -18,6 +18,8 @@
   file:
     path: "{{ item.directory }}"
     state: directory
+    owner: "{{ item.user }}"
+    group: "{{ item.group }}"
   with_items:
     - "{{ tomcat_layout }}"
 
