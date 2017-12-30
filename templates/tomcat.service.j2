@@ -1,21 +1,21 @@
 [Unit]
-Description={{ item.name }}
+Description={{ item.name | default(tomcat_name) }}
 After=syslog.target network.target
 
 [Service]
 Type=forking
 
-Environment=CATALINA_PID={{ item.directory }}/{{ tomcat_archive[item.version]['dir'] }}/temp/tomcat.pid
-Environment=CATALINA_HOME={{ item.directory }}/{{ tomcat_archive[item.version]['dir'] }}
-Environment=CATALINA_BASE={{ item.directory }}/{{ tomcat_archive[item.version]['dir'] }}
-Environment='CATALINA_OPTS=-Xms{{ item.xms}} -Xmx{{ item.xmx }} -server -XX:+UseParallelGC'
+Environment=CATALINA_PID={{ item.directory | default(tomcat_directory) }}/{{ tomcat_archive[item.version | default(tomcat_version) ]['dir'] }}/temp/tomcat.pid
+Environment=CATALINA_HOME={{ item.directory | default(tomcat_directory }}/{{ tomcat_archive[item.version | default(tomcat_version) ]['dir'] }}
+Environment=CATALINA_BASE={{ item.directory | default(tomcat_directory }}/{{ tomcat_archive[item.version | default(tomcat_version) ]['dir'] }}
+Environment='CATALINA_OPTS=-Xms{{ item.xms | default(tomcat_xms) }} -Xmx{{ item.xmx |default(tomcat_xmx) }} -server -XX:+UseParallelGC'
 Environment='JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom'
 
-ExecStart={{ item.directory }}/{{ tomcat_archive[item.version]['dir'] }}/bin/startup.sh
-ExecStop={{ item.directory }}/{{ tomcat_archive[item.version]['dir'] }}/bin/shutdown.sh
+ExecStart={{ item.directory | default(tomcat_directory) }}/{{ tomcat_archive[item.version | default(tomcat_version) ]['dir'] }}/bin/startup.sh
+ExecStop={{ item.directory | default(tomcat_directory) }}/{{ tomcat_archive[item.version | default(tomcat_version) ]['dir'] }}/bin/shutdown.sh
 
-User={{ item.user }}
-Group={{ item.group }}
+User={{ item.user | default(tomcat_user) }}
+Group={{ item.group | default(tomcat_group) }}
 
 [Install]
 WantedBy=multi-user.target

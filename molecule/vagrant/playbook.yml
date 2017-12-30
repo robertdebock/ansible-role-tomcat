@@ -18,8 +18,6 @@
           ssl_connector_port: 8443
           shutdown_port: 8005
           ajp_port: 8009
-          wars:
-            - sample.war
         - name: tomcat8
           directory: /opt/tomcat8
           version: 8
@@ -31,8 +29,6 @@
           ssl_connector_port: 8444
           shutdown_port: 8006
           ajp_port: 8010
-          wars:
-            - sample.war
         - name: tomcat9
           directory: /opt/tomcat9
           version: 9
@@ -44,5 +40,3 @@
           ssl_connector_port: 8445
           shutdown_port: 8007
           ajp_port: 8011
-          wars:
-            - sample.war

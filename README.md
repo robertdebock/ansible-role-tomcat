@@ -33,8 +33,6 @@ tomcat_layout:
     ssl_connector_port: 8443
     shutdown_port: 8005
     ajp_port: 8009
-    wars: # A list of war files you'd like to have deployed in the structure.
-      - sample.war
 
 Dependencies
 ------------
@@ -66,9 +64,6 @@ Example Playbook
           ssl_connector_port: 8443
           shutdown_port: 8005
           ajp_port: 8009
-          wars:
-            - apponea.war
-            - apponeb.war
         - name: apptwo
           directory: /opt/apptwo
           version: 8
@@ -80,8 +75,6 @@ Example Playbook
           ssl_connector_port: 8444
           shutdown_port: 8006
           ajp_port: 8010
-          wars:
-            - apptwo.war
         - name: appthree
           directory: /opt/appthree
           version: 9
@@ -93,10 +86,6 @@ Example Playbook
           ssl_connector_port: 8445
           shutdown_port: 8007
           ajp_port: 8011
-          wars:
-            - appthreea.war
-            - appthreeb.war
-            - appthreec.war
 ```
 
 Install this role using `galaxy install robertdebock.tomcat`.

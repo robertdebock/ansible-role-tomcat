@@ -1,16 +1,26 @@
 ---
 # defaults file for tomcat
+tomcat_name: tomcat
+tomcat_directory: /opt
+tomcat_version: 8
+tomcat_user: tomcat
+tomcat_group: tomcat
+tomcat_xms: 512M
+tomcat_xmx: 1024M
+tomcat_non_ssl_connector_port: 8080
+tomcat_ssl_connector_port: 8443
+tomcat_shutdown_port: 8005
+tomcat_ajp_port: 8009
+
 tomcat_layout:
-  - name: tomcat
-    directory: /opt
-    version: 8
-    user: tomcat
-    group: tomcat
-    xms: 512M
-    xmx: 1024M
-    non_ssl_connector_port: 8080
-    ssl_connector_port: 8443
-    shutdown_port: 8005
-    ajp_port: 8009
-    wars:
-      - sample.war
+  - name: "{{ tomcat_name }}"
+    directory: "{{ tomcat_directory }}"
+    version: "{{ tomcat_version }}"
+    user: "{{ tomcat_user }}"
+    group: "{{ tomcat_group }}"
+    xms: "{{ tomcat_xms }}"
+    xmx: "{{ tomcat_xmx }}"
+    non_ssl_connector_port: "{{ tomcat_non_ssl_connector_port }}"
+    ssl_connector_port: "{{ tomcat_ssl_connector_port }}"
+    shutdown_port: "{{ tomcat_shutdown_port }}"
+    ajp_port: "{{ tomcat_ajp_port }}"
