@@ -12,16 +12,22 @@ lint:
 platforms:
   - name: centos-6
     box: centos/6
+    memory: 1024
   - name: centos-7
     box: centos/7
+    memory: 1024
   - name: debian-buster64
     box: desc/buster64
+    memory: 1024
   - name: fedora-26-cloud-base
     box: fedora/26-cloud-base
+    memory: 1024
   - name: fedora-27-cloud-base
     box: fedora/27-cloud-base
+    memory: 1024
   - name: ubuntu-zesty
     box: ubuntu/zesty64
+    memory: 1024
 provisioner:
   name: ansible
   lint:
