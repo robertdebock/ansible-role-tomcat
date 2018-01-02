@@ -23,16 +23,16 @@
   with_items:
     - "{{ tomcat_layout }}"
 
-- name: copy tomcat
-  copy:
-    src: "files/{{ tomcat_archive[item.version | default (tomcat_version)]['targz'] }}"
-    dest: "{{ item.directory | default(tomcat_directory) }}"
+- name: download tomcat
+  get_url:
+    url: "{{ tomcat_mirror }}/{{ tomcat_archive[item.version | default (tomcat_version)]['url_path'] }}/{{ tomcat_archive[item.version | default (tomcat_version)]['targz'] }}"
+    dest: /tmp
   with_items:
     - "{{ tomcat_layout }}"
 
 - name: install tomcat
   unarchive:
-    src: "{{ item.directory | default(tomcat_directory) }}/{{ tomcat_archive[item.version | default (tomcat_version)]['targz'] }}"
+    src: "/tmp/{{ tomcat_archive[item.version | default (tomcat_version)]['targz'] }}"
     dest: "{{ item.directory | default(tomcat_directory) }}"
     group: "{{ item.group | default(tomcat_group) }}"
     owner: "{{ item.user | default(tomcat_user) }}"

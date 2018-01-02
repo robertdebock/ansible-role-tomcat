@@ -4,9 +4,12 @@ tomcat_archive:
   7:
     targz: apache-tomcat-7.0.82.tar.gz
     dir: apache-tomcat-7.0.82
+    url_path: internet/apache/tomcat/tomcat-7/v7.0.82/bin
   8:
     targz: apache-tomcat-8.5.24.tar.gz
     dir: apache-tomcat-8.5.24
+    url_path: internet/apache/tomcat/tomcat-8/v8.5.24/bin
   9:
     targz: apache-tomcat-9.0.2.tar.gz
     dir: apache-tomcat-9.0.2
+    url_path: internet/apache/tomcat/tomcat-9/v9.0.2/bin/

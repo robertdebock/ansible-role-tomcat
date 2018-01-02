@@ -1,5 +1,7 @@
 ---
 # defaults file for tomcat
+tomcat_mirror: http://ftp.nluug.nl/
+
 tomcat_name: tomcat
 tomcat_directory: /opt
 tomcat_version: 8

@@ -15,10 +15,10 @@
           group: tomcat7
           xms: 512M
           xmx: 1024M
-          non_ssl_connector_port: 8080
-          ssl_connector_port: 8443
-          shutdown_port: 8005
-          ajp_port: 8009
+          non_ssl_connector_port: 8081
+          ssl_connector_port: 8444
+          shutdown_port: 8006
+          ajp_port: 8010
         - name: tomcat8
           directory: /opt/tomcat8
           version: 8
@@ -26,10 +26,10 @@
           group: tomcat8
           xms: 512M
           xmx: 1024M
-          non_ssl_connector_port: 8081
+          non_ssl_connector_port: 8082
           ssl_connector_port: 8444
-          shutdown_port: 8006
-          ajp_port: 8010
+          shutdown_port: 8007
+          ajp_port: 8011
         - name: tomcat9
           directory: /opt/tomcat9
           version: 9
@@ -37,7 +37,14 @@
           group: tomcat9
           xms: 512M
           xmx: 1024M
-          non_ssl_connector_port: 8082
-          ssl_connector_port: 8445
-          shutdown_port: 8007
-          ajp_port: 8011
+          non_ssl_connector_port: 8083
+          ssl_connector_port: 8446
+          shutdown_port: 8008
+          ajp_port: 8012
+        - name: tomcat-large
+          xms: 1024M
+          xmx: 2048M
+          non_ssl_connector_port: 8084
+          ssl_connector_port: 8447
+          shutdown_port: 9008
+          ajp_port: 9012
