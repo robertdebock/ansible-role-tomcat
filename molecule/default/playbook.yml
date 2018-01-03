@@ -42,6 +42,7 @@
           shutdown_port: 8008
           ajp_port: 8012
         - name: tomcat-large
+          directory: /opt/tomcat-large
           xms: 1024M
           xmx: 2048M
           non_ssl_connector_port: 8084

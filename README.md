@@ -23,7 +23,7 @@ Role Variables
 
 tomcat_layout:
   - name: tomcat # Any name you'd like to identify the application with.
-    directory: /opt
+    directory: /opt # Set a unique directory for each installation.
     version: 7 # Either 7, 8 or 9.
     user: tomcat
     group: tomcat

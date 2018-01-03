@@ -14,40 +14,40 @@ if [ -f /etc/init.d/functions ] ; then
 fi
 
 start() {
-	echo -n "Starting {{ item.name | default(tomcat_name) }}: "
+  echo -n "Starting {{ item.name | default(tomcat_name) }}: "
   returncode=$({{ item.directory | default(tomcat_directory) }}/{{ tomcat_archive[item.version | default(tomcat_version)]['dir'] }}/bin/startup.sh)
-	touch /var/lock/subsys/tomcat
-	return ${returncode}
+  touch /var/lock/subsys/tomcat
+  return ${returncode}
 }
 
 stop() {
-	echo -n "Shutting down {{ item.name | default(tomcat_name) }}: "
-	returncode=$({{ item.directory | default(tomcat_directory) }}/{{ tomcat_archive[item.version | default(tomcat_version)]['dir'] }}/bin/shutdown.sh)
-	rm -f /var/lock/subsys/tomcat
-	return ${returncode}
+  echo -n "Shutting down {{ item.name | default(tomcat_name) }}: "
+  returncode=$({{ item.directory | default(tomcat_directory) }}/{{ tomcat_archive[item.version | default(tomcat_version)]['dir'] }}/bin/shutdown.sh)
+  rm -f /var/lock/subsys/tomcat
+  return ${returncode}
 }
 
 case "$1" in
   start)
-	  start
-	;;
+    start
+  ;;
   stop)
-	  stop
-	;;
+    stop
+  ;;
   status)
     echo "not supported."
-	;;
+  ;;
   restart)
     stop
-	  start
-	;;
+    start
+  ;;
   reload)
-	  echo "not supported."
-	;;
+    echo "not supported."
+  ;;
     *)
-	echo "Usage: <servicename> {start|stop|status|restart|reload}"
-	exit 1
-	;;
+  echo "Usage: <servicename> {start|stop|status|restart|reload}"
+  exit 1
+  ;;
 esac
 
 exit $?
