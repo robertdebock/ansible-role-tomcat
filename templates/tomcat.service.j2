@@ -1,3 +1,4 @@
+{{ ansible_managed | comment }}
 [Unit]
 Description={{ item.name | default(tomcat_name) }}
 After=syslog.target network.target
