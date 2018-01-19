@@ -8,6 +8,8 @@ driver:
 lint:
   name: yamllint
 platforms:
+  - name: tomcat-archlinux
+    image: base/archlinux
   - name: tomcat-alpine-3.6
     image: alpine:3.6
   - name: tomcat-alpine-3.7
@@ -16,14 +18,27 @@ platforms:
     image: centos:6
   - name: tomcat-centos-7
     image: centos:7
+  - name: tomcat-debian-jessie
+    image: debian:jessie
+  - name: tomcat-debian-stretch
+    image: debian:stretch
   - name: tomcat-debian-buster
     image: debian:buster
   - name: tomcat-fedora-26
     image: fedora:26
   - name: tomcat-fedora-27
     image: fedora:27
-  - name: tomcat-ubuntu-zesty
-    image: ubuntu:zesty
+  - name: tomcat-opensuse-42.2
+    image: opensuse:42.2
+  - name: tomcat-opensuse-42.3
+    image: opensuse:42.3
+    # 14.04 LTS
+  - name: tomcat-ubuntu-trusty
+    image: ubuntu:trusty
+    # 16.04 LTS
+  - name: tomcat-ubuntu-xenial
+    image: ubuntu:xenial
+    # 17.04
   - name: tomcat-ubuntu-artful
     image: ubuntu:artful
 provisioner:

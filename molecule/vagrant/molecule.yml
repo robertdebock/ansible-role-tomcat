@@ -16,6 +16,9 @@ platforms:
   - name: tomcat-centos-7
     box: centos/7
     memory: 1024
+  - name: tomcat-debian-jessie64
+    box: debian/jessie64
+    memory: 1024
   - name: tomcat-debian-buster64
     box: desc/buster64
     memory: 1024
@@ -25,8 +28,14 @@ platforms:
   - name: tomcat-fedora-27-cloud-base
     box: fedora/27-cloud-base
     memory: 1024
-  - name: tomcat-ubuntu-zesty
-    box: ubuntu/zesty64
+  - name: tomcat-opensuse-openSUSE-42-2-x86-64
+    box: opensuse/openSUSE-42.2-x86_64
+    memory: 1024
+  - name: tomcat-ubuntu-trusty
+    box: ubuntu/trusty64
+    memory: 1024
+  - name: tomcat-ubuntu-artful
+    box: ubuntu/artful64
     memory: 1024
 provisioner:
   name: ansible
@@ -35,6 +44,6 @@ provisioner:
 scenario:
   name: vagrant
 verifier:
-  name: testinfra
+  name: goss
   lint:
-    name: flake8
+    name: 'None'
