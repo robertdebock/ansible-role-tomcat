@@ -18,8 +18,6 @@ platforms:
     image: centos:6
   - name: tomcat-centos-7
     image: centos:7
-  - name: tomcat-debian-jessie
-    image: debian:jessie
   - name: tomcat-debian-stretch
     image: debian:stretch
   - name: tomcat-debian-buster
@@ -32,9 +30,6 @@ platforms:
     image: opensuse:42.2
   - name: tomcat-opensuse-42.3
     image: opensuse:42.3
-    # 14.04 LTS
-  - name: tomcat-ubuntu-trusty
-    image: ubuntu:trusty
     # 16.04 LTS
   - name: tomcat-ubuntu-xenial
     image: ubuntu:xenial
