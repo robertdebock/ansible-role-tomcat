@@ -16,9 +16,6 @@ platforms:
   - name: tomcat-centos-7
     box: centos/7
     memory: 1024
-  - name: tomcat-debian-jessie64
-    box: debian/jessie64
-    memory: 1024
   - name: tomcat-debian-buster64
     box: desc/buster64
     memory: 1024
@@ -30,9 +27,6 @@ platforms:
     memory: 1024
   - name: tomcat-opensuse-openSUSE-42-2-x86-64
     box: opensuse/openSUSE-42.2-x86_64
-    memory: 1024
-  - name: tomcat-ubuntu-trusty
-    box: ubuntu/trusty64
     memory: 1024
   - name: tomcat-ubuntu-artful
     box: ubuntu/artful64
