@@ -42,3 +42,4 @@ galaxy_info:
 
 dependencies:
   - robertdebock.java
+  - robertdebock.haveged
