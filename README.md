@@ -8,15 +8,9 @@ Provides Apache Tomcat 7, 8 (default) or 9 for your system.
 Requirements
 ------------
 
-Downloaded releases of tomcat in the `files` directory. Hint:
-```
-cd files
-wget http://www-eu.apache.org/dist/tomcat/tomcat-7/v7.0.82/bin/apache-tomcat-7.0.82.tar.gz
-wget http://www-eu.apache.org/dist/tomcat/tomcat-8/v8.5.24/bin/apache-tomcat-8.5.24.tar.gz
-wget http://www-eu.apache.org/dist/tomcat/tomcat-9/v9.0.2/bin/apache-tomcat-9.0.2.tar.gz
-```
-
-Also place all war files into the `files` directory.
+These requirements are explicitly mentioned in meta/main.yml.
+- java
+- haveged
 
 Role Variables
 --------------
@@ -33,11 +27,14 @@ tomcat_layout:
     ssl_connector_port: 8443
     shutdown_port: 8005
     ajp_port: 8009
+    wars:
+      - url: https://tomcat.apache.org/tomcat-6.0-doc/appdev/sample/sample.war
 
 Dependencies
 ------------
 
 - robertdebock.java
+- robertdebock.haveged
 
 Download the dependencies by issuing this command:
 ```
@@ -64,6 +61,8 @@ Example Playbook
           ssl_connector_port: 8443
           shutdown_port: 8005
           ajp_port: 8009
+          wars:
+            - url: https://tomcat.apache.org/tomcat-6.0-doc/appdev/sample/sample.war
         - name: apptwo
           directory: /opt/apptwo
           version: 8

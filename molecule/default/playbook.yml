@@ -19,6 +19,8 @@
           ssl_connector_port: 8444
           shutdown_port: 8006
           ajp_port: 8010
+          wars:
+            - url: https://tomcat.apache.org/tomcat-6.0-doc/appdev/sample/sample.war
         - name: tomcat8
           directory: /opt/tomcat8
           version: 8

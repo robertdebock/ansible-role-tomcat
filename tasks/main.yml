@@ -58,6 +58,13 @@
   with_items:
     - "{{ tomcat_layout }}"
 
+- name: deploy wars
+  include: tomcat_instance.yml
+  with_items: "{{ tomcat_layout }}"
+  loop_control:
+    loop_var: tomcat_instance
+    label: "{{ tomcat_instance.name }}"
+
 - name: register tomcat to a systemd system
   template:
     src: templates/tomcat.service.j2

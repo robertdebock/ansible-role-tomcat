@@ -1,0 +1,11 @@
+---
+- debug:
+    var: tomcat_instance.wars
+
+- name: download wars
+  get_url:
+    url: "{{ item.wars }}"
+    dest: "{{ item.directory | default(tomcat_directory) }}/{{ tomcat_archive[item.version | default (tomcat_version)]['dir'] }}/webapps/"
+  with_items: "{{ tomcat_instance }}"
+  when:
+    - item.wars is defined
