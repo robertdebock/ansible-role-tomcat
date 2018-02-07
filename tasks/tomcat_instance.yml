@@ -1,7 +1,4 @@
 ---
-- debug:
-    var: tomcat_instance.wars
-
 - name: download wars
   get_url:
     url: "{{ item.wars }}"
