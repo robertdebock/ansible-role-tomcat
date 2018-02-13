@@ -1,8 +1,6 @@
 ---
-- name: download wars
+- name: install war
   get_url:
     url: "{{ item.url }}"
     dest: "{{ item.directory | default(tomcat_directory) }}/{{ tomcat_archive[item.version | default (tomcat_version)]['dir'] }}/webapps/"
-  with_items: "{{ tomcat_instance.wars }}"
-  when:
-    - tomcat_instance.wars is defined
+  with_items: "{{ tomcat_wars }}"
