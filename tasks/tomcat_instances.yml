@@ -8,3 +8,5 @@
   with_items: "{{ tomcat_instances }}"
   loop_control:
     loop_var: tomcat_wars
+  when:
+    - tomcat_instances.wars
