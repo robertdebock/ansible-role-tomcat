@@ -58,10 +58,6 @@
   with_items:
     - "{{ tomcat_layout }}"
 
-- name: show tomcat_layout
-  debug:
-    var: tomcat_layout
-
 - name: loop over tomcat_layout
   include: tomcat_instances.yml
   with_items: "{{ tomcat_layout }}"
