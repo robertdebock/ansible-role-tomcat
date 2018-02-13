@@ -1,4 +1,8 @@
 ---
+- name: show shit
+  debug:
+    var: item
+
 - name: install war
   get_url:
     url: "{{ item.url }}"
