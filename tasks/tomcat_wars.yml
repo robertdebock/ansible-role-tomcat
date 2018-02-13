@@ -1,10 +1,14 @@
 ---
-- name: show tomcat_wars
+- name: show tomcat_wars all
+  debug:
+    var: tomcat_wars
+
+- name: show tomcat_wars url
   debug:
     msg: "{{ item.url }}"
   with_items: "{{ tomcat_wars }}"
   when:
-    - tomcat_wars.url is defined
+    - item.url is defined
 
 - name: loop over tomcat_wars
   get_url:
@@ -12,4 +16,4 @@
     dest: "{{ item.directory | default(tomcat_directory) }}/{{ tomcat_archive[item.version | default (tomcat_version)]['dir'] }}/webapps/"
   with_items: "{{ tomcat_wars }}"
   when:
-    - tomcat_wars.url is defined
+    - item.url is defined
