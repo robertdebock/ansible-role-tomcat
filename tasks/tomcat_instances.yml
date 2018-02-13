@@ -9,4 +9,4 @@
   loop_control:
     loop_var: tomcat_wars
   when:
-    - tomcat_instances.wars
+    - tomcat_instances.wars is defined
