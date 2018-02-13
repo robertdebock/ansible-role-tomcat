@@ -1,9 +1,9 @@
 ---
-- name: show shit
+- name: show tomcat_wars
   debug:
     var: tomcat_wars
 
-- name: install war
+- name: loop over tomcat_wars
   get_url:
     url: "{{ item.url }}"
     dest: "{{ item.directory | default(tomcat_directory) }}/{{ tomcat_archive[item.version | default (tomcat_version)]['dir'] }}/webapps/"

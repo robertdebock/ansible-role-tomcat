@@ -1,5 +1,9 @@
 ---
-- name: loop over wars
+- name: show tomcat_instances
+  debug:
+    var: tomcat_instances
+
+- name: loop over tomcat_instances
   include: tomcat_wars.yml
   with_items: "{{ tomcat_instances }}"
   loop_control:
