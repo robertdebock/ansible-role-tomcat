@@ -1,9 +1,9 @@
 ---
 # vars file for tomcat
-tomcat_version7: 7.0.84
-tomcat_version8: 8.0.49
-tomcat_version85: 8.5.27
-tomcat_version9: 9.0.4
+tomcat_version7: 7.0.85
+tomcat_version8: 8.0.50
+tomcat_version85: 8.5.28
+tomcat_version9: 9.0.5
 
 tomcat_archive:
   7:
