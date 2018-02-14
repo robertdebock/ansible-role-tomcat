@@ -1,10 +1,5 @@
 ---
 # vars file for tomcat
-tomcat_version7: 7.0.85
-tomcat_version8: 8.0.50
-tomcat_version85: 8.5.28
-tomcat_version9: 9.0.5
-
 tomcat_archive:
   7:
     targz: apache-tomcat-{{ tomcat_version7 }}.tar.gz
