@@ -1,7 +1,9 @@
 ---
 # defaults file for tomcat
+# The location where to download Apache Tomcat from.
 tomcat_mirror: http://ftp.nluug.nl/
 
+# Some "sane" defaults.
 tomcat_name: tomcat
 tomcat_directory: /opt
 tomcat_version: 8.5
@@ -14,6 +16,12 @@ tomcat_ssl_connector_port: 8443
 tomcat_shutdown_port: 8005
 tomcat_ajp_port: 8009
 
+# This role allows multiple installations of Apache Tomcat, each in their own
+# location, potentially of different version.
+# This is done by defining a "tomcat_layout" where "name:" is a unique
+# identifier of an instance.
+# The default tomcat_layout is one instance using the defaults described
+# in defaults/main.yml.
 tomcat_layout:
   - name: "{{ tomcat_name }}"
     directory: "{{ tomcat_directory }}"
@@ -26,3 +34,7 @@ tomcat_layout:
     ssl_connector_port: "{{ tomcat_ssl_connector_port }}"
     shutdown_port: "{{ tomcat_shutdown_port }}"
     ajp_port: "{{ tomcat_ajp_port }}"
+
+# When downloading wars, shoul the SSL certificat be valid? (Impossible for
+# CentOS 6, so default: no.)
+tomcat_validate_certs: no
