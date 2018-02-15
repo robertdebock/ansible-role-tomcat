@@ -59,7 +59,7 @@
     - "{{ tomcat_layout }}"
 
 - name: loop over tomcat_layout
-  include: tomcat_instances.yml
+  include_tasks: tomcat_instances.yml
   with_items: "{{ tomcat_layout }}"
   loop_control:
     loop_var: tomcat_instances

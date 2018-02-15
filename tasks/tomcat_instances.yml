@@ -1,6 +1,6 @@
 ---
 - name: loop over tomcat_instances
-  include: tomcat_wars.yml
+  include_tasks: tomcat_wars.yml
   with_items: "{{ tomcat_instances.wars }}"
   loop_control:
     loop_var: tomcat_wars
