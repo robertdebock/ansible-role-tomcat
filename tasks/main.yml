@@ -62,7 +62,7 @@
   include: deploy_wars.yml
   with_items: "{{ tomcat_layout }}"
   loop_control:
-    loop_var: tomcat_name
+    loop_var: tomcat_names
 
 - name: register tomcat to a systemd system
   template:
