@@ -12,4 +12,4 @@
   with_items:
     - "{{ tomcat_names.wars }}"
   when:
-    - item.url is defined
+    - tomcat_names.wars is defined
