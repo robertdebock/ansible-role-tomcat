@@ -1,9 +1,0 @@
----
-- name: loop over tomcat_wars
-  get_url:
-    url: "{{ item }}"
-    dest: "{{ item.directory | default(tomcat_directory) }}/{{ tomcat_archive[item.version | default (tomcat_version)]['dir'] }}/webapps/"
-    validate_certs: no
-  with_items: "{{ tomcat_wars.url }}"
-  when:
-    - item is defined

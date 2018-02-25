@@ -1,0 +1,9 @@
+---
+- name: deploy war url
+  get_url:
+    url: "{{ item.url }}"
+    dest: "{{ tomcat_name.directory | default ({{ tomcat_directory }})}}"
+  with_items:
+    - "{{ tomcat_name.wars }}"
+  when:
+    - tomcat_name.wars is defined
