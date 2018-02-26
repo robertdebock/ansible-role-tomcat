@@ -9,6 +9,7 @@
   get_url:
     url: "{{ item.url }}"
     dest: "{{ destination }}"
+    validate_certs: no
   with_items:
     - "{{ tomcat_names.wars }}"
   when:
