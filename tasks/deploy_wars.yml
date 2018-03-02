@@ -1,0 +1,16 @@
+---
+- name: determine the deploy location
+  set_fact:
+    destination: "{{ tomcat_directory }}/{{ item.name }}/{{ tomcat_archive[tomcat_names.version | default (tomcat_version)]['dir'] }}/webapps/"
+  with_items:
+    - "{{ tomcat_names }}"
+
+- name: deploy war url
+  get_url:
+    url: "{{ item.url }}"
+    dest: "{{ destination }}"
+    validate_certs: no
+  with_items:
+    - "{{ tomcat_names.wars }}"
+  when:
+    - tomcat_names.wars is defined

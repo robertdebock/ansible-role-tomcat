@@ -15,10 +15,15 @@ These requirements are explicitly mentioned in meta/main.yml.
 Role Variables
 --------------
 
+You can install multiple instances and multiple versions. This configuration is defined in the variable "tomcat_layout". If you do not use the tomcat_layout, defaults will be used. See defaults/main.yml for the default values.
+
+This is the default tomcat_layout:
+
+```
 tomcat_layout:
-  - name: tomcat # Any name you'd like to identify the application with.
-    directory: /opt # Set a unique directory for each installation.
-    version: 7 # Either 7, 8 or 9.
+  - name: tomcat
+    directory: /opt
+    version: 8.5
     user: tomcat
     group: tomcat
     xms: 512M
@@ -27,8 +32,9 @@ tomcat_layout:
     ssl_connector_port: 8443
     shutdown_port: 8005
     ajp_port: 8009
-    wars:
-      - url: https://tomcat.apache.org/tomcat-6.0-doc/appdev/sample/sample.war
+```
+
+See "Example Playbooks" for futher details.
 
 Dependencies
 ------------
@@ -44,6 +50,15 @@ ansible-galaxy install --role-file requirements.yml
 Example Playbook
 ----------------
 
+The simplest form:
+```
+- hosts: servers
+
+  roles:
+    - role: robertdebock.tomcat
+```
+
+And here is a heavily customized installation:
 ```
 - hosts: servers
 

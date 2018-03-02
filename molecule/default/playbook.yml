@@ -29,7 +29,7 @@
           xms: 512M
           xmx: 1024M
           non_ssl_connector_port: 8082
-          ssl_connector_port: 8444
+          ssl_connector_port: 8445
           shutdown_port: 8007
           ajp_port: 8011
         - name: tomcat9
