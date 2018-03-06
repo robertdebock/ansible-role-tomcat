@@ -42,6 +42,4 @@ galaxy_info:
     - OpenSUSE
     - Ubuntu
 
-dependencies:
-  - robertdebock.java
-  - robertdebock.haveged
+dependencies: []

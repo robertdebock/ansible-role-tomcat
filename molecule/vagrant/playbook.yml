@@ -5,6 +5,9 @@
   become: yes
 
   roles:
+    - role: robertdebock.bootstrap
+    - role: robertdebock.java
+    - role: robertdebock.haveged
     - role: ansible-role-tomcat
       tomcat_layout:
         - name: tomcat

@@ -8,9 +8,10 @@ Provides Apache Tomcat 7, 8 (default) or 9 for your system.
 Requirements
 ------------
 
-These requirements are explicitly mentioned in meta/main.yml.
-- java
-- haveged
+These requirements can help you prepare your system for this role:
+- robertdebock.bootstrap
+- robertdebock.java
+- robertdebock.haveged
 
 Role Variables
 --------------
@@ -39,6 +40,9 @@ See "Example Playbooks" for futher details.
 Dependencies
 ------------
 
+These loose dependencies are available.
+
+- robertdebock.bootstrap
 - robertdebock.java
 - robertdebock.haveged
 
@@ -55,6 +59,9 @@ The simplest form:
 - hosts: servers
 
   roles:
+    - role: robertdebock.bootstrap
+    - role: robertdebock.java
+    - role: robertdebock.haveged
     - role: robertdebock.tomcat
 ```
 
@@ -63,6 +70,9 @@ And here is a heavily customized installation:
 - hosts: servers
 
   roles:
+    - role: robertdebock.bootstrap
+    - role: robertdebock.java
+    - role: robertdebock.haveged
     - role: robertdebock.tomcat
       tomcat_layout:
         - name: appone
