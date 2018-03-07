@@ -1,4 +1,5 @@
 ---
 - robertdebock.bootstrap
+- robertdebock.epel
 - robertdebock.java
 - robertdebock.haveged
