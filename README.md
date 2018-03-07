@@ -11,7 +11,7 @@ Requirements
 These requirements can help you prepare your system for this role:
 - robertdebock.bootstrap
 - robertdebock.java
-- robertdebock.haveged
+- robertdebock.haveged (optional, requires robertdebock.epel.)
 
 Role Variables
 --------------
@@ -43,6 +43,7 @@ Dependencies
 These loose dependencies are available.
 
 - robertdebock.bootstrap
+- robertdebock.epel
 - robertdebock.java
 - robertdebock.haveged
 
@@ -60,6 +61,7 @@ The simplest form:
 
   roles:
     - role: robertdebock.bootstrap
+    - role: robertdebock.epel
     - role: robertdebock.java
     - role: robertdebock.haveged
     - role: robertdebock.tomcat
@@ -71,6 +73,7 @@ And here is a heavily customized installation:
 
   roles:
     - role: robertdebock.bootstrap
+    - role: robertdebock.epel
     - role: robertdebock.java
     - role: robertdebock.haveged
     - role: robertdebock.tomcat
