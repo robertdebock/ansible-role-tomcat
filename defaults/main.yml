@@ -4,8 +4,8 @@
 # The explicit version to use when referring to the short name.
 tomcat_version7: 7.0.85
 tomcat_version8: 8.0.50
-tomcat_version85: 8.5.28
-tomcat_version9: 9.0.5
+tomcat_version85: 8.5.29
+tomcat_version9: 9.0.6
 
 # The location where to download Apache Tomcat from.
 tomcat_mirror: http://ftp.nluug.nl/
