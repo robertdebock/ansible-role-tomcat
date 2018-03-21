@@ -1,33 +1,29 @@
----
-- name: Ensure webapp dir exists (url)
+--- 
+- name: "Ensure webapp dir exists (url)"
   shell: "mkdir -p {{ item.directory | default(tomcat_directory) }}/{{ tomcat_archive[item.version | default (tomcat_version)]['dir'] }}/webapps"
+  when: 
+    - "tomcat_wars.url is defined"
   with_items: "{{ tomcat_wars.url }}"
-  when:
-    - tomcat_wars.url is defined
-
-- name: loop over tomcat_wars
-  get_url:
-    url: "{{ item }}"
+- name: "loop over tomcat_wars"
+  get_url: 
     dest: "{{ item.directory | default(tomcat_directory) }}/{{ tomcat_archive[item.version | default (tomcat_version)]['dir'] }}/webapps/"
-    validate_certs: no
+    url: "{{ item }}"
+    validate_certs: false
+  when: 
+    - "tomcat_wars.url is defined"
   with_items: "{{ tomcat_wars.url }}"
-  when:
-    - tomcat_wars.url is defined
-
-- name: Ensure webapp dir exists (s3)
+- name: "Ensure webapp dir exists (s3)"
   shell: "mkdir -p {{ item.directory | default(tomcat_directory) }}/{{ tomcat_archive[item.version | default (tomcat_version)]['dir'] }}/webapps"
+  when: 
+    - "tomcat_wars.s3 is defined"
   with_items: "{{ tomcat_wars.s3 }}"
-  when:
-    - tomcat_wars.s3 is defined
-
-- name: loop over tomcat_wars in s3
-  aws_s3:
+- name: "loop over tomcat_wars in s3"
+  aws_s3: 
     bucket: "{{ item.bucket }}"
-    object: "{{ item.object }}"
-    mode: "get"
-    validate_certs: yes
     dest: "{{ item.directory | default(tomcat_directory) }}/{{ tomcat_archive[item.version | default (tomcat_version)]['dir'] }}/webapps/{{ item.object | basename }}"
+    mode: get
+    object: "{{ item.object }}"
+    validate_certs: true
+  when: 
+    - "tomcat_wars.s3 is defined"
   with_items: "{{ tomcat_wars.s3 }}"
-  when:
-    - tomcat_wars.s3 is defined
-
