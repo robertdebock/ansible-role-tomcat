@@ -30,3 +30,4 @@
   with_items: "{{ tomcat_wars.s3 }}"
   when:
     - tomcat_wars.s3 is defined
+
