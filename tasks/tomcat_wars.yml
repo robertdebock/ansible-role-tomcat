@@ -1,4 +1,4 @@
---- 
+---
 - name: "Ensure webapp dir exists (url)"
   shell: "mkdir -p {{ item.directory | default(tomcat_directory) }}/{{ tomcat_archive[item.version | default (tomcat_version)]['dir'] }}/webapps"
   when:
