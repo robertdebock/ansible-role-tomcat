@@ -23,6 +23,7 @@
     dest: "{{ item.directory | default(tomcat_directory) }}/{{ tomcat_archive[item.version | default (tomcat_version)]['dir'] }}/webapps/{{ item.object | basename }}"
     mode: get
     object: "{{ item.object }}"
+    region: {{ item.region | default(tomcat_s3_default_region) }}
     validate_certs: true
   when:
     - "tomcat_wars.s3 is defined"

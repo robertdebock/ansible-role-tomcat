@@ -45,3 +45,4 @@ tomcat_layout:
 # When downloading wars, shoul the SSL certificat be valid? (Impossible for
 # CentOS 6, so default: no.)
 tomcat_validate_certs: no
+tomcat_s3_default_region: 'us-east-1'
