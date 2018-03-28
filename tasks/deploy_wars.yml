@@ -15,7 +15,8 @@
     - "{{ tomcat_names }}"
 
 - name: "TEST"
-  shell: "echo {{tomcat_wars}};echo {{destination}}"
+  debug: 
+    msg: "{{tomcat_wars}} xxx {{destination}}"
 
 - name: "loop over tomcat_wars in urls"
   get_url:

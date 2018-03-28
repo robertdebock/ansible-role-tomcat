@@ -48,6 +48,13 @@
   with_items:
     - "{{ tomcat_layout }}"
 
+- name: configure tomcat users
+  template:
+    src: templates/tomcat-users.xml.j2
+    dest: "{{ item.directory | default(tomcat_directory) }}/{{ tomcat_archive[item.version | default (tomcat_version)]['dir'] }}/conf/tomcat-users.xml"
+  with_items:
+    - "{{ tomcat_layout }}"
+
 - name: register tomcat to a sysvinit system
   template:
     src: templates/tomcat.j2
