@@ -2,7 +2,7 @@
 - name: determine the deploy location
   set_fact:
     destination: "{{ tomcat_directory }}/{{ item.name }}/{{ tomcat_archive[tomcat_names.version | default (tomcat_version)]['dir'] }}/webapps"
-    tomcat_wars: "{{tomcat_names.wars}}"
+    tomcat_wars: "{{item.wars}}"
   with_items:
     - "{{ tomcat_names }}"
 
