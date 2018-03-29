@@ -7,7 +7,7 @@
   roles:
     - role: robertdebock.bootstrap
     - role: ansible-role-tomcat
-      tomcat_validate_certs: yes
+      tomcat_validate_certs: no
       tomcat_layout:
         - name: tomcat-test
           directory: /opt/tomcat-test

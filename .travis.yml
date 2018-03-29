@@ -40,12 +40,15 @@ env:
   - version=">=2.3,<2.4" distro="opensuse-42.3"
   - version=">=2.4,<2.5" distro="opensuse-42.3"
   - version=">=2.5,<2.6" distro="opensuse-42.3"
-  - version=">=2.3,<2.4" distro="ubuntu-artful"
-  - version=">=2.4,<2.5" distro="ubuntu-artful"
-  - version=">=2.5,<2.6" distro="ubuntu-artful"
-  - version=">=2.3,<2.4" distro="ubuntu-xenial"
-  - version=">=2.4,<2.5" distro="ubuntu-xenial"
-  - version=">=2.5,<2.6" distro="ubuntu-xenial"
+  - version=">=2.3,<2.4" distro="ubuntu-16.04"
+  - version=">=2.4,<2.5" distro="ubuntu-16.04"
+  - version=">=2.5,<2.6" distro="ubuntu-16.04"
+  - version=">=2.3,<2.4" distro="ubuntu-17.04"
+  - version=">=2.4,<2.5" distro="ubuntu-17.04"
+  - version=">=2.5,<2.6" distro="ubuntu-17.04"
+  - version=">=2.3,<2.4" distro="ubuntu-18.04"
+  - version=">=2.4,<2.5" distro="ubuntu-18.04"
+  - version=">=2.5,<2.6" distro="ubuntu-18.04"
 
 cache:
   - pip
