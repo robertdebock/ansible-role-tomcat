@@ -30,12 +30,10 @@ platforms:
     image: opensuse:42.2
   - name: tomcat-opensuse-42.3
     image: opensuse:42.3
-    # 16.04 LTS
-  - name: tomcat-ubuntu-xenial
-    image: ubuntu:xenial
-    # 17.04
-  - name: tomcat-ubuntu-artful
-    image: ubuntu:artful
+  - name: tomcat-ubuntu-16.04
+    image: ubuntu:16.04
+  - name: tomcat-ubuntu-18.04
+    image: ubuntu:18.04
 provisioner:
   name: ansible
   lint:

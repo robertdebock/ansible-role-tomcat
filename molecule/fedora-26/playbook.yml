@@ -7,3 +7,18 @@
   roles:
     - role: robertdebock.bootstrap
     - role: ansible-role-tomcat
+      tomcat_validate_certs: yes
+      tomcat_layout:
+        - name: tomcat-test
+          directory: /opt/tomcat-test
+          version: 8
+          user: tomcat-test
+          group: tomcat-test
+          xms: 512M
+          xmx: 1024M
+          non_ssl_connector_port: 8080
+          ssl_connector_port: 8443
+          shutdown_port: 8005
+          ajp_port: 8009
+          wars:
+            - url: https://tomcat.apache.org/tomcat-6.0-doc/appdev/sample/sample.war

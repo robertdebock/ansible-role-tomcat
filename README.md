@@ -120,6 +120,9 @@ And here is a heavily customized installation:
           ssl_connector_port: 8445
           shutdown_port: 8007
           ajp_port: 8011
+          wars_s3:
+            - bucket: "example_bucket"
+              object: "path/to/my.war"
 ```
 
 Install this role using `galaxy install robertdebock.tomcat`.

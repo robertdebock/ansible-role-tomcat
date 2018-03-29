@@ -8,14 +8,14 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: tomcat-ubuntu-xenial
-    image: ubuntu:xenial
+  - name: tomcat-ubuntu-18.04
+    image: ubuntu:18.04
 provisioner:
   name: ansible
   lint:
     name: ansible-lint
 scenario:
-  name: ubuntu-xenial
+  name: ubuntu-18.04
   test_sequence:
     - lint
     - destroy

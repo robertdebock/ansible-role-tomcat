@@ -8,14 +8,14 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: tomcat-ubuntu-artful
-    image: ubuntu:artful
+  - name: tomcat-ubuntu-17.04
+    image: ubuntu:17.04
 provisioner:
   name: ansible
   lint:
     name: ansible-lint
 scenario:
-  name: ubuntu-artful
+  name: ubuntu-17.04
   test_sequence:
     - lint
     - destroy
