@@ -51,3 +51,16 @@
     - "{{ tomcat_wars_s3 }}"
   when:
     - "tomcat_wars_s3 is defined"
+
+- name: "Set war to / if only one exists"
+  shell: |
+    export WAR_FILES=$(ls {{destination}}/*.war | wc -l)
+    if [[ $WAR_FILES == 1 ]]; then
+      rm -rf "{{destination}}/ROOT"
+      mv "{{destination}}/*.war" "{{destination}}/ROOT.war"
+    fi
+    unset WAR_FILES
+  with_items:
+    - "{{ tomcat_names }}"
+  when:
+    - "tomcat_one_war is true"

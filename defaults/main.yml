@@ -42,7 +42,10 @@ tomcat_layout:
     shutdown_port: "{{ tomcat_shutdown_port }}"
     ajp_port: "{{ tomcat_ajp_port }}"
 
-# When downloading wars, shoul the SSL certificat be valid? (Impossible for
+# When downloading wars, should the SSL certificat be valid? (Impossible for
 # CentOS 6, so default: no.)
 tomcat_validate_certs: no
 tomcat_s3_default_region: 'us-east-1'
+
+# If there is only one war, should tomcat run it under / ?
+tomcat_one_war: true

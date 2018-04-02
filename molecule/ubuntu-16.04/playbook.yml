@@ -23,11 +23,11 @@
           wars:
             - url: https://tomcat.apache.org/tomcat-6.0-doc/appdev/sample/sample.war
           roles:
-            - name: manager-gui
-            - name: admin-gui
+            - manager-gui
+            - admin-gui
           users:
             - name: admin
               password: admin
               roles:
-                manager-gui
-                admin-gui
+                - manager-gui
+                - admin-gui

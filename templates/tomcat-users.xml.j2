@@ -7,13 +7,13 @@
 
 {% if item.roles is defined %}
 {% for role in item.roles %}
-  <role rolename="{{ role.name }}"/>
+  <role rolename="{{ role }}"/>
 {% endfor %}
 {% endif %}
 
 {% if item.users is defined %}
 {% for user in item.users %}
-  <user username="{{ user.name }}" password="{{ user.password }}" roles="{{ user.roles|join(',')}}"/>
+  <user username="{{ user.name }}" password="{{ user.password }}" roles="{{ user.roles | join(',') }}"/>
 {% endfor %}
 {% endif %}
 
