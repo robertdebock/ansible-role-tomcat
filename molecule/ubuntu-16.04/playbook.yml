@@ -22,3 +22,12 @@
           ajp_port: 8009
           wars:
             - url: https://tomcat.apache.org/tomcat-6.0-doc/appdev/sample/sample.war
+          roles:
+            - name: manager-gui
+            - name: admin-gui
+          users:
+            - name: admin
+              password: admin
+              roles:
+                manager-gui
+                admin-gui

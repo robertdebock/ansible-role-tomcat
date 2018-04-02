@@ -55,6 +55,9 @@
   with_items:
     - "{{ tomcat_layout }}"
 
+- name: show templating results
+  debug: "{{ lookup('template', 'templates/tomcat-users.xml.j2') }}"
+
 - name: register tomcat to a sysvinit system
   template:
     src: templates/tomcat.j2
