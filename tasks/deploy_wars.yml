@@ -71,6 +71,5 @@
     - tomcat_one_war
   register: hello
 
-- debug: "{{ hello.stdout }}"
-
-- debug: "{{ hello.stderr }}"
+- debug:
+    - msg: "{{ hello }}"
