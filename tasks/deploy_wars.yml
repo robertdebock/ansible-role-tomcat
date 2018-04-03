@@ -54,12 +54,14 @@
 
 - name: "Set war to / if only one exists"
   shell: |
-    export WAR_FILES=$(ls {{destination}}/*.war | wc -l)
+    cd "{{destination}}" 
+    export WAR_FILES=$(ls *.war | wc -l)
     if [[ $WAR_FILES == 1 ]]; then
-      rm -rf "{{destination}}/ROOT"
-      mv "{{destination}}/*.war" "{{destination}}/ROOT.war"
+      rm -rf "ROOT"
+      mv "*.war" "ROOT.war"
     fi
     unset WAR_FILES
+    cd -
   with_items:
     - "{{ tomcat_names }}"
   when:
