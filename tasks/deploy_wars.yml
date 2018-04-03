@@ -71,5 +71,6 @@
     - tomcat_one_war
   register: hello
 
-- debug:
+- name: "Debugging"
+  debug:
     - var: "{{ hello }}"
