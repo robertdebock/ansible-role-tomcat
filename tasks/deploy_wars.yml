@@ -69,8 +69,3 @@
     - "{{ tomcat_names }}"
   when:
     - tomcat_one_war
-  register: hello
-
-- name: "Debugging"
-  debug:
-    - var: "{{ hello }}"
