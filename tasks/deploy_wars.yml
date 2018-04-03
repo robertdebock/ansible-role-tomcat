@@ -63,4 +63,4 @@
   with_items:
     - "{{ tomcat_names }}"
   when:
-    - "tomcat_one_war is true"
+    - tomcat_one_war
