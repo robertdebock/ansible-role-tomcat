@@ -59,14 +59,13 @@
     ls -lah
     export WAR_FILES=$(ls *.war | wc -l)
     echo ">>>$WAR_FILES<<<"
-    if [[ "$WAR_FILES" == "1" ]]; then
+    if test "$WAR_FILES" = "1"; then
       echo "PASS"
       rm -rfv "*/"
       mv "*.war" "ROOT.war"
     fi
     unset WAR_FILES
     ls -lah
-    chown 
     cd -
   with_items:
     - "{{ tomcat_names }}"
