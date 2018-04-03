@@ -69,6 +69,8 @@
     - "{{ tomcat_names }}"
   when:
     - tomcat_one_war
-  register: set_war
+  register: hello
 
-- debug: msg="{{ set_war.stdout }}"
+- debug: "{{ hello.stdout }}"
+
+- debug: "{{ hello.stderr }}"
