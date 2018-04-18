@@ -4,6 +4,8 @@
     destination: "{{ tomcat_directory }}/{{ item.name }}/{{ tomcat_archive[tomcat_names.version | default (tomcat_version)]['dir'] }}/webapps/"
   with_items:
     - "{{ tomcat_names }}"
+  loop_control:
+    label: "{{ item.name }}"
 
 - name: deploy war url
   get_url:
@@ -14,3 +16,5 @@
     - "{{ tomcat_names.wars }}"
   when:
     - tomcat_names.wars is defined
+  loop_control:
+    label: "{{ item.url }}"
