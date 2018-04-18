@@ -5,6 +5,8 @@
     name: "{{ item.group | default(tomcat_group) }}"
   with_items:
     - "{{ tomcat_layout }}"
+  loop_control:
+    label: "{{ item.group }}"
 
 - name: ensure user exists
   user:
@@ -13,6 +15,8 @@
     system: yes
   with_items:
     - "{{ tomcat_layout }}"
+  loop_control:
+    label: "{{ item.user }}"
 
 - name: ensure tomcat_directory exists
   file:
@@ -22,6 +26,8 @@
     group: "{{ item.group | default(tomcat_group) }}"
   with_items:
     - "{{ tomcat_layout }}"
+  loop_control:
+    label: "{{ item.directory }}"
 
 - name: download tomcat
   get_url:
@@ -29,6 +35,8 @@
     dest: /tmp
   with_items:
     - "{{ tomcat_layout }}"
+  loop_control:
+    label: "{{ item.version }}"
 
 - name: install tomcat
   unarchive:
@@ -40,6 +48,8 @@
     creates: "{{ item.directory | default(tomcat_directory) }}/{{ tomcat_archive[item.version | default (tomcat_version)]['dir'] }}"
   with_items:
     - "{{ tomcat_layout }}"
+  loop_control:
+    label: "{{ item.directory }}"
 
 - name: configure tomcat
   template:
@@ -47,6 +57,8 @@
     dest: "{{ item.directory | default(tomcat_directory) }}/{{ tomcat_archive[item.version | default (tomcat_version)]['dir'] }}/conf/server.xml"
   with_items:
     - "{{ tomcat_layout }}"
+  loop_control:
+    label: "{{ item.directory }}"
 
 - name: register tomcat to a sysvinit system
   template:
@@ -57,6 +69,8 @@
     - ansible_service_mgr == "sysvinit" or ansible_service_mgr == "upstart"
   with_items:
     - "{{ tomcat_layout }}"
+  loop_control:
+    label: "{{ item.name }}"
 
 - name: loop over names in tomcat_layout
   include: deploy_wars.yml
@@ -72,6 +86,8 @@
     - ansible_service_mgr == "systemd"
   with_items:
     - "{{ tomcat_layout }}"
+  loop_control:
+    label: "{{ item.name }}"
 
 - name: start and enable software
   service:
@@ -82,3 +98,5 @@
     - "{{ tomcat_layout }}"
   when:
     - ansible_virtualization_type != "docker"
+  loop_control:
+    label: "{{ item.name }}"
