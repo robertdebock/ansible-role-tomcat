@@ -53,7 +53,7 @@
 
 - name: configure tomcat
   template:
-    src: templates/server.xml.j2
+    src: server.xml.j2
     dest: "{{ item.directory | default(tomcat_directory) }}/{{ tomcat_archive[item.version | default (tomcat_version)]['dir'] }}/conf/server.xml"
   with_items:
     - "{{ tomcat_layout }}"
@@ -62,7 +62,7 @@
 
 - name: register tomcat to a sysvinit system
   template:
-    src: templates/tomcat.j2
+    src: tomcat.j2
     dest: "/etc/init.d/{{ item.name | default(tomcat_name) }}"
     mode: 0750
   when:
@@ -80,7 +80,7 @@
 
 - name: register tomcat to a systemd system
   template:
-    src: templates/tomcat.service.j2
+    src: tomcat.service.j2
     dest: /etc/systemd/system/{{ item.name | default(tomcat_name) }}.service
   when:
     - ansible_service_mgr == "systemd"
