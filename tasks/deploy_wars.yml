@@ -2,7 +2,7 @@
 - name: deploy war url
   get_url:
     url: "{{ item.url }}"
-    dest: "{{ tomcat_directory }}/{{ item.name }}/{{ tomcat_archive[tomcat_names.version | default (tomcat_version)]['dir'] }}/webapps/"
+    dest: "{{ tomcat_directory }}/{{ tomcat_names.name }}/{{ tomcat_archive[tomcat_names.version | default (tomcat_version)]['dir'] }}/webapps/"
     validate_certs: no
   with_items:
     - "{{ tomcat_names.wars }}"
