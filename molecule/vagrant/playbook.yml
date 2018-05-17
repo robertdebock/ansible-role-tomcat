@@ -1,8 +1,8 @@
 ---
 - name: Converge
   hosts: all
-  gather_facts: no
-  become: yes
+  gather_facts: false
+  become: true
 
   roles:
     - role: robertdebock.bootstrap
@@ -19,7 +19,7 @@
           group: tomcat7
           xms: 512M
           xmx: 1024M
-          non_ssl_connector_port: 8081
+          falsen_ssl_connector_port: 8081
           ssl_connector_port: 8444
           shutdown_port: 8006
           ajp_port: 8010
@@ -32,7 +32,7 @@
           group: tomcat8
           xms: 512M
           xmx: 1024M
-          non_ssl_connector_port: 8082
+          falsen_ssl_connector_port: 8082
           ssl_connector_port: 8445
           shutdown_port: 8007
           ajp_port: 8011
@@ -43,7 +43,7 @@
           group: tomcat9
           xms: 512M
           xmx: 1024M
-          non_ssl_connector_port: 8083
+          falsen_ssl_connector_port: 8083
           ssl_connector_port: 8446
           shutdown_port: 8008
           ajp_port: 8012
@@ -51,7 +51,7 @@
           directory: /opt/tomcat-large
           xms: 1024M
           xmx: 2048M
-          non_ssl_connector_port: 8084
+          falsen_ssl_connector_port: 8084
           ssl_connector_port: 8447
           shutdown_port: 9008
           ajp_port: 9012
