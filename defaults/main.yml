@@ -2,8 +2,8 @@
 # defaults file for tomcat
 
 # The explicit version to use when referring to the short name.
-tomcat_version7: 7.0.86
-tomcat_version8: 8.0.51
+tomcat_version7: 7.0.88
+tomcat_version8: 8.0.52
 tomcat_version85: 8.5.31
 tomcat_version9: 9.0.8
 
