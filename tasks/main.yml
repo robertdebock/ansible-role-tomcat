@@ -37,6 +37,9 @@
     - "{{ tomcat_layout }}"
   loop_control:
     label: "{{ item.version }}"
+  register: download_tomcat
+  until: download_tomcat is succeeded
+  retries: 3
 
 - name: install tomcat
   unarchive:
