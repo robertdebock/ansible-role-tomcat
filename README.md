@@ -16,9 +16,9 @@ Requirements
 ------------
 
 These requirements can help you prepare your system for this role:
-- robertdebock.bootstrap
-- robertdebock.java
-- robertdebock.haveged (optional, requires robertdebock.epel.)
+- [robertdebock.bootstrap](https://travis-ci.org/robertdebock/ansible-role-bootstrap)
+- [robertdebock.java](https://travis-ci.org/robertdebock/ansible-role-java)
+- [robertdebock.haveged](https://travis-ci.org/robertdebock/ansible-role-haveged) (optional, requires robertdebock.epel.)
 
 Role Variables
 --------------
