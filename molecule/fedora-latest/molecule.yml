@@ -8,14 +8,14 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: tomcat-fedora-27
-    image: fedora:27
+  - name: tomcat-fedora-latest
+    image: fedora:latest
 provisioner:
   name: ansible
   lint:
     name: ansible-lint
 scenario:
-  name: fedora-27
+  name: fedora-latest
 verifier:
   name: goss
   lint:

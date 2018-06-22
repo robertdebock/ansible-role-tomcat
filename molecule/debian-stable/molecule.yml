@@ -8,14 +8,14 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: tomcat-opensuse-42.3
-    image: opensuse:42.3
+  - name: tomcat-debian-stable
+    image: debian:stable
 provisioner:
   name: ansible
   lint:
     name: ansible-lint
 scenario:
-  name: opensuse-42.3
+  name: debian-stable
 verifier:
   name: goss
   lint:
