@@ -8,14 +8,14 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: tomcat-debian-stretch
-    image: debian:stretch
+  - name: tomcat-alpine-edge
+    image: alpine:edge
 provisioner:
   name: ansible
   lint:
     name: ansible-lint
 scenario:
-  name: debian-stretch
+  name: alpine-edge
 verifier:
   name: goss
   lint:

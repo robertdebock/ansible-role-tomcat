@@ -8,14 +8,14 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: tomcat-ubuntu-bionic
-    image: ubuntu:bionic
+  - name: tomcat-opensuse-tumbleweed
+    image: opensuse:tumbleweed
 provisioner:
   name: ansible
   lint:
     name: ansible-lint
 scenario:
-  name: ubuntu-bionic
+  name: opensuse-tumbleweed
 verifier:
   name: goss
   lint:
