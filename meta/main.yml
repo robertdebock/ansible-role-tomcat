@@ -37,13 +37,14 @@ galaxy_info:
         - bionic
 
   galaxy_tags:
-    - Tomcat
-    - Alpine
-    - ArchLinux
-    - CentOS
-    - Debian
-    - Fedora
-    - OpenSUSE
-    - Ubuntu
+    - tomcat
+    - alpine
+    - archlinux
+    - centos
+    - debian
+    - fedora
+    - opensuse
+    - rhel
+    - ubuntu
 
 dependencies: []
