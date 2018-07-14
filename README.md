@@ -44,6 +44,46 @@ tomcat_layout:
 
 See "Example Playbooks" for futher details.
 
+- tomcat_version7: Refer to an upstream version of Tomcat 7.
+- tomcat_version8: Refer to an upstream version of Tomcat 8.
+- tomcat_version85: Refer to an upstream version of Tomcat 8.5.
+- tomcat_version9: Refer to an upstream version of Tomcat 9.
+- tomcat_mirror: Where to download from.
+- tomcat_name: The default name for the Tomcat instance.
+- tomcat_directory: Where to install.
+- tomcat_version: What version to install.
+- tomcat_user: The user to run under.
+- tomcat_group: The group to run under.
+- tomcat_xms: Memory size xms.
+- tomcat_xmx: Memory size xmx.
+- tomcat_non_ssl_connector_port: TCP port.
+- tomcat_ssl_connector_port: TCP port.
+- tomcat_shutdown_port: TCP port.
+- tomcat_ajp_port: TCP port.
+
+# This role allows multiple installations of Apache Tomcat, each in their own
+# location, potentially of different version.
+# This is done by defining a "tomcat_layout" where "name:" is a unique
+# identifier of an instance.
+# The default tomcat_layout is one instance using the defaults described
+# in defaults/main.yml.
+tomcat_layout:
+  - name: "{{ tomcat_name }}"
+    directory: "{{ tomcat_directory }}"
+    version: "{{ tomcat_version }}"
+    user: "{{ tomcat_user }}"
+    group: "{{ tomcat_group }}"
+    xms: "{{ tomcat_xms }}"
+    xmx: "{{ tomcat_xmx }}"
+    non_ssl_connector_port: "{{ tomcat_non_ssl_connector_port }}"
+    ssl_connector_port: "{{ tomcat_ssl_connector_port }}"
+    shutdown_port: "{{ tomcat_shutdown_port }}"
+    ajp_port: "{{ tomcat_ajp_port }}"
+
+# When downloading wars, should the SSL certificate be valid? (Impossible for
+# CentOS 6, so default: no.)
+tomcat_validate_certs: no
+
 Dependencies
 ------------
 
