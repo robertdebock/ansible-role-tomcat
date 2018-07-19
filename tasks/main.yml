@@ -6,7 +6,7 @@
   with_items:
     - "{{ tomcat_layout }}"
   loop_control:
-    label: "{{ item.group }}"
+    label: "{{ item.name }}"
 
 - name: ensure user exists
   user:
@@ -16,7 +16,7 @@
   with_items:
     - "{{ tomcat_layout }}"
   loop_control:
-    label: "{{ item.user }}"
+    label: "{{ item.name }}"
 
 - name: ensure tomcat_directory exists
   file:
@@ -27,7 +27,7 @@
   with_items:
     - "{{ tomcat_layout }}"
   loop_control:
-    label: "{{ item.directory }}"
+    label: "{{ item.name }}"
 
 - name: download tomcat
   get_url:
@@ -36,7 +36,7 @@
   with_items:
     - "{{ tomcat_layout }}"
   loop_control:
-    label: "{{ item.version }}"
+    label: "{{ item.name }}"
   register: download_tomcat
   until: download_tomcat is succeeded
   retries: 3
@@ -52,7 +52,7 @@
   with_items:
     - "{{ tomcat_layout }}"
   loop_control:
-    label: "{{ item.directory }}"
+    label: "{{ item.name }}"
 
 - name: configure tomcat
   template:
@@ -61,7 +61,7 @@
   with_items:
     - "{{ tomcat_layout }}"
   loop_control:
-    label: "{{ item.directory }}"
+    label: "{{ item.name }}"
 
 - name: register tomcat to a sysvinit system
   template:
