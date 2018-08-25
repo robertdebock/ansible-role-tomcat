@@ -25,11 +25,11 @@ tomcat_ajp_port: 8009
 
 # This role allows multiple installations of Apache Tomcat, each in their own
 # location, potentially of different version.
-# This is done by defining a "tomcat_layout" where "name:" is a unique
+# This is done by defining a "tomcat_instances" where "name:" is a unique
 # identifier of an instance.
-# The default tomcat_layout is one instance using the defaults described
+# The default tomcat_instances is one instance using the defaults described
 # in defaults/main.yml.
-tomcat_layout:
+tomcat_instances:
   - name: "{{ tomcat_name }}"
     directory: "{{ tomcat_directory }}"
     version: "{{ tomcat_version }}"

@@ -23,12 +23,12 @@ These requirements can help you prepare your system for this role:
 Role Variables
 --------------
 
-You can install multiple instances and multiple versions. This configuration is defined in the variable "tomcat_layout". If you do not use the tomcat_layout, defaults will be used. See defaults/main.yml for the default values.
+You can install multiple instances and multiple versions. This configuration is defined in the variable "tomcat_instances". If you do not use the tomcat_instances, defaults will be used. See defaults/main.yml for the default values.
 
-This is the default tomcat_layout:
+This is the default tomcat_instances:
 
 ```
-tomcat_layout:
+tomcat_instances:
   - name: tomcat
     directory: /opt
     version: 8.5
@@ -63,11 +63,11 @@ See "Example Playbooks" for futher details.
 
 # This role allows multiple installations of Apache Tomcat, each in their own
 # location, potentially of different version.
-# This is done by defining a "tomcat_layout" where "name:" is a unique
+# This is done by defining a "tomcat_instances" where "name:" is a unique
 # identifier of an instance.
-# The default tomcat_layout is one instance using the defaults described
+# The default tomcat_instances is one instance using the defaults described
 # in defaults/main.yml.
-tomcat_layout:
+tomcat_instances:
   - name: "{{ tomcat_name }}"
     directory: "{{ tomcat_directory }}"
     version: "{{ tomcat_version }}"
@@ -145,7 +145,7 @@ And here is a heavily customized installation:
     - role: robertdebock.java
     - role: robertdebock.haveged
     - role: robertdebock.tomcat
-      tomcat_layout:
+      tomcat_instances:
         - name: appone
           directory: /opt/appone
           version: 7
