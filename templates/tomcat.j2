@@ -3,11 +3,11 @@
 #
 #	/etc/init.d/tomcat
 #
-#	{{ item.name | default(tomcat_name) }}
+#	{{ instance.name | default(tomcat_name) }}
 #	As simple as possible, using Apache Tomcat's daemon.sh mostly.
 #
 # chkconfig: 2345 20 80
-# description: {{ item.name | default(tomcat_name) }}
+# description: {{ instance.name | default(tomcat_name) }}
 
 # Source function library.
 if [ -f /etc/init.d/functions ] ; then
@@ -15,15 +15,15 @@ if [ -f /etc/init.d/functions ] ; then
 fi
 
 start() {
-  echo -n "Starting {{ item.name | default(tomcat_name) }}: "
-  returncode=$({{ item.directory | default(tomcat_directory) }}/{{ tomcat_archive[item.version | default(tomcat_version)]['dir'] }}/bin/startup.sh)
+  echo -n "Starting {{ instance.name | default(tomcat_name) }}: "
+  returncode=$({{ instance.directory | default(tomcat_directory) }}/{{ tomcat_archive[instance.version | default(tomcat_version)]['dir'] }}/bin/startup.sh)
   touch /var/lock/subsys/tomcat
   return ${returncode}
 }
 
 stop() {
-  echo -n "Shutting down {{ item.name | default(tomcat_name) }}: "
-  returncode=$({{ item.directory | default(tomcat_directory) }}/{{ tomcat_archive[item.version | default(tomcat_version)]['dir'] }}/bin/shutdown.sh)
+  echo -n "Shutting down {{ instance.name | default(tomcat_name) }}: "
+  returncode=$({{ instance.directory | default(tomcat_directory) }}/{{ tomcat_archive[instance.version | default(tomcat_version)]['dir'] }}/bin/shutdown.sh)
   rm -f /var/lock/subsys/tomcat
   return ${returncode}
 }
