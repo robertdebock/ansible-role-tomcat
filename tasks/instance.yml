@@ -10,7 +10,7 @@
     createhome: no
     system: yes
 
-- name: ensure instance directory exists:
+- name: ensure instance directory exists
   file:
     path: "{{ instance.directory | default(tomcat_directory) }}"
     state: directory
