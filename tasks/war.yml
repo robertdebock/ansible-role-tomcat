@@ -1,12 +1,8 @@
 ---
 - name: deploy war url
   get_url:
-    url: "{{ item.url }}"
+    url: "{{ war.url }}"
     dest: "{{ tomcat_directory }}/{{ tomcat_names.name }}/{{ tomcat_archive[tomcat_names.version | default (tomcat_version)]['dir'] }}/webapps/"
     validate_certs: no
-  with_items:
-    - "{{ tomcat_names.wars }}"
   when:
-    - tomcat_names.wars is defined
-  loop_control:
-    label: "{{ item.url }}"
+    - war.url is defined
