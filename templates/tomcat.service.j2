@@ -1,22 +1,22 @@
 {{ ansible_managed | comment }}
 [Unit]
-Description={{ item.name | default(tomcat_name) }}
+Description={{ instance.name | default(tomcat_name) }}
 After=syslog.target network.target
 
 [Service]
 Type=forking
 
-Environment=CATALINA_PID={{ item.directory | default(tomcat_directory) }}/{{ tomcat_archive[item.version | default(tomcat_version)]['dir'] }}/temp/tomcat.pid
-Environment=CATALINA_HOME={{ item.directory | default(tomcat_directory) }}/{{ tomcat_archive[item.version | default(tomcat_version)]['dir'] }}
-Environment=CATALINA_BASE={{ item.directory | default(tomcat_directory) }}/{{ tomcat_archive[item.version | default(tomcat_version)]['dir'] }}
-Environment='CATALINA_OPTS=-Xms{{ item.xms | default(tomcat_xms) }} -Xmx{{ item.xmx | default(tomcat_xmx) }} -server -XX:+UseParallelGC'
+Environment=CATALINA_PID={{ instance.directory | default(tomcat_directory) }}/{{ tomcat_archive[instance.version | default(tomcat_version)]['dir'] }}/temp/tomcat.pid
+Environment=CATALINA_HOME={{ instance.directory | default(tomcat_directory) }}/{{ tomcat_archive[instance.version | default(tomcat_version)]['dir'] }}
+Environment=CATALINA_BASE={{ instance.directory | default(tomcat_directory) }}/{{ tomcat_archive[instance.version | default(tomcat_version)]['dir'] }}
+Environment='CATALINA_OPTS=-Xms{{ instance.xms | default(tomcat_xms) }} -Xmx{{ instance.xmx | default(tomcat_xmx) }} -server -XX:+UseParallelGC'
 Environment='JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom'
 
-ExecStart={{ item.directory | default(tomcat_directory) }}/{{ tomcat_archive[item.version | default(tomcat_version)]['dir'] }}/bin/startup.sh
-ExecStop={{ item.directory | default(tomcat_directory) }}/{{ tomcat_archive[item.version | default(tomcat_version)]['dir'] }}/bin/shutdown.sh
+ExecStart={{ instance.directory | default(tomcat_directory) }}/{{ tomcat_archive[instance.version | default(tomcat_version)]['dir'] }}/bin/startup.sh
+ExecStop={{ instance.directory | default(tomcat_directory) }}/{{ tomcat_archive[instance.version | default(tomcat_version)]['dir'] }}/bin/shutdown.sh
 
-User={{ item.user | default(tomcat_user) }}
-Group={{ item.group | default(tomcat_group) }}
+User={{ instance.user | default(tomcat_user) }}
+Group={{ instance.group | default(tomcat_group) }}
 
 [Install]
 WantedBy=multi-user.target
