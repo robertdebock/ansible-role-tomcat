@@ -48,6 +48,8 @@
     dest: /etc/systemd/system/{{ instance.name | default(tomcat_name) }}.service
   when:
     - ansible_service_mgr == "systemd"
+  notify:
+    - systemctl daemon-reload
 
 - name: start and enable tomcat instance
   service:
