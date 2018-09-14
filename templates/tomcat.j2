@@ -1,7 +1,7 @@
 #!/bin/sh
 {{ ansible_managed | comment }}
 #
-#	/etc/init.d/tomcat
+#	/etc/init.d/{{ instance.name | default(tomcat_name) }}
 #
 #	{{ instance.name | default(tomcat_name) }}
 #	As simple as possible, using Apache Tomcat's daemon.sh mostly.
