@@ -17,14 +17,14 @@ fi
 start() {
   echo -n "Starting {{ instance.name | default(tomcat_name) }}: "
   returncode=$({{ instance.directory | default(tomcat_directory) }}/{{ tomcat_archive[instance.version | default(tomcat_version)]['dir'] }}/bin/startup.sh)
-  touch /var/lock/subsys/tomcat
+  touch /var/lock/subsys/{{ instance.name | default(tomcat_name) }}
   return ${returncode}
 }
 
 stop() {
   echo -n "Shutting down {{ instance.name | default(tomcat_name) }}: "
   returncode=$({{ instance.directory | default(tomcat_directory) }}/{{ tomcat_archive[instance.version | default(tomcat_version)]['dir'] }}/bin/shutdown.sh)
-  rm -f /var/lock/subsys/tomcat
+  rm -f /var/lock/subsys/{{ instance.name | default(tomcat_name) }}
   return ${returncode}
 }
 
