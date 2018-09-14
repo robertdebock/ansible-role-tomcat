@@ -51,6 +51,9 @@
   notify:
     - systemctl daemon-reload
 
+- name: flush handlers
+  meta: flush_handlers
+
 - name: start and enable tomcat instance
   service:
     name: "{{ instance.name | default(tomcat_name) }}"
