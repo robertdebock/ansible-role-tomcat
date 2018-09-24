@@ -2,10 +2,12 @@
 - name: ensure instance group exists
   group:
     name: "{{ instance.group | default(tomcat_group) }}"
+    state: present
 
 - name: ensure instance user exists
   user:
     name: "{{ instance.user | default(tomcat_user) }}"
+    state: present
     group: "{{ instance.group | default(tomcat_group) }}"
     createhome: no
     system: yes
