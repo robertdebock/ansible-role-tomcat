@@ -42,7 +42,8 @@
     dest: "/etc/init.d/{{ instance.name | default(tomcat_name) }}"
     mode: 0750
   when:
-    - ansible_service_mgr == "sysvinit" or ansible_service_mgr == "upstart"
+    - ansible_service_mgr == "sysvinit"
+      or ansible_service_mgr == "upstart"
 
 - name: register tomcat instance to systemd
   template:
