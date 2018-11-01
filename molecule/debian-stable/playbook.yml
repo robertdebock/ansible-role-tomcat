@@ -5,6 +5,6 @@
   gather_facts: false
 
   roles:
-    - role: robertdebock.bootstrap
-    - role: robertdebock.java
-    - role: ansible-role-tomcat
+    - robertdebock.bootstrap
+    - robertdebock.java
+    - ansible-role-tomcat

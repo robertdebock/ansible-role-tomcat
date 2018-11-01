@@ -21,12 +21,17 @@
 
 - name: install tomcat instance
   unarchive:
-    src: "{{ tomcat_mirror }}/{{ tomcat_archive[instance.version | default (tomcat_version)]['url_path'] }}/{{ tomcat_archive[instance.version | default (tomcat_version)]['targz'] }}"
+    src: >
+      {{ tomcat_mirror }}/{{ tomcat_archive[instance.version
+      | default (tomcat_version)]['url_path'] }}/{{ tomcat_archive[instance.version
+      | default (tomcat_version)]['targz'] }}
     dest: "{{ instance.directory | default(tomcat_directory) }}"
     owner: "{{ instance.user | default(tomcat_user) }}"
     group: "{{ instance.group | default(tomcat_group) }}"
     remote_src: yes
-    creates: "{{ instance.directory | default(tomcat_directory) }}/{{ tomcat_archive[instance.version | default (tomcat_version)]['dir'] }}"
+    creates: "{{ instance.directory
+             | default(tomcat_directory) }}/{{ tomcat_archive[instance.version
+             | default (tomcat_version)]['dir'] }}"
   register: install_tomcat
   until: install_tomcat is succeeded
   retries: 3
@@ -34,7 +39,9 @@
 - name: configure tomcat instance
   template:
     src: server.xml.j2
-    dest: "{{ instance.directory | default(tomcat_directory) }}/{{ tomcat_archive[instance.version | default (tomcat_version)]['dir'] }}/conf/server.xml"
+    dest: "{{ instance.directory
+          | default(tomcat_directory) }}/{{ tomcat_archive[instance.version
+          | default (tomcat_version)]['dir'] }}/conf/server.xml"
 
 - name: register tomcat instance to sysvinit
   template:
@@ -48,7 +55,8 @@
 - name: register tomcat instance to systemd
   template:
     src: tomcat.service.j2
-    dest: /etc/systemd/system/{{ instance.name | default(tomcat_name) }}.service
+    dest: /etc/systemd/system/{{ instance.name
+          | default(tomcat_name) }}.service
   when:
     - ansible_service_mgr == "systemd"
   notify:
