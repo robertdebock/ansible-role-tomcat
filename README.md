@@ -1,76 +1,58 @@
-Tomcat
+tomcat
 =========
 
 [![Build Status](https://travis-ci.org/robertdebock/ansible-role-tomcat.svg?branch=master)](https://travis-ci.org/robertdebock/ansible-role-tomcat)
 
-Provides Apache Tomcat 7, 8 (default) or 9 for your system.
+Provides Apache Tomcat 7, 8 (default) or 9 for your system and allows deployments of war files.
 
-[Unit tests](https://travis-ci.org/robertdebock/ansible-role-tomcat) are done on every commit and periodically.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-tomcat/issues)
+Example Playbook
+----------------
 
-To test this role locally please use [Molecule](https://github.com/metacloud/molecule):
+This example is taken from `molecule/default/playbook.yml`:
 ```
-pip install molecule
-molecule test
+---
+- name: Converge
+  hosts: all
+  become: true
+  gather_facts: false
+
+  roles:
+    - robertdebock.bootstrap
+    - robertdebock.java
+    - robertdebock.tomcat
+
 ```
-There are many scenarios available, please have a look in the `molecule/` directory.
-
-Context
--------
-This role is a part of many compatible roles. Have a look at [the documentation of these roles](https://robertdebock.nl/) for further information.
-
-Here is an overview of related roles:
-![dependencies](https://raw.githubusercontent.com/robertdebock/drawings/artifacts/tomcat.png "Dependency")
-
-Requirements
-------------
-
-These requirements can help you prepare your system for this role:
-- [robertdebock.bootstrap](https://travis-ci.org/robertdebock/ansible-role-bootstrap)
-- [robertdebock.java](https://travis-ci.org/robertdebock/ansible-role-java)
-- [robertdebock.haveged](https://travis-ci.org/robertdebock/ansible-role-haveged) (optional, requires robertdebock.epel.)
 
 Role Variables
 --------------
 
-You can install multiple instances and multiple versions. This configuration is defined in the variable "tomcat_instances". If you do not use the tomcat_instances, defaults will be used. See defaults/main.yml for the default values.
-
-This is the default tomcat_instances:
-
+These variables are set in `defaults/main.yml`:
 ```
-tomcat_instances:
-  - name: tomcat
-    directory: /opt
-    version: 8.5
-    user: tomcat
-    group: tomcat
-    xms: 512M
-    xmx: 1024M
-    non_ssl_connector_port: 8080
-    ssl_connector_port: 8443
-    shutdown_port: 8005
-    ajp_port: 8009
-```
+---
+# defaults file for tomcat
 
-See "Example Playbooks" for futher details.
+# The explicit version to use when referring to the short name.
+tomcat_version7: 7.0.91
+tomcat_version8: 8.0.53
+tomcat_version85: 8.5.34
+tomcat_version9: 9.0.12
 
-- tomcat_version7: Refer to an upstream version of Tomcat 7.
-- tomcat_version8: Refer to an upstream version of Tomcat 8.
-- tomcat_version85: Refer to an upstream version of Tomcat 8.5.
-- tomcat_version9: Refer to an upstream version of Tomcat 9.
-- tomcat_mirror: Where to download from.
-- tomcat_name: The default name for the Tomcat instance.
-- tomcat_directory: Where to install.
-- tomcat_version: What version to install.
-- tomcat_user: The user to run under.
-- tomcat_group: The group to run under.
-- tomcat_xms: Memory size xms.
-- tomcat_xmx: Memory size xmx.
-- tomcat_non_ssl_connector_port: TCP port.
-- tomcat_ssl_connector_port: TCP port.
-- tomcat_shutdown_port: TCP port.
-- tomcat_ajp_port: TCP port.
+# The location where to download Apache Tomcat from.
+tomcat_mirror: http://ftp.nluug.nl/
+
+# Some "sane" defaults.
+tomcat_name: tomcat
+tomcat_directory: /opt
+tomcat_version: 8.5
+tomcat_user: tomcat
+tomcat_group: tomcat
+tomcat_xms: 512M
+tomcat_xmx: 1024M
+tomcat_non_ssl_connector_port: 8080
+tomcat_ssl_connector_port: 8443
+tomcat_shutdown_port: 8005
+tomcat_ajp_port: 8009
 
 # This role allows multiple installations of Apache Tomcat, each in their own
 # location, potentially of different version.
@@ -95,111 +77,75 @@ tomcat_instances:
 # CentOS 6, so default: no.)
 tomcat_validate_certs: no
 
-Dependencies
+```
+
+Requirements
 ------------
 
-These loose dependencies are available.
+- Access to a repository containing packages, likely on the internet.
+- A recent version of Ansible. (Tests run on the last 3 release of Ansible.)
 
+The following roles can be installed to ensure all requirements are met, using `ansible-galaxy install -r requirements.yml`:
+
+---
 - robertdebock.bootstrap
-- robertdebock.epel
 - robertdebock.java
-- robertdebock.haveged
 
-Download the dependencies by issuing this command:
-```
-ansible-galaxy install --role-file requirements.yml
-```
+
+Context
+-------
+
+This role is a part of many compatible roles. Have a look at [the documentation of these roles](https://robertdebock.nl/) for further information.
+
+Here is an overview of related roles:
+![dependencies](https://raw.githubusercontent.com/robertdebock/drawings/artifacts/tomcat.png "Dependency")
+
 
 Compatibility
 -------------
 
 This role has been tested against the following distributions and Ansible version:
 
-|distribution|ansible 2.4|ansible 2.5|ansible 2.6|
-|------------|-----------|-----------|-----------|
-|alpine-edge|yes|yes|yes|
-|alpine-latest|yes|yes|yes|
-|archlinux|yes|yes|yes|
-|centos-6|yes|yes|yes|
-|centos-latest|yes|yes|yes|
-|debian-latest|yes|yes|yes|
-|debian-stable|yes|yes|yes|
-|fedora-latest|yes|yes|yes|
-|fedora-rawhide|yes|yes|yes|
-|opensuse-leap|yes|yes|yes|
-|opensuse-tumbleweed|yes|yes|yes|
-|ubuntu-artful|yes|yes|yes|
-|ubuntu-latest|yes|yes|yes|
+|distribution|ansible 2.4|ansible 2.5|ansible 2.6|ansible 2.7|ansible devel|
+|------------|-----------|-----------|-----------|-----------|-------------|
+|alpine-edge*|yes|yes|yes|yes|yes*|
+|alpine-latest|yes|yes|yes|yes|yes*|
+|archlinux|yes|yes|yes|yes|yes*|
+|centos-6|yes|yes|yes|yes|yes*|
+|centos-latest|yes|yes|yes|yes|yes*|
+|debian-latest|yes|yes|yes|yes|yes*|
+|debian-stable|yes|yes|yes|yes|yes*|
+|debian-unstable*|yes|yes|yes|yes|yes*|
+|fedora-latest|yes|yes|yes|yes|yes*|
+|fedora-rawhide*|yes|yes|yes|yes|yes*|
+|opensuse-leap|yes|yes|yes|yes|yes*|
+|opensuse-tumbleweed|yes|yes|yes|yes|yes*|
+|ubuntu-artful|yes|yes|yes|yes|yes*|
+|ubuntu-devel*|yes|yes|yes|yes|yes*|
+|ubuntu-latest|yes|yes|yes|yes|yes*|
 
-Example Playbook
-----------------
+A single star means the build may fail, it's marked as an experimental build.
 
-The simplest form:
+Testing
+-------
+
+[Unit tests](https://travis-ci.org/robertdebock/ansible-role-tomcat) are done on every commit and periodically.
+
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-tomcat/issues)
+
+To test this role locally please use [Molecule](https://github.com/metacloud/molecule):
 ```
-- hosts: servers
-
-  roles:
-    - role: robertdebock.bootstrap
-    - role: robertdebock.epel
-    - role: robertdebock.java
-    - role: robertdebock.haveged
-    - role: robertdebock.tomcat
+pip install molecule
+molecule test
 ```
+There are many specific scenarios available, please have a look in the `molecule/` directory.
 
-And here is a heavily customized installation:
-```
-- hosts: servers
-
-  roles:
-    - role: robertdebock.bootstrap
-    - role: robertdebock.epel
-    - role: robertdebock.java
-    - role: robertdebock.haveged
-    - role: robertdebock.tomcat
-      tomcat_instances:
-        - name: appone
-          directory: /opt/appone
-          version: 7
-          user: appone
-          group: appone
-          xms: 512M
-          xmx: 1024M
-          non_ssl_connector_port: 8080
-          ssl_connector_port: 8443
-          shutdown_port: 8005
-          ajp_port: 8009
-          wars:
-            - url: https://tomcat.apache.org/tomcat-6.0-doc/appdev/sample/sample.war
-        - name: apptwo
-          directory: /opt/apptwo
-          version: 8
-          user: tomcat
-          group: tomcat
-          xms: 512M
-          xmx: 1024M
-          non_ssl_connector_port: 8081
-          ssl_connector_port: 8444
-          shutdown_port: 8006
-          ajp_port: 8010
-        - name: appthree
-          directory: /opt/appthree
-          version: 9
-          user: appthree
-          group: appthree
-          xms: 512M
-          xmx: 1024M
-          non_ssl_connector_port: 8082
-          ssl_connector_port: 8445
-          shutdown_port: 8007
-          ajp_port: 8011
-```
-
-Install this role using `galaxy install robertdebock.tomcat`.
 
 License
 -------
 
-Apache License, Version 2.0
+Apache-2.0
+
 
 Author Information
 ------------------
