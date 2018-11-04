@@ -3,7 +3,7 @@
   get_url:
     url: "{{ war.url }}"
     dest: "{{ tomcat_directory }}/{{ tomcat_names.name }}/{{ tomcat_archive[tomcat_names.version
-          | default (tomcat_version)]['dir'] }}/webapps/"
+          | default(tomcat_version)]['dir'] }}/webapps/"
     validate_certs: no
   when:
     - war.url is defined
