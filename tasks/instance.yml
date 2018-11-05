@@ -55,7 +55,7 @@
 - name: register tomcat instance to systemd
   template:
     src: tomcat.service.j2
-    dest: "/etc/systemd/system/{{ instance.name }} | default(tomcat_name) }}.service"
+    dest: "/etc/systemd/system/{{ instance.name | default(tomcat_name) }}.service"
   when:
     - ansible_service_mgr == "systemd"
   notify:
