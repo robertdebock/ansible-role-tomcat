@@ -3,8 +3,7 @@ tomcat
 
 [![Build Status](https://travis-ci.org/robertdebock/ansible-role-tomcat.svg?branch=master)](https://travis-ci.org/robertdebock/ansible-role-tomcat)
 
-Provides Apache Tomcat 7, 8 (default) or 9 for your system and allows deployments of war files.
-
+The purpose of this role is to install and configure tomcat on your system.
 
 Example Playbook
 ----------------
