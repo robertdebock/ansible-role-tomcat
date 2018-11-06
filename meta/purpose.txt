@@ -1,1 +1,0 @@
-Provides Apache Tomcat 7, 8 (default) or 9 for your system and allows deployments of war files.
