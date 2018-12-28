@@ -2,10 +2,10 @@
 # defaults file for tomcat
 
 # The explicit version to use when referring to the short name.
-tomcat_version7: 7.0.91
+tomcat_version7: 7.0.92
 tomcat_version8: 8.0.53
-tomcat_version85: 8.5.35
-tomcat_version9: 9.0.12
+tomcat_version85: 8.5.37
+tomcat_version9: 9.0.14
 
 # The location where to download Apache Tomcat from.
 tomcat_mirror: http://ftp.nluug.nl/
