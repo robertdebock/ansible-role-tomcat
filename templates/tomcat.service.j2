@@ -1,22 +1,12 @@
 {{ ansible_managed | comment }}
 [Unit]
 Description={{ instance.name | default(tomcat_name) }}
-After=syslog.target network.target
-
+ 
 [Service]
-Type=forking
-
-Environment=CATALINA_PID={{ instance.directory | default(tomcat_directory) }}/{{ tomcat_archive[instance.version | default(tomcat_version)]['dir'] }}/temp/tomcat.pid
-Environment=CATALINA_HOME={{ instance.directory | default(tomcat_directory) }}/{{ tomcat_archive[instance.version | default(tomcat_version)]['dir'] }}
-Environment=CATALINA_BASE={{ instance.directory | default(tomcat_directory) }}/{{ tomcat_archive[instance.version | default(tomcat_version)]['dir'] }}
-Environment='CATALINA_OPTS=-Xms{{ instance.xms | default(tomcat_xms) }} -Xmx{{ instance.xmx | default(tomcat_xmx) }} -server -XX:+UseParallelGC'
-Environment='JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom'
-
-ExecStart={{ instance.directory | default(tomcat_directory) }}/{{ tomcat_archive[instance.version | default(tomcat_version)]['dir'] }}/bin/startup.sh
-ExecStop={{ instance.directory | default(tomcat_directory) }}/{{ tomcat_archive[instance.version | default(tomcat_version)]['dir'] }}/bin/shutdown.sh
-
 User={{ instance.user | default(tomcat_user) }}
 Group={{ instance.group | default(tomcat_group) }}
-
+ExecStart={{ instance.directory | default(tomcat_directory) }}/{{ tomcat_archive[instance.version | default(tomcat_version)]['dir'] }}/bin/catalina.sh run
+ 
 [Install]
 WantedBy=multi-user.target
+
