@@ -36,12 +36,20 @@
   until: install_tomcat is succeeded
   retries: 3
 
-- name: configure tomcat instance
+- name: configure tomcat instance - server.xml
   template:
     src: server.xml.j2
     dest: "{{ instance.directory
           | default(tomcat_directory) }}/{{ tomcat_archive[instance.version
           | default(tomcat_version)]['dir'] }}/conf/server.xml"
+
+- name: configure tomcat instance - setenv.sh 
+  template:
+    src: setenv.sh.j2
+    dest: "{{ instance.directory
+          | default(tomcat_directory) }}/{{ tomcat_archive[instance.version
+          | default(tomcat_version)]['dir'] }}/bin/setenv.sh"
+  when: instance.java_opts is defined or instance.env_vars is defined
 
 - name: register tomcat instance to sysvinit
   template:

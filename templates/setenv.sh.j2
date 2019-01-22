@@ -1,0 +1,7 @@
+{% for java_opt in instance.java_opts %}
+JAVA_OPTS="$JAVA_OPTS {{ java_opt }}"    
+{% endfor %}
+
+{% for env_var in instance.env_vars %}
+{{ env_var.name }}={{ env_var.value }}
+{% endfor %}

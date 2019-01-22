@@ -1,11 +1,13 @@
 ---
-name: Pull request
-about: Describe the proposed change
+name: Add Instance JAVA_OPT var and ENV_VARS
+about: Added tempalte of setenv.sh file
 
 ---
 
 **Describe the change**
-A clear and concise description of what the pull request is.
+
+Add possiiblity of adding to an instance JAVA_OPT and ENV_VARS vars throught `setenv.sh`
 
 **Testing**
-In case a feature was added, how were tests performed?
+
+Tested with vagrant on Ubuntu 18 LTS 
