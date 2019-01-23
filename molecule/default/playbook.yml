@@ -3,6 +3,20 @@
   hosts: all
   become: true
   gather_facts: false
+  serial: 3
+
+  vars:
+    tomcat_instances:
+      - name: "tomcat7"
+        version: "7"
+        wars:
+          - url: https://tomcat.apache.org/tomcat-7.0-doc/appdev/sample/sample.war
+      - name: "tomcat8"
+        version: "8"
+      - name: "tomcat85"
+        version: "8.5"
+      - name: "tomcat9"
+        version: "9"
 
   roles:
     - robertdebock.bootstrap

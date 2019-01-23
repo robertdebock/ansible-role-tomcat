@@ -15,6 +15,20 @@ This example is taken from `molecule/default/playbook.yml`:
   hosts: all
   become: true
   gather_facts: false
+  serial: 3
+
+  vars:
+    tomcat_instances:
+      - name: "tomcat7"
+        version: "7"
+        wars:
+          - url: https://tomcat.apache.org/tomcat-7.0-doc/appdev/sample/sample.war
+      - name: "tomcat8"
+        version: "8"
+      - name: "tomcat85"
+        version: "8.5"
+      - name: "tomcat9"
+        version: "9"
 
   roles:
     - robertdebock.bootstrap
@@ -35,17 +49,16 @@ These variables are set in `defaults/main.yml`:
 
 # The explicit version to use when referring to the short name.
 tomcat_version7: 7.0.92
-tomcat_version8: 8.0.53
-tomcat_version85: 8.5.37
+tomcat_version8: 8.5.37
 tomcat_version9: 9.0.14
 
 # The location where to download Apache Tomcat from.
-tomcat_mirror: http://ftp.nluug.nl/
+tomcat_mirror: "http://ftp.tudelft.nl"
 
 # Some "sane" defaults.
 tomcat_name: tomcat
 tomcat_directory: /opt
-tomcat_version: 8.5
+tomcat_version: 8
 tomcat_user: tomcat
 tomcat_group: tomcat
 tomcat_xms: 512M

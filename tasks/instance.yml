@@ -14,24 +14,20 @@
 
 - name: ensure instance directory exists
   file:
-    path: "{{ instance.directory | default(tomcat_directory) }}"
+    path: "{{ tomcat_directory }}/{{ instance.name }}"
     state: directory
+    recurse: yes
     owner: "{{ instance.user | default(tomcat_user) }}"
     group: "{{ instance.group | default(tomcat_group) }}"
 
 - name: install tomcat instance
   unarchive:
-    src: >
-      {{ tomcat_mirror }}/{{ tomcat_archive[instance.version
-      | default(tomcat_version)]['url_path'] }}/{{ tomcat_archive[instance.version
-      | default(tomcat_version)]['targz'] }}
-    dest: "{{ instance.directory | default(tomcat_directory) }}"
+    src: "{{ tomcat_mirror }}/{{ tomcat_archives[instance.version | default(tomcat_version)]['url_path'] }}/{{ tomcat_archives[instance.version | default(tomcat_version)]['targz'] }}"
+    dest: "{{ tomcat_directory }}/{{ instance.name }}"
     owner: "{{ instance.user | default(tomcat_user) }}"
     group: "{{ instance.group | default(tomcat_group) }}"
     remote_src: yes
-    creates: "{{ instance.directory
-             | default(tomcat_directory) }}/{{ tomcat_archive[instance.version
-             | default(tomcat_version)]['dir'] }}"
+    creates: "{{ tomcat_directory }}/{{ instance.name }}/{{ tomcat_archives[instance.version | default(tomcat_version)]['dir'] }}"
   register: install_tomcat
   until: install_tomcat is succeeded
   retries: 3
@@ -39,15 +35,13 @@
 - name: configure tomcat instance
   template:
     src: server.xml.j2
-    dest: "{{ instance.directory
-          | default(tomcat_directory) }}/{{ tomcat_archive[instance.version
-          | default(tomcat_version)]['dir'] }}/conf/server.xml"
+    dest: "{{ tomcat_directory }}/{{ instance.name | default(tomcat_directory) }}/{{ tomcat_archives[instance.version | default(tomcat_version) ]['dir'] }}"
 
 - name: register tomcat instance to sysvinit
   template:
     src: tomcat.j2
     dest: "/etc/init.d/{{ instance.name | default(tomcat_name) }}"
-    mode: 0750
+    mode: "0750"
   when:
     - ansible_service_mgr == "sysvinit"
       or ansible_service_mgr == "upstart"
@@ -56,6 +50,7 @@
   template:
     src: tomcat.service.j2
     dest: "/etc/systemd/system/{{ instance.name | default(tomcat_name) }}.service"
+    mode: "0755"
   when:
     - ansible_service_mgr == "systemd"
   notify:

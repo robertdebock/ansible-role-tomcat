@@ -1,8 +1,30 @@
 ---
 - name: Converge
   hosts: all
-  gather_facts: no
-  become: yes
+  become: true
+  gather_facts: false
+  serial: 3
+
+  vars:
+    tomcat_instances:
+      - name: "tomcat-default"
+      - name: "tomcat7"
+        version: 7
+      - name: "tomcat7-with-wars"
+        version: 7
+        wars:
+          - url: https://tomcat.apache.org/tomcat-7.0-doc/appdev/sample/sample.war
+      - name: "tomcat8"
+        version: 8
+      - name: "tomcat85"
+        version: 8.5
+      - name: "tomcat9"
+        version: 9
+      - name: "tomcat-custom-user-group"
+        user: "customuser"
+        group: "customgroup"
+      - name: "tomcat-custom-directory"
+        directory: "/opt/tomcat-how-i-like-it"
 
   roles:
     - robertdebock.bootstrap
