@@ -16,7 +16,6 @@
   file:
     path: "{{ tomcat_directory }}/{{ instance.name }}"
     state: directory
-    recurse: yes
     owner: "{{ instance.user | default(tomcat_user) }}"
     group: "{{ instance.group | default(tomcat_group) }}"
 
