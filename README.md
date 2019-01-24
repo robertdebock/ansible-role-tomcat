@@ -13,22 +13,45 @@ This example is taken from `molecule/default/playbook.yml`:
 ---
 - name: Converge
   hosts: all
-  become: true
-  gather_facts: false
+  become: yes
+  gather_facts: no
   serial: 3
 
   vars:
     tomcat_instances:
-      - name: "tomcat7"
-        version: "7"
+      - name: "tomcat"
+      - name: "tomcat-version-7"
+        version: 7
+        shutdown_port: 8007
+        non_ssl_connector_port: 8082
+        ssl_connector_port: 8445
+        ajp_port: 8011
+      - name: "tomcat-version-8"
+        version: 8
+        shutdown_port: 8008
+        non_ssl_connector_port: 8083
+        ssl_connector_port: 8446
+        ajp_port: 8012
+      - name: "tomcat-version-9"
+        version: 9
+        shutdown_port: 8019
+        non_ssl_connector_port: 8084
+        ssl_connector_port: 8447
+        ajp_port: 8013
+      - name: "tomcat-custom-user-group"
+        user: "customuser"
+        group: "customgroup"
+        shutdown_port: 8020
+        non_ssl_connector_port: 8085
+        ssl_connector_port: 8448
+        ajp_port: 8014
+      - name: "tomcat-with-wars"
+        shutdown_port: 8021
+        non_ssl_connector_port: 8086
+        ssl_connector_port: 8449
+        ajp_port: 8015
         wars:
           - url: https://tomcat.apache.org/tomcat-7.0-doc/appdev/sample/sample.war
-      - name: "tomcat8"
-        version: "8"
-      - name: "tomcat85"
-        version: "8.5"
-      - name: "tomcat9"
-        version: "9"
 
   roles:
     - robertdebock.bootstrap
