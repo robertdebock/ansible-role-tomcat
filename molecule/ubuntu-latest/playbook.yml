@@ -25,13 +25,15 @@
         non_ssl_connector_port: 8084
         ssl_connector_port: 8447
         ajp_port: 8013
-      - name: "tomcat-custom-user-group"
-        user: "customuser"
-        group: "customgroup"
+      - name: "tomcat-specific"
+        user: "specificuser"
+        group: "specificgroup"
         shutdown_port: 8020
         non_ssl_connector_port: 8085
         ssl_connector_port: 8448
         ajp_port: 8014
+        xms: 256M
+        xmx: 512M
       - name: "tomcat-with-wars"
         shutdown_port: 8021
         non_ssl_connector_port: 8086

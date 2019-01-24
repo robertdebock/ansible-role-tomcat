@@ -15,7 +15,6 @@ This example is taken from `molecule/default/playbook.yml`:
   hosts: all
   become: yes
   gather_facts: no
-  serial: 3
 
   vars:
     tomcat_instances:
@@ -38,13 +37,15 @@ This example is taken from `molecule/default/playbook.yml`:
         non_ssl_connector_port: 8084
         ssl_connector_port: 8447
         ajp_port: 8013
-      - name: "tomcat-custom-user-group"
-        user: "customuser"
-        group: "customgroup"
+      - name: "tomcat-specific"
+        user: "specificuser"
+        group: "specificgroup"
         shutdown_port: 8020
         non_ssl_connector_port: 8085
         ssl_connector_port: 8448
         ajp_port: 8014
+        xms: 256M
+        xmx: 512M
       - name: "tomcat-with-wars"
         shutdown_port: 8021
         non_ssl_connector_port: 8086
@@ -99,7 +100,6 @@ tomcat_ajp_port: 8009
 # in defaults/main.yml.
 tomcat_instances:
   - name: "{{ tomcat_name }}"
-    directory: "{{ tomcat_directory }}"
     version: "{{ tomcat_version }}"
     user: "{{ tomcat_user }}"
     group: "{{ tomcat_group }}"
