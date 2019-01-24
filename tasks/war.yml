@@ -2,7 +2,7 @@
 - name: deploy war url
   get_url:
     url: "{{ war.url }}"
-    dest: "{{ tomcat_directory }}//{{ instance.name | default(tomcat_name) }}/{{ tomcat_archives[instance.version | default(tomcat_version)]['dir'] }}/webapps/"
+    dest: "{{ tomcat_directory }}//{{ instance.name }}/webapps/"
     validate_certs: no
   when:
     - war.url is defined

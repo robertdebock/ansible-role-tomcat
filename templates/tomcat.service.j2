@@ -5,7 +5,7 @@ Description={{ instance.name | default(tomcat_name) }}
 [Service]
 User={{ instance.user | default(tomcat_user) }}
 Group={{ instance.group | default(tomcat_group) }}
-ExecStart={{ tomcat_directory }}/{{ instance.name | default(tomcat_directory) }}/{{ tomcat_archives[instance.version | default(tomcat_version)]['dir'] }}/bin/catalina.sh run
+ExecStart={{ tomcat_directory }}/{{ instance.name | default(tomcat_directory) }}/bin/catalina.sh run
  
 [Install]
 WantedBy=multi-user.target
