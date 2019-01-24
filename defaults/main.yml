@@ -30,7 +30,6 @@ tomcat_ajp_port: 8009
 # in defaults/main.yml.
 tomcat_instances:
   - name: "{{ tomcat_name }}"
-    directory: "{{ tomcat_directory }}"
     version: "{{ tomcat_version }}"
     user: "{{ tomcat_user }}"
     group: "{{ tomcat_group }}"
