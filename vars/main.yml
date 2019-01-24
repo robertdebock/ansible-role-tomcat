@@ -3,13 +3,10 @@
 tomcat_archives:
   7:
     targz: apache-tomcat-{{ tomcat_version7 }}.tar.gz
-    dir: apache-tomcat-{{ tomcat_version7 }}
     url_path: apache/tomcat/tomcat-7/v{{ tomcat_version7 }}/bin
   8:
     targz: apache-tomcat-{{ tomcat_version8 }}.tar.gz
-    dir: apache-tomcat-{{ tomcat_version8 }}
     url_path: apache/tomcat/tomcat-8/v{{ tomcat_version8 }}/bin
   9:
     targz: apache-tomcat-{{ tomcat_version9 }}.tar.gz
-    dir: apache-tomcat-{{ tomcat_version9 }}
     url_path: apache/tomcat/tomcat-9/v{{ tomcat_version9 }}/bin

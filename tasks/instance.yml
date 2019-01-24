@@ -26,7 +26,8 @@
     owner: "{{ instance.user | default(tomcat_user) }}"
     group: "{{ instance.group | default(tomcat_group) }}"
     remote_src: yes
-    creates: "{{ tomcat_directory }}/{{ instance.name }}/{{ tomcat_archives[instance.version | default(tomcat_version)]['dir'] }}"
+    extra_opts: "--strip-components=1"
+    creates: "{{ tomcat_directory }}/{{ instance.name }}/bin"
   register: install_tomcat
   until: install_tomcat is succeeded
   retries: 3
@@ -34,12 +35,12 @@
 - name: configure tomcat instance
   template:
     src: server.xml.j2
-    dest: "{{ tomcat_directory }}/{{ instance.name | default(tomcat_directory) }}/{{ tomcat_archives[instance.version | default(tomcat_version) ]['dir'] }}"
+    dest: "{{ tomcat_directory }}/{{ instance.name }}"
 
 - name: register tomcat instance to sysvinit
   template:
     src: tomcat.j2
-    dest: "/etc/init.d/{{ instance.name | default(tomcat_name) }}"
+    dest: "/etc/init.d/{{ instance.name }}"
     mode: "0750"
   when:
     - ansible_service_mgr == "sysvinit"
@@ -48,7 +49,7 @@
 - name: register tomcat instance to systemd
   template:
     src: tomcat.service.j2
-    dest: "/etc/systemd/system/{{ instance.name | default(tomcat_name) }}.service"
+    dest: "/etc/systemd/system/{{ instance.name }}.service"
     mode: "0755"
   when:
     - ansible_service_mgr == "systemd"
@@ -60,7 +61,7 @@
 
 - name: start and enable tomcat instance
   service:
-    name: "{{ instance.name | default(tomcat_name) }}"
+    name: "{{ instance.name }}"
     state: started
     enabled: yes
   when:
