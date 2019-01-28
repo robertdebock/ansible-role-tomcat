@@ -43,7 +43,7 @@
           | default(tomcat_directory) }}/{{ tomcat_archive[instance.version
           | default(tomcat_version)]['dir'] }}/conf/server.xml"
 
-- name: configure tomcat instance - setenv.sh 
+- name: configure tomcat instance - setenv.sh
   template:
     src: setenv.sh.j2
     dest: "{{ instance.directory
