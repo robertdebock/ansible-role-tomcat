@@ -41,6 +41,14 @@
         ajp_port: 8015
         wars:
           - url: https://tomcat.apache.org/tomcat-7.0-doc/appdev/sample/sample.war
+      - name: "tomcat-java_opts"
+        shutdown_port: 8022
+        non_ssl_connector_port: 8087
+        ssl_connector_port: 8449
+        ajp_port: 8016
+        java_opts:
+          - name: UMASK
+            value: "0007"
 
   roles:
     - robertdebock.bootstrap
