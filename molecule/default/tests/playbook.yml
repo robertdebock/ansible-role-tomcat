@@ -48,7 +48,7 @@
         ajp_port: 8016
         java_opts:
           - name: UMASK
-            value: "0007"
+            value: 0007
 
   roles:
     - robertdebock.bootstrap

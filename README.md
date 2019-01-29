@@ -53,6 +53,14 @@ This example is taken from `molecule/default/playbook.yml`:
         ajp_port: 8015
         wars:
           - url: https://tomcat.apache.org/tomcat-7.0-doc/appdev/sample/sample.war
+      - name: "tomcat-java_opts"
+        shutdown_port: 8022
+        non_ssl_connector_port: 8087
+        ssl_connector_port: 8449
+        ajp_port: 8016
+        java_opts:
+          - name: UMASK
+            value: "0007"
 
   roles:
     - robertdebock.bootstrap
@@ -91,6 +99,7 @@ tomcat_non_ssl_connector_port: 8080
 tomcat_ssl_connector_port: 8443
 tomcat_shutdown_port: 8005
 tomcat_ajp_port: 8009
+tomcat_jre_home: /usr/bin/java
 
 # This role allows multiple installations of Apache Tomcat, each in their own
 # location, potentially of different version.
@@ -109,6 +118,9 @@ tomcat_instances:
     ssl_connector_port: "{{ tomcat_ssl_connector_port }}"
     shutdown_port: "{{ tomcat_shutdown_port }}"
     ajp_port: "{{ tomcat_ajp_port }}"
+    java_opts:
+      - name: JRE_HOME
+        value: "{{ tomcat_jre_home }}"
 
 # When downloading wars, should the SSL certificate be valid? (Impossible for
 # CentOS 6, so default: no.)
