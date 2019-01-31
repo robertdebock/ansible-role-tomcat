@@ -32,10 +32,16 @@
   until: install_tomcat is succeeded
   retries: 3
 
+- name: save instance name
+  set_fact:
+    instance_name: "{{ instance.name }}"
+
 - name: configure tomcat instance - server.xml
   template:
     src: server.xml.j2
-    dest: "{{ tomcat_directory }}/{{ instance.name }}/server.xml"
+    dest: "{{ tomcat_directory }}/{{ instance.name }}/conf/server.xml"
+  notify:
+    - restart tomcat instance
 
 - name: configure tomcat instance - setenv.sh
   template:
@@ -43,6 +49,8 @@
     dest: "{{ tomcat_directory }}/{{ instance.name }}/bin/setenv.sh"
   when:
     - instance.java_opts is defined
+  notify:
+    - restart tomcat instance
 
 - name: register tomcat instance to sysvinit
   template:
