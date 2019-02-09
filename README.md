@@ -82,7 +82,7 @@ These variables are set in `defaults/main.yml`:
 # The explicit version to use when referring to the short name.
 tomcat_version7: 7.0.92
 tomcat_version8: 8.5.37
-tomcat_version9: 9.0.14
+tomcat_version9: 9.0.16
 
 # The location where to download Apache Tomcat from.
 tomcat_mirror: "http://ftp.tudelft.nl"
@@ -99,7 +99,7 @@ tomcat_non_ssl_connector_port: 8080
 tomcat_ssl_connector_port: 8443
 tomcat_shutdown_port: 8005
 tomcat_ajp_port: 8009
-tomcat_jre_home: /usr/bin/java
+tomcat_jre_home: /usr
 
 # This role allows multiple installations of Apache Tomcat, each in their own
 # location, potentially of different version.
