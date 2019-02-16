@@ -34,8 +34,10 @@ platforms:
     image: opensuse:leap
   - name: tomcat-opensuse-tumbleweed
     image: opensuse:tumbleweed
-  - name: tomcat-ubuntu-artful
-    image: ubuntu:artful
+  - name: tomcat-ubuntu-latest
+    image: ubuntu:latest
+  - name: tomcat-ubuntu-rolling
+    image: ubuntu:rolling
   - name: tomcat-ubuntu-devel
     image: ubuntu:devel
   - name: tomcat-ubuntu-latest
