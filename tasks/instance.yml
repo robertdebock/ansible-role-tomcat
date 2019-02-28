@@ -52,27 +52,18 @@
   notify:
     - restart tomcat instance
 
-- name: register tomcat instance to sysvinit
-  template:
-    src: tomcat.j2
-    dest: "/etc/init.d/{{ instance.name }}"
-    mode: "0750"
-  when:
-    - ansible_service_mgr == "sysvinit"
-      or ansible_service_mgr == "upstart"
+- name: set variable for service role
+  set_fact:
+    service_list:
+      - name: "{{ instance.name | default(tomcat_name) }}"
+        description: "{{ instance.name | default(tomcat_name) }}"
+        start_command: "{{ tomcat_directory }}/{{ instance.name | default(tomcat_directory) }}/bin/catalina.sh run"
+        user_name: "{{ instance.user | default(tomcat_user) }}"
+        group_name: "{{ instance.group | default(tomcat_group) }}"
 
-- name: register tomcat instance to systemd
-  template:
-    src: tomcat.service.j2
-    dest: "/etc/systemd/system/{{ instance.name }}.service"
-    mode: "0755"
-  when:
-    - ansible_service_mgr == "systemd"
-  notify:
-    - systemctl daemon-reload
-
-- name: flush handlers
-  meta: flush_handlers
+- name: create service instance
+  import_role:
+    name: robertdebock.service
 
 - name: start and enable tomcat instance
   service:
