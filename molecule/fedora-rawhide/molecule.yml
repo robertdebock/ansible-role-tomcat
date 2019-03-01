@@ -21,6 +21,7 @@ provisioner:
     group_vars:
       all:
         tomcat_ignore_docker: no
+        service_ignore_docker: no
   lint:
     name: ansible-lint
 scenario:
