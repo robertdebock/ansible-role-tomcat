@@ -32,8 +32,6 @@ platforms:
     image: fedora:rawhide
   - name: tomcat-opensuse-leap
     image: opensuse:leap
-  - name: tomcat-opensuse-tumbleweed
-    image: opensuse:tumbleweed
   - name: tomcat-ubuntu-latest
     image: ubuntu:latest
   - name: tomcat-ubuntu-rolling
