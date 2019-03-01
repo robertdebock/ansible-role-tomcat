@@ -80,8 +80,8 @@ These variables are set in `defaults/main.yml`:
 # defaults file for tomcat
 
 # The explicit version to use when referring to the short name.
-tomcat_version7: 7.0.92
-tomcat_version8: 8.5.37
+tomcat_version7: 7.0.93
+tomcat_version8: 8.5.38
 tomcat_version9: 9.0.16
 
 # The location where to download Apache Tomcat from.
@@ -145,6 +145,7 @@ The following roles can be installed to ensure all requirements are met, using `
 ---
 - robertdebock.bootstrap
 - robertdebock.java
+- robertdebock.service
 
 ```
 
@@ -175,7 +176,6 @@ This role has been tested against the following distributions and Ansible versio
 |fedora-latest|yes|yes|yes*|
 |fedora-rawhide*|yes|yes|yes*|
 |opensuse-leap|yes|yes|yes*|
-|opensuse-tumbleweed|yes|yes|yes*|
 |ubuntu-devel*|yes|yes|yes*|
 |ubuntu-latest|yes|yes|yes*|
 |ubuntu-rolling|yes|yes|yes*|
