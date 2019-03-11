@@ -21,7 +21,3 @@ provisioner:
     name: ansible-lint
 scenario:
   name: ubuntu-rolling
-verifier:
-  name: goss
-  lint:
-    name: yamllint
