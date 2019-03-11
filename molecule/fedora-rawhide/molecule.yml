@@ -26,7 +26,3 @@ provisioner:
     name: ansible-lint
 scenario:
   name: fedora-rawhide
-verifier:
-  name: goss
-  lint:
-    name: yamllint
