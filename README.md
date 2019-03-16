@@ -14,7 +14,7 @@ This example is taken from `molecule/default/playbook.yml`:
 - name: Converge
   hosts: all
   become: yes
-  gather_facts: no
+  gather_facts: yes
 
   vars:
     tomcat_instances:
@@ -63,10 +63,20 @@ This example is taken from `molecule/default/playbook.yml`:
             value: "0007"
 
   roles:
+    - robertdebock.tomcat
+```
+
+The machine you are running this on, may need to be prepared. Tests have been done on machines prepared by this playbook:
+```yaml
+---
+- name: Converge
+  hosts: all
+  become: yes
+  gather_facts: no
+
+  roles:
     - robertdebock.bootstrap
     - robertdebock.java
-    - robertdebock.tomcat
-
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
@@ -85,7 +95,7 @@ tomcat_version8: 8.5.38
 tomcat_version9: 9.0.16
 
 # The location where to download Apache Tomcat from.
-tomcat_mirror: "http://ftp.tudelft.nl"
+tomcat_mirror: "https://www-eu.apache.org"
 
 # Some "sane" defaults.
 tomcat_name: tomcat
@@ -125,12 +135,6 @@ tomcat_instances:
 # When downloading wars, should the SSL certificate be valid? (Impossible for
 # CentOS 6, so default: no.)
 tomcat_validate_certs: no
-
-# Some Docker containers do not allow managing services, rebooting and writing
-# to some locations in /etc. The role skips tasks that will typically fail in
-# Docker. With this parameter you can tell the role to -not- skip these tasks.
-tomcat_ignore_docker: yes
-
 ```
 
 Requirements
