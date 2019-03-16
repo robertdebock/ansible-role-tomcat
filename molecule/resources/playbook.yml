@@ -2,7 +2,7 @@
 - name: Converge
   hosts: all
   become: yes
-  gather_facts: no
+  gather_facts: yes
 
   vars:
     tomcat_instances:
@@ -51,6 +51,4 @@
             value: "0007"
 
   roles:
-    - robertdebock.bootstrap
-    - robertdebock.java
     - ansible-role-tomcat
