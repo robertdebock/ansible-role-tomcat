@@ -21,7 +21,7 @@
 
 - name: install tomcat instance
   unarchive:
-    src: "{{ tomcat_mirror }}/{{ tomcat_archives[instance.version | default(tomcat_version)]['url_path'] }}/{{ tomcat_archives[instance.version | default(tomcat_version)]['targz'] }}"
+    src: "{{ tomcat_unarchive_url }}"
     dest: "{{ tomcat_directory }}/{{ instance.name }}"
     owner: "{{ instance.user | default(tomcat_user) }}"
     group: "{{ instance.group | default(tomcat_group) }}"
@@ -53,18 +53,16 @@
   notify:
     - restart tomcat instance
 
-- name: set variable for service role
-  set_fact:
+- name: create service instance
+  import_role:
+    name: robertdebock.service
+  vars:
     service_list:
       - name: "{{ instance.name | default(tomcat_name) }}"
         description: "{{ instance.name | default(tomcat_name) }}"
         start_command: "{{ tomcat_directory }}/{{ instance.name | default(tomcat_directory) }}/bin/catalina.sh run"
         user_name: "{{ instance.user | default(tomcat_user) }}"
         group_name: "{{ instance.group | default(tomcat_group) }}"
-
-- name: create service instance
-  import_role:
-    name: robertdebock.service
 
 - name: start and enable tomcat instance
   service:
