@@ -79,3 +79,11 @@
     loop_var: war
   when:
     - instance.wars is defined
+
+- name: loop over libs
+  include: lib.yml
+  with_items: "{{ instance.libs }}"
+  loop_control:
+    loop_var: lib
+  when:
+    - instance.libs is defined
