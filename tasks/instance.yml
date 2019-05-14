@@ -24,6 +24,7 @@
     url: "{{ tomcat_unarchive_url }}"
     dest: "{{ tomcat_directory }}/{{ instance.name }}/tomcat_src.tar.gz"
     mode: 0440
+    validate_certs: "{{ tomcat_validate_certs }}"
 
 - name: install tomcat instance
   unarchive:
