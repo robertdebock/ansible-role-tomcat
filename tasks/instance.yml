@@ -19,9 +19,16 @@
     owner: "{{ instance.user | default(tomcat_user) }}"
     group: "{{ instance.group | default(tomcat_group) }}"
 
+- name: download tomcat source
+  get_url:
+    url: "{{ tomcat_unarchive_url }}"
+    dest: "{{ tomcat_directory }}/{{ instance.name }}/tomcat_src.tar.gz"
+    mode: 0440
+    validate_certs: "{{ tomcat_validate_certs }}"
+
 - name: install tomcat instance
   unarchive:
-    src: "{{ tomcat_unarchive_url }}"
+    src: "{{ tomcat_directory }}/{{ instance.name }}/tomcat_src.tar.gz"
     dest: "{{ tomcat_directory }}/{{ instance.name }}"
     owner: "{{ instance.user | default(tomcat_user) }}"
     group: "{{ instance.group | default(tomcat_group) }}"
@@ -79,3 +86,11 @@
     loop_var: war
   when:
     - instance.wars is defined
+
+- name: loop over libs
+  include: lib.yml
+  with_items: "{{ instance.libs }}"
+  loop_control:
+    loop_var: lib
+  when:
+    - instance.libs is defined
