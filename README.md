@@ -61,6 +61,13 @@ This example is taken from `molecule/default/playbook.yml`:
         java_opts:
           - name: UMASK
             value: "0007"
+      - name: "tomcat-with_lib"
+        shutdown_port: 8023
+        non_ssl_connector_port: 8088
+        ssl_connector_port: 8450
+        ajp_port: 8017
+        libs:
+          - url: "https://search.maven.org/remotecontent?filepath=io/prometheus/simpleclient/0.6.0/simpleclient-0.6.0.jar"
 
   roles:
     - robertdebock.tomcat
@@ -90,9 +97,9 @@ These variables are set in `defaults/main.yml`:
 # defaults file for tomcat
 
 # The explicit version to use when referring to the short name.
-tomcat_version7: 7.0.93
-tomcat_version8: 8.5.38
-tomcat_version9: 9.0.16
+tomcat_version7: 7.0.94
+tomcat_version8: 8.5.40
+tomcat_version9: 9.0.19
 
 # The location where to download Apache Tomcat from.
 tomcat_mirror: "https://www-eu.apache.org"
