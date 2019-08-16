@@ -193,11 +193,15 @@ This role has been tested against the following distributions and Ansible versio
 
 A single star means the build may fail, it's marked as an experimental build.
 
-Upstream version(s)
+Included version(s)
 -------------------
 
-This role [refers to version](https://github.com/robertdebock/ansible-role-tomcat/blob/master/defaults/main.yml) of [tomcat 7](https://tomcat.apache.org/download-70.cgi), [tomcat 8](https://tomcat.apache.org/download-80.cgi) and [tomcat 9](https://tomcat.apache.org/download-90.cgi).
+This role [refers to a version](https://github.com/robertdebock/ansible-role-tomcat/blob/master/defaults/main.yml) released by Apache Tomcat. Check the released version(s) here:
+- [Tomcat version 7](https://tomcat.apache.org/download-70.cgi).
+- [Tomcat version 8](https://tomcat.apache.org/download-80.cgi).
+- [Tomcat version 9](https://tomcat.apache.org/download-90.cgi).
 
+This version reference means a role may get outdated. Monthly tests occur to see if [bit-rot](https://en.wikipedia.org/wiki/Software_rot) occured. If you however find a problem, please create an issue, I'll get on it as soon as possible.
 Testing
 -------
 
