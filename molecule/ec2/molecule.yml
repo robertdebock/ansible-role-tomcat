@@ -43,10 +43,6 @@ provisioner:
       exclude:
         - meta/version.yml
         - meta/exception.yml
-    options:
-      exclude:
-        - meta/version.yml
-        - meta/exception.yml
   inventory:
     host_vars:
       tomcat-ubuntu-18.04:

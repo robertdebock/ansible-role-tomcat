@@ -24,10 +24,6 @@ provisioner:
       exclude:
         - meta/version.yml
         - meta/exception.yml
-    options:
-      exclude:
-        - meta/version.yml
-        - meta/exception.yml
   inventory:
     group_vars:
       all:
