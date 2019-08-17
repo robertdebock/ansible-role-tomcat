@@ -98,9 +98,9 @@ These variables are set in `defaults/main.yml`:
 # defaults file for tomcat
 
 # The explicit version to use when referring to the short name.
-tomcat_version7: 7.0.94
-tomcat_version8: 8.5.41
-tomcat_version9: 9.0.20
+tomcat_version7: 7.0.96
+tomcat_version8: 8.5.43
+tomcat_version9: 9.0.22
 
 # The location where to download Apache Tomcat from.
 tomcat_mirror: "https://www-eu.apache.org"
