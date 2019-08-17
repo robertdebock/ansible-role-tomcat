@@ -22,9 +22,5 @@ provisioner:
       exclude:
         - meta/version.yml
         - meta/exception.yml
-    options:
-      exclude:
-        - meta/version.yml
-        - meta/exception.yml
 scenario:
   name: centos-6
