@@ -100,7 +100,7 @@ These variables are set in `defaults/main.yml`:
 # The explicit version to use when referring to the short name.
 tomcat_version7: 7.0.96
 tomcat_version8: 8.5.43
-tomcat_version9: 9.0.22
+tomcat_version9: 9.0.24
 
 # The location where to download Apache Tomcat from.
 tomcat_mirror: "https://www-eu.apache.org"
@@ -192,6 +192,7 @@ This role has been tested against the following distributions and Ansible versio
 |ubuntu-rolling|yes|yes|yes*|
 
 A single star means the build may fail, it's marked as an experimental build.
+
 
 Included version(s)
 -------------------
