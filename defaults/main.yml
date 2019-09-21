@@ -3,8 +3,8 @@
 
 # The explicit version to use when referring to the short name.
 tomcat_version7: 7.0.96
-tomcat_version8: 8.5.45
-tomcat_version9: 9.0.24
+tomcat_version8: 8.5.46
+tomcat_version9: 9.0.26
 
 # The location where to download Apache Tomcat from.
 tomcat_mirror: "https://www-eu.apache.org"
