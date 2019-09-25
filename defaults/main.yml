@@ -7,7 +7,7 @@ tomcat_version8: 8.5.46
 tomcat_version9: 9.0.26
 
 # The location where to download Apache Tomcat from.
-tomcat_mirror: "https://www-eu.apache.org"
+tomcat_mirror: "https://archive.apache.org"
 
 # Some "sane" defaults.
 tomcat_name: tomcat
