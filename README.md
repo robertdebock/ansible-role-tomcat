@@ -6,6 +6,9 @@ tomcat
 
 Install and configure tomcat on your system.
 
+<img src="https://img.shields.io/ansible/role/d/22945"/>
+<img src="https://img.shields.io/ansible/quality/22945"/>
+
 Example Playbook
 ----------------
 
@@ -99,11 +102,11 @@ These variables are set in `defaults/main.yml`:
 
 # The explicit version to use when referring to the short name.
 tomcat_version7: 7.0.96
-tomcat_version8: 8.5.43
-tomcat_version9: 9.0.24
+tomcat_version8: 8.5.46
+tomcat_version9: 9.0.26
 
 # The location where to download Apache Tomcat from.
-tomcat_mirror: "https://www-eu.apache.org"
+tomcat_mirror: "https://archive.apache.org"
 
 # Some "sane" defaults.
 tomcat_name: tomcat
@@ -159,6 +162,22 @@ The following roles can be installed to ensure all requirements are met, using `
 - robertdebock.java
 - robertdebock.service
 
+```
+
+This role uses the following modules:
+```yaml
+---
+- file
+- get_url
+- group
+- import_role
+- include
+- service
+- set_fact
+- systemd
+- template
+- unarchive
+- user
 ```
 
 Context
