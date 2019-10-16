@@ -8,17 +8,13 @@ lint:
 driver:
   name: docker
 platforms:
-  - name: tomcat-fedora-latest
-    image: fedora:latest
+  - name: tomcat-centos-7
+    image: centos:7
     pre_build_image: yes
 provisioner:
   name: ansible
   playbooks:
     prepare: ../resources/prepare.yml
     converge: ../resources/playbook.yml
-  inventory:
-    group_vars:
-      all:
-        ansible_python_interpreter: /usr/bin/python3
 scenario:
-  name: fedora-latest
+  name: centos-7

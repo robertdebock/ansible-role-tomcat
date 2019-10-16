@@ -1,0 +1,13 @@
+---
+- name: deploy lib
+  get_url:
+    url: "{{ lib.url }}"
+    dest: "{{ tomcat_directory }}//{{ instance.name }}/lib/"
+    validate_certs: "{{ tomcat_validate_certs }}"
+  register: tomcat_deploy_lib
+  until: tomcat_deploy_lib is succeeded
+  retries: 3
+  when:
+    - lib.url is defined
+  notify:
+    - restart tomcat instance

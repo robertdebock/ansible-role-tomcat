@@ -1,7 +1,17 @@
+{{ ansible_managed | comment }}
+
 {% for java_opt in instance.java_opts %}
-JAVA_OPTS="$JAVA_OPTS {{ java_opt }}"    
+{{ java_opt.name }}="{{ java_opt.value }}"
 {% endfor %}
 
-{% for env_var in instance.env_vars %}
-{{ env_var.name }}={{ env_var.value }}
-{% endfor %}
+{% if instance.xmx is defined %}
+JAVA_OPTS="-Xmx{{ instance.xmx }} ${JAVA_OPTS}"
+{% else %}
+JAVA_OPTS="-Xmx{{ tomcat_xmx }} ${JAVA_OPTS}"
+{% endif %}
+
+{% if instance.xms is defined %}
+JAVA_OPTS="-Xms{{ instance.xms }} ${JAVA_OPTS}"
+{% else %}
+JAVA_OPTS="-Xms{{ tomcat_xms }} ${JAVA_OPTS}"
+{% endif %}

@@ -14,71 +14,70 @@
 
 - name: ensure instance directory exists
   file:
-    path: "{{ instance.directory | default(tomcat_directory) }}"
+    path: "{{ tomcat_directory }}/{{ instance.name }}"
     state: directory
     owner: "{{ instance.user | default(tomcat_user) }}"
     group: "{{ instance.group | default(tomcat_group) }}"
 
+- name: download tomcat source
+  get_url:
+    url: "{{ tomcat_unarchive_url }}"
+    dest: "{{ tomcat_directory }}/{{ instance.name }}/tomcat_src.tar.gz"
+    mode: 0440
+    validate_certs: "{{ tomcat_validate_certs }}"
+
 - name: install tomcat instance
   unarchive:
-    src: >
-      {{ tomcat_mirror }}/{{ tomcat_archive[instance.version
-      | default(tomcat_version)]['url_path'] }}/{{ tomcat_archive[instance.version
-      | default(tomcat_version)]['targz'] }}
-    dest: "{{ instance.directory | default(tomcat_directory) }}"
+    src: "{{ tomcat_directory }}/{{ instance.name }}/tomcat_src.tar.gz"
+    dest: "{{ tomcat_directory }}/{{ instance.name }}"
     owner: "{{ instance.user | default(tomcat_user) }}"
     group: "{{ instance.group | default(tomcat_group) }}"
     remote_src: yes
-    creates: "{{ instance.directory
-             | default(tomcat_directory) }}/{{ tomcat_archive[instance.version
-             | default(tomcat_version)]['dir'] }}"
+    extra_opts: "--strip-components=1"
+    creates: "{{ tomcat_directory }}/{{ instance.name }}/bin"
+    validate_certs: "{{ tomcat_validate_certs }}"
   register: install_tomcat
   until: install_tomcat is succeeded
   retries: 3
 
+- name: save instance name
+  set_fact:
+    instance_name: "{{ instance.name }}"
+
 - name: configure tomcat instance - server.xml
   template:
     src: server.xml.j2
-    dest: "{{ instance.directory
-          | default(tomcat_directory) }}/{{ tomcat_archive[instance.version
-          | default(tomcat_version)]['dir'] }}/conf/server.xml"
+    dest: "{{ tomcat_directory }}/{{ instance.name }}/conf/server.xml"
+  notify:
+    - restart tomcat instance
 
 - name: configure tomcat instance - setenv.sh
   template:
     src: setenv.sh.j2
-    dest: "{{ instance.directory
-          | default(tomcat_directory) }}/{{ tomcat_archive[instance.version
-          | default(tomcat_version)]['dir'] }}/bin/setenv.sh"
-  when: instance.java_opts is defined or instance.env_vars is defined
-
-- name: register tomcat instance to sysvinit
-  template:
-    src: tomcat.j2
-    dest: "/etc/init.d/{{ instance.name | default(tomcat_name) }}"
-    mode: 0750
+    dest: "{{ tomcat_directory }}/{{ instance.name }}/bin/setenv.sh"
   when:
-    - ansible_service_mgr == "sysvinit"
-      or ansible_service_mgr == "upstart"
-
-- name: register tomcat instance to systemd
-  template:
-    src: tomcat.service.j2
-    dest: "/etc/systemd/system/{{ instance.name | default(tomcat_name) }}.service"
-  when:
-    - ansible_service_mgr == "systemd"
+    - instance.java_opts is defined
   notify:
-    - systemctl daemon-reload
+    - restart tomcat instance
 
-- name: flush handlers
-  meta: flush_handlers
+- name: create service instance
+  import_role:
+    name: robertdebock.service
+  vars:
+    service_list:
+      - name: "{{ instance.name | default(tomcat_name) }}"
+        description: "{{ instance.name | default(tomcat_name) }}"
+        start_command: "{{ tomcat_directory }}/{{ instance.name | default(tomcat_directory) }}/bin/catalina.sh run"
+        user_name: "{{ instance.user | default(tomcat_user) }}"
+        group_name: "{{ instance.group | default(tomcat_group) }}"
 
 - name: start and enable tomcat instance
   service:
-    name: "{{ instance.name | default(tomcat_name) }}"
+    name: "{{ instance.name }}"
     state: started
     enabled: yes
   when:
-    - ansible_virtualization_type != "docker" or tomcat_ignore_docker
+    - ansible_virtualization_type != "docker"
 
 - name: loop over wars
   include: war.yml
@@ -87,3 +86,11 @@
     loop_var: war
   when:
     - instance.wars is defined
+
+- name: loop over libs
+  include: lib.yml
+  with_items: "{{ instance.libs }}"
+  loop_control:
+    loop_var: lib
+  when:
+    - instance.libs is defined

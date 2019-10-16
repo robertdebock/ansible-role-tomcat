@@ -3,24 +3,18 @@ dependency:
   name: galaxy
   options:
     role-file: requirements.yml
-driver:
-  name: docker
 lint:
   name: yamllint
+driver:
+  name: docker
 platforms:
   - name: tomcat-archlinux
-    image: base/archlinux
+    image: archlinux/base
+    pre_build_image: yes
 provisioner:
   name: ansible
-  inventory:
-    group_vars:
-      all:
-        tomcat_ignore_docker: no
-  lint:
-    name: ansible-lint
+  playbooks:
+    prepare: ../resources/prepare.yml
+    converge: ../resources/playbook.yml
 scenario:
   name: archlinux
-verifier:
-  name: goss
-  lint:
-    name: yamllint

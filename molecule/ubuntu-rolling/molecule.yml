@@ -8,8 +8,8 @@ lint:
 driver:
   name: docker
 platforms:
-  - name: tomcat-fedora-latest
-    image: fedora:latest
+  - name: tomcat-ubuntu-rolling
+    image: ubuntu:rolling
     pre_build_image: yes
 provisioner:
   name: ansible
@@ -21,4 +21,4 @@ provisioner:
       all:
         ansible_python_interpreter: /usr/bin/python3
 scenario:
-  name: fedora-latest
+  name: ubuntu-rolling

@@ -2,18 +2,17 @@
 # defaults file for tomcat
 
 # The explicit version to use when referring to the short name.
-tomcat_version7: 7.0.92
-tomcat_version8: 8.0.53
-tomcat_version85: 8.5.37
-tomcat_version9: 9.0.14
+tomcat_version7: 7.0.96
+tomcat_version8: 8.5.46
+tomcat_version9: 9.0.26
 
 # The location where to download Apache Tomcat from.
-tomcat_mirror: http://ftp.nluug.nl/
+tomcat_mirror: "https://archive.apache.org"
 
 # Some "sane" defaults.
 tomcat_name: tomcat
 tomcat_directory: /opt
-tomcat_version: 8.5
+tomcat_version: 8
 tomcat_user: tomcat
 tomcat_group: tomcat
 tomcat_xms: 512M
@@ -22,6 +21,7 @@ tomcat_non_ssl_connector_port: 8080
 tomcat_ssl_connector_port: 8443
 tomcat_shutdown_port: 8005
 tomcat_ajp_port: 8009
+tomcat_jre_home: /usr
 
 # This role allows multiple installations of Apache Tomcat, each in their own
 # location, potentially of different version.
@@ -31,7 +31,6 @@ tomcat_ajp_port: 8009
 # in defaults/main.yml.
 tomcat_instances:
   - name: "{{ tomcat_name }}"
-    directory: "{{ tomcat_directory }}"
     version: "{{ tomcat_version }}"
     user: "{{ tomcat_user }}"
     group: "{{ tomcat_group }}"
@@ -41,12 +40,10 @@ tomcat_instances:
     ssl_connector_port: "{{ tomcat_ssl_connector_port }}"
     shutdown_port: "{{ tomcat_shutdown_port }}"
     ajp_port: "{{ tomcat_ajp_port }}"
+    java_opts:
+      - name: JRE_HOME
+        value: "{{ tomcat_jre_home }}"
 
 # When downloading wars, should the SSL certificate be valid? (Impossible for
 # CentOS 6, so default: no.)
 tomcat_validate_certs: no
-
-# Some Docker containers do not allow managing services, rebooting and writing
-# to some locations in /etc. The role skips tasks that will typically fail in
-# Docker. With this parameter you can tell the role to -not- skip these tasks.
-tomcat_ignore_docker: yes

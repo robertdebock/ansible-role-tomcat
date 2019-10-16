@@ -1,19 +1,20 @@
 ---
 # vars file for tomcat
-tomcat_archive:
+tomcat_archives:
   7:
     targz: apache-tomcat-{{ tomcat_version7 }}.tar.gz
-    dir: apache-tomcat-{{ tomcat_version7 }}
-    url_path: internet/apache/tomcat/tomcat-7/v{{ tomcat_version7 }}/bin
+    url_path: dist/tomcat/tomcat-7/v{{ tomcat_version7 }}/bin
   8:
     targz: apache-tomcat-{{ tomcat_version8 }}.tar.gz
-    dir: apache-tomcat-{{ tomcat_version8 }}
-    url_path: internet/apache/tomcat/tomcat-8/v{{ tomcat_version8 }}/bin
-  8.5:
-    targz: apache-tomcat-{{ tomcat_version85 }}.tar.gz
-    dir: apache-tomcat-{{ tomcat_version85 }}
-    url_path: internet/apache/tomcat/tomcat-8/v{{ tomcat_version85 }}/bin
+    url_path: dist/tomcat/tomcat-8/v{{ tomcat_version8 }}/bin
   9:
     targz: apache-tomcat-{{ tomcat_version9 }}.tar.gz
-    dir: apache-tomcat-{{ tomcat_version9 }}
-    url_path: internet/apache/tomcat/tomcat-9/v{{ tomcat_version9 }}/bin/
+    url_path: dist/tomcat/tomcat-9/v{{ tomcat_version9 }}/bin
+
+_tomcat_validate_certs:
+  default: yes
+  CentOS-6: no
+
+tomcat_validate_certs: "{{ _tomcat_validate_certs[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_tomcat_validate_certs['default']) }}"
+
+tomcat_unarchive_url: "{{ tomcat_mirror }}/{{ tomcat_archives[instance.version | default(tomcat_version)]['url_path'] }}/{{ tomcat_archives[instance.version | default(tomcat_version)]['targz'] }}"
