@@ -3,12 +3,8 @@
 - name: systemctl daemon-reload
   systemd:
     daemon_reload: yes
-  when:
-    - ansible_virtualization_type != "docker"
 
 - name: restart tomcat instance
   service:
     name: "{{ instance_name }}"
     state: restarted
-  when:
-    - ansible_virtualization_type != "docker"
