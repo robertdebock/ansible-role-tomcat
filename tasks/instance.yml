@@ -76,8 +76,6 @@
     name: "{{ instance.name }}"
     state: started
     enabled: yes
-  when:
-    - ansible_virtualization_type != "docker"
 
 - name: loop over wars
   include: war.yml
