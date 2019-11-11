@@ -11,10 +11,4 @@ tomcat_archives:
     targz: apache-tomcat-{{ tomcat_version9 }}.tar.gz
     url_path: dist/tomcat/tomcat-9/v{{ tomcat_version9 }}/bin
 
-_tomcat_validate_certs:
-  default: yes
-  CentOS-6: no
-
-tomcat_validate_certs: "{{ _tomcat_validate_certs[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_tomcat_validate_certs['default']) }}"
-
 tomcat_unarchive_url: "{{ tomcat_mirror }}/{{ tomcat_archives[instance.version | default(tomcat_version)]['url_path'] }}/{{ tomcat_archives[instance.version | default(tomcat_version)]['targz'] }}"
