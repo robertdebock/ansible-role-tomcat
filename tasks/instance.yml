@@ -24,7 +24,6 @@
     url: "{{ tomcat_unarchive_url }}"
     dest: "{{ tomcat_directory }}/{{ instance.name }}/tomcat_src.tar.gz"
     mode: 0440
-    validate_certs: "{{ tomcat_validate_certs }}"
 
 - name: install tomcat instance
   unarchive:
@@ -35,7 +34,6 @@
     remote_src: yes
     extra_opts: "--strip-components=1"
     creates: "{{ tomcat_directory }}/{{ instance.name }}/bin"
-    validate_certs: "{{ tomcat_validate_certs }}"
   register: install_tomcat
   until: install_tomcat is succeeded
   retries: 3
