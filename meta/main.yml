@@ -10,10 +10,7 @@ galaxy_info:
   platforms:
     - name: Amazon
       versions:
-        - all
-    - name: Alpine
-      versions:
-        - all
+        - Candidate
     - name: ArchLinux
       versions:
         - all
