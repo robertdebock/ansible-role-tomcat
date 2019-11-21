@@ -34,7 +34,6 @@ galaxy_info:
 
   galaxy_tags:
     - tomcat
-    - alpine
     - archlinux
     - centos
     - debian
