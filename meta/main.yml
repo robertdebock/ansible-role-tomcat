@@ -36,6 +36,6 @@ galaxy_info:
     - tomcat
     - archlinux
     - centos
-    - rhel
+    - redhat
 
 dependencies: []
