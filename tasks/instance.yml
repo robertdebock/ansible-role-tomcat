@@ -77,7 +77,7 @@
 
 - name: loop over wars
   include: war.yml
-  with_items: "{{ instance.wars }}"
+  loop: "{{ instance.wars }}"
   loop_control:
     loop_var: war
   when:
@@ -85,7 +85,7 @@
 
 - name: loop over libs
   include: lib.yml
-  with_items: "{{ instance.libs }}"
+  loop: "{{ instance.libs }}"
   loop_control:
     loop_var: lib
   when:
