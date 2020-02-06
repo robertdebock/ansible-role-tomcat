@@ -24,6 +24,9 @@
     url: "{{ tomcat_unarchive_url }}"
     dest: "{{ tomcat_directory }}/{{ instance.name }}/tomcat_src.tar.gz"
     mode: 0440
+  register: tomcat_download_tomcat_source
+  until: tomcat_download_tomcat_source is succeeded
+  retries: 3
 
 - name: install tomcat instance
   unarchive:
