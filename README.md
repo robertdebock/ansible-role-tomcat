@@ -56,6 +56,7 @@ This example is taken from `molecule/resources/playbook.yml` and is tested on ea
         ajp_port: 8015
         wars:
           - url: https://tomcat.apache.org/tomcat-7.0-doc/appdev/sample/sample.war
+          - url: "https://github.com/aeimer/java-example-helloworld-war/raw/master/dist/helloworld.war"
       - name: "tomcat-java_opts"
         shutdown_port: 8022
         non_ssl_connector_port: 8087
