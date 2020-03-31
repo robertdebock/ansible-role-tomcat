@@ -1,14 +1,12 @@
-tomcat
-=========
+# tomcat
 
 Install and configure tomcat on your system.
 
 |Travis|GitHub|Quality|Downloads|
 |------|------|-------|---------|
-|[![travis](https://travis-ci.org/robertdebock/ansible-role-tomcat.svg?branch=master)](https://travis-ci.org/robertdebock/ansible-role-tomcat)|[![github](https://github.com/robertdebock/ansible-role-tomcat/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-tomcat/actions)|![quality](https://img.shields.io/ansible/quality/22945)|![downloads](https://img.shields.io/ansible/role/d/22945)|
+|[![travis](https://travis-ci.com/robertdebock/ansible-role-tomcat.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-tomcat)|[![github](https://github.com/robertdebock/ansible-role-tomcat/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-tomcat/actions)|[![quality](https://img.shields.io/ansible/quality/22945)](https://galaxy.ansible.com/robertdebock/tomcat)|[![downloads](https://img.shields.io/ansible/role/d/22945)](https://galaxy.ansible.com/robertdebock/tomcat)|
 
-Example Playbook
-----------------
+## Example Playbook
 
 This example is taken from `molecule/resources/converge.yml` and is tested on each push, pull request and release.
 ```yaml
@@ -105,8 +103,7 @@ For verification `molecule/resources/verify.yml` run after the role has been app
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
 
-Role Variables
---------------
+## Role Variables
 
 These variables are set in `defaults/main.yml`:
 ```yaml
@@ -161,8 +158,7 @@ tomcat_instances:
 tomcat_validate_certs: no
 ```
 
-Requirements
-------------
+## Requirements
 
 - Access to a repository containing packages, likely on the internet.
 - A recent version of Ansible. (Tests run on the current, previous and next release of Ansible.)
@@ -178,23 +174,19 @@ The following roles can be installed to ensure all requirements are met, using `
 
 ```
 
-Context
--------
+## Context
 
 This role is a part of many compatible roles. Have a look at [the documentation of these roles](https://robertdebock.nl/) for further information.
 
 Here is an overview of related roles:
 ![dependencies](https://raw.githubusercontent.com/robertdebock/drawings/artifacts/tomcat.png "Dependency")
 
-
-Compatibility
--------------
+## Compatibility
 
 This role has been tested on these [container images](https://hub.docker.com/):
 
 |container|tags|
 |---------|----|
-|amazon|Candidate|
 |debian|all|
 |el|7, 8|
 |fedora|all|
@@ -207,8 +199,7 @@ The minimum version of Ansible required is 2.8 but tests have been done to:
 - The current version.
 - The development version.
 
-Exceptions
-----------
+## Exceptions
 
 Some variarations of the build matrix do not work. These are the variations and reasons why the build won't work:
 
@@ -217,8 +208,7 @@ Some variarations of the build matrix do not work. These are the variations and 
 | amazonlinux:1 | Not idempotent. |
 | alpine | Restart fails. |
 
-Included version(s)
--------------------
+## Included version(s)
 
 This role [refers to a version](https://github.com/robertdebock/ansible-role-tomcat/blob/master/defaults/main.yml) released by Apache Tomcat. Check the released version(s) here:
 - [Tomcat version 7](https://tomcat.apache.org/download-70.cgi).
@@ -226,10 +216,9 @@ This role [refers to a version](https://github.com/robertdebock/ansible-role-tom
 - [Tomcat version 9](https://tomcat.apache.org/download-90.cgi).
 
 This version reference means a role may get outdated. Monthly tests occur to see if [bit-rot](https://en.wikipedia.org/wiki/Software_rot) occured. If you however find a problem, please create an issue, I'll get on it as soon as possible.
-Testing
--------
+## Testing
 
-[Unit tests](https://travis-ci.org/robertdebock/ansible-role-tomcat) are done on every commit, pull request, release and periodically.
+[Unit tests](https://travis-ci.com/robertdebock/ansible-role-tomcat) are done on every commit, pull request, release and periodically.
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-tomcat/issues)
 
@@ -261,13 +250,11 @@ image="centos" tox
 image="debian" tag="stable" tox
 ```
 
-License
--------
+## License
 
 Apache-2.0
 
 
-Author Information
-------------------
+## Author Information
 
 [Robert de Bock](https://robertdebock.nl/)
