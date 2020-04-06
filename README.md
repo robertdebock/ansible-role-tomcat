@@ -71,7 +71,7 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
           - url: "https://search.maven.org/remotecontent?filepath=io/prometheus/simpleclient/0.6.0/simpleclient-0.6.0.jar"
 
   roles:
-    - robertdebock.tomcat
+    - role: robertdebock.tomcat
 ```
 
 The machine may need to be prepared using `molecule/resources/prepare.yml`:
