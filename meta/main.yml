@@ -7,16 +7,26 @@ galaxy_info:
   min_ansible_version: 2.8
 
   platforms:
-    - name: Amazon
+    - name: EL
       versions:
-        - 2018.03
+        - 7
+        - 8
+    - name: Debian
+      versions:
+        - buster
+        - bullseye
     - name: Fedora
       versions:
         - 31
         - 32
+    - name: OpenSUSE
+      versions:
+        - all
     - name: Ubuntu
       versions:
+        - focal
         - bionic
+        - xenial
 
   galaxy_tags:
     - tomcat
