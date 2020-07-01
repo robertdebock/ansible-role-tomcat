@@ -126,35 +126,118 @@
     that:
       - item.name is defined
       - item.name | length > 0
+      # - item.version is defined
+      # - item.version | int
+      # - item.version in [7, 8, 9]
+      # - item.group is defined
+      # - item.group | length > 0
+      # - item.xms is defined
+      # - item.xms | length > 0
+      # - item.xmx is defined
+      # - item.xmx | length > 0
+      # - item.non_ssl_connector_port is defined
+      # - item.non_ssl_connector_port | int
+      # - item.non_ssl_connector_port | int > 0
+      # - item.non_ssl_connector_port | int < 65536
+      # - item.ssl_connector_port is defined
+      # - item.ssl_connector_port | int
+      # - item.ssl_connector_port | int > 0
+      # - item.ssl_connector_port | int < 65536
+      # - item.shutdown_port is defined
+      # - item.shutdown_port | int
+      # - item.shutdown_port | int > 0
+      # - item.shutdown_port | int < 65536
+      # - item.ajp_port is defined
+      # - item.ajp_port | int
+      # - item.ajp_port | int > 0
+      # - item.ajp_port | int < 65536
+      # - item.java_opts is defined
+      # - item.java_opts | length > 0
+      # - item.java_opts is iterable
+  loop: "{{ tomcat_instances }}"
+
+- name: test if item.version in tomcat_instances is set correctly
+  assert:
+    that:
       - item.version is defined
       - item.version | int
       - item.version in [7, 8, 9]
-      - item.group is defined
+  loop: "{{ tomcat_instances }}"
+  when:
+    - item.version is defined
+
+- name: test if item.group in tomcat_instances is set correctly
+  assert:
+    that:
       - item.group | length > 0
-      - item.xms is defined
+  loop: "{{ tomcat_instances }}"
+  when:
+    - item.group is defined
+
+- name: test if item.xms in tomcat_instances is set correctly
+  assert:
+    that:
       - item.xms | length > 0
-      - item.xmx is defined
+  loop: "{{ tomcat_instances }}"
+  when:
+    - item.xms is defined
+
+- name: test if item.xmx in tomcat_instances is set correctly
+  assert:
+    that:
       - item.xmx | length > 0
-      - item.non_ssl_connector_port is defined
+  loop: "{{ tomcat_instances }}"
+  when:
+    - item.xmx is defined
+
+- name: test if item.non_ssl_connector_port in tomcat_instances is set correctly
+  assert:
+    that:
       - item.non_ssl_connector_port | int
       - item.non_ssl_connector_port | int > 0
       - item.non_ssl_connector_port | int < 65536
-      - item.ssl_connector_port is defined
+  loop: "{{ tomcat_instances }}"
+  when:
+    - item.non_ssl_connector_port is defined
+
+- name: test if item.ssl_connector_port in tomcat_instances is set correctly
+  assert:
+    that:
       - item.ssl_connector_port | int
       - item.ssl_connector_port | int > 0
       - item.ssl_connector_port | int < 65536
-      - item.shutdown_port is defined
+  loop: "{{ tomcat_instances }}"
+  when:
+    - item.ssl_connector_port is defined
+
+- name: test if item.shutdown_port in tomcat_instances is set correctly
+  assert:
+    that:
       - item.shutdown_port | int
       - item.shutdown_port | int > 0
       - item.shutdown_port | int < 65536
-      - item.ajp_port is defined
+  loop: "{{ tomcat_instances }}"
+  when:
+    - item.shutdown_port is defined
+
+- name: test if item.ajp_port in tomcat_instances is set correctly
+  assert:
+    that:
       - item.ajp_port | int
       - item.ajp_port | int > 0
       - item.ajp_port | int < 65536
-      - item.java_opts is defined
+  loop: "{{ tomcat_instances }}"
+  when:
+    - item.ajp_port is defined
+
+- name: test if item.java_opts in tomcat_instances is set correctly
+  assert:
+    that:
       - item.java_opts | length > 0
       - item.java_opts is iterable
   loop: "{{ tomcat_instances }}"
+  when:
+    - item.java_opts is defined
 
 - name: test if tomcat_validate_certs is set correctly
   assert:
