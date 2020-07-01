@@ -1,5 +1,8 @@
 ---
 # tasks file for tomcat
+- name: include assert.yml
+  include_tasks: assert.yml
+
 - name: loop over tomcat_instances
   include: instance.yml
   loop: "{{ tomcat_instances }}"
