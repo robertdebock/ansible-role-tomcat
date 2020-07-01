@@ -1,0 +1,163 @@
+---
+- name: test if tomcat_version7 is set correctly
+  assert:
+    that:
+      - tomcat_version7 is defined
+      - tomcat_version7 | length > 0
+
+- name: test if tomcat_version8 is set correctly
+  assert:
+    that:
+      - tomcat_version8 is defined
+      - tomcat_version8 | length > 0
+
+- name: test if tomcat_version9 is set correctly
+  assert:
+    that:
+      - tomcat_version9 is defined
+      - tomcat_version9 | length > 0
+
+- name: test if tomcat_mirror is set correctly
+  assert:
+    that:
+      - tomcat_mirror is defined
+      - tomcat_mirror | length > 0
+
+- name: test if tomcat_name is set correctly
+  assert:
+    that:
+      - tomcat_name is defined
+      - tomcat_name | length > 0
+
+- name: test if tomcat_directory is set correctly
+  assert:
+    that:
+      - tomcat_directory is defined
+      - tomcat_directory | length > 0
+
+- name: test if tomcat_version is set correctly
+  assert:
+    that:
+      - tomcat_version is defined
+      - tomcat_version | int
+      - tomcat_version in [7, 8, 9]
+
+- name: test if tomcat_user is set correctly
+  assert:
+    that:
+      - tomcat_user is defined
+      - tomcat_user | length > 0
+
+- name: test if tomcat_group is set correctly
+  assert:
+    that:
+      - tomcat_group is defined
+      - tomcat_group | length > 0
+
+- name: test if tomcat_xms is set correctly
+  assert:
+    that:
+      - tomcat_xms is defined
+      - tomcat_xms | length > 0
+
+- name: test if tomcat_xmx is set correctly
+  assert:
+    that:
+      - tomcat_xmx is defined
+      - tomcat_xmx | length > 0
+
+- name: test if tomcat_non_ssl_connector_port is set correctly
+  assert:
+    that:
+      - tomcat_non_ssl_connector_port is defined
+      - tomcat_non_ssl_connector_port | int
+      - tomcat_non_ssl_connector_port | int > 0
+      - tomcat_non_ssl_connector_port | int < 65536
+
+- name: test if tomcat_ssl_connector_port is set correctly
+  assert:
+    that:
+      - tomcat_ssl_connector_port is defined
+      - tomcat_ssl_connector_port | int
+      - tomcat_ssl_connector_port | int > 0
+      - tomcat_ssl_connector_port | int < 65536
+
+- name: test if tomcat_shutdown_port is set correctly
+  assert:
+    that:
+      - tomcat_shutdown_port is defined
+      - tomcat_shutdown_port | int
+      - tomcat_shutdown_port | int > 0
+      - tomcat_shutdown_port | int < 65536
+
+- name: test if tomcat_ajp_port is set correctly
+  assert:
+    that:
+      - tomcat_ajp_port is defined
+      - tomcat_ajp_port | int
+      - tomcat_ajp_port | int > 0
+      - tomcat_ajp_port | int < 65536
+
+- name: test if port collisions occur is set correctly
+  assert:
+    that:
+      - tomcat_non_ssl_connector_port != tomcat_ssl_connector_port
+      - tomcat_non_ssl_connector_port != tomcat_shutdown_port
+      - tomcat_non_ssl_connector_port != tomcat_ajp_port
+      - tomcat_ssl_connector_port != tomcat_shutdown_port
+      - tomcat_ssl_connector_port != tomcat_ajp_port
+      - tomcat_shutdown_port != tomcat_ajp_port
+
+- name: test if tomcat_jre_home is set correctly
+  assert:
+    that:
+      - tomcat_jre_home is defined
+      - tomcat_jre_home | length > 0
+
+- name: test if tomcat_instances is set correctly
+  assert:
+    that:
+      - tomcat_instances is defined
+      - tomcat_instances | length > 0
+      - tomcat_instances is iterable
+
+- name: test if item in tomcat_instances is set correctly
+  assert:
+    that:
+      - item.name is defined
+      - item.name | length > 0
+      - item.version is defined
+      - item.version | int
+      - item.version in [7, 8, 9]
+      - item.group is defined
+      - item.group | length > 0
+      - item.xms is defined
+      - item.xms | length > 0
+      - item.xmx is defined
+      - item.xmx | length > 0
+      - item.non_ssl_connector_port is defined
+      - item.non_ssl_connector_port | int
+      - item.non_ssl_connector_port | int > 0
+      - item.non_ssl_connector_port | int < 65536
+      - item.ssl_connector_port is defined
+      - item.ssl_connector_port | int
+      - item.ssl_connector_port | int > 0
+      - item.ssl_connector_port | int < 65536
+      - item.shutdown_port is defined
+      - item.shutdown_port | int
+      - item.shutdown_port | int > 0
+      - item.shutdown_port | int < 65536
+      - item.ajp_port is defined
+      - item.ajp_port | int
+      - item.ajp_port | int > 0
+      - item.ajp_port | int < 65536
+      - item.java_opts is defined
+      - item.java_opts | length > 0
+      - item.java_opts is iterable
+  loop: "{{ tomcat_instances }}"
+
+- name: test if tomcat_validate_certs is set correctly
+  assert:
+    that:
+      - tomcat_validate_certs is defined
+      - tomcat_validate_certs | type_debug == "bool"
