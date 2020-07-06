@@ -1,5 +1,6 @@
 ---
 # vars file for tomcat
+
 tomcat_archives:
   7:
     targz: apache-tomcat-{{ tomcat_version7 }}.tar.gz
