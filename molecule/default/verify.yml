@@ -4,6 +4,17 @@
   become: yes
   gather_facts: yes
 
+  vars:
+    _netcat_package:
+      default: nc
+      Alpine: netcat-openbsd
+      Debian: netcat
+    netcat_package: "{{ _netcat_package[ansible_os_family ] }}"
+
   tasks:
-    - name: check if connection still works
-      ping:
+    - name: install netcat
+      package:
+        name: "{{ netcat_package }}"
+
+    - name: let netcat listen on port 127.0.0.2:8080
+      shell: nc --listen --keep-open 127.0.0.2 8080 &
