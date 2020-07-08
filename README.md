@@ -102,7 +102,8 @@ For verification `molecule/resources/verify.yml` run after the role has been app
       default: nc
       Alpine: netcat-openbsd
       Debian: netcat
-    netcat_package: "{{ _netcat_package[ansible_os_family ] }}"
+      Suse: netcat-openbsd
+    netcat_package: "{{ _netcat_package[ansible_os_family] | default(_netcat_package['default']) }}"
 
   tasks:
     - name: install netcat
