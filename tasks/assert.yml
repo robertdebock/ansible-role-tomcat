@@ -98,6 +98,13 @@
       - tomcat_ajp_port | int > 0
       - tomcat_ajp_port | int < 65536
 
+- name: test if tomcat_address is set correctly
+  assert:
+    that:
+      - tomcat_address | length > 0
+  when:
+    - tomcat_address is defined
+
 - name: test if port collisions occur is set correctly
   assert:
     that:
@@ -210,6 +217,16 @@
   loop: "{{ tomcat_instances }}"
   when:
     - item.ajp_port is defined
+
+- name: test if item.address in tomcat_instances is set correctly
+  assert:
+    that:
+      - item.address is defined
+      - item.address | length > 0
+    quiet: yes
+  loop: "{{ tomcat_instances }}"
+  when:
+    - tomcat_address is not defined
 
 - name: test if item.java_opts in tomcat_instances is set correctly
   assert:

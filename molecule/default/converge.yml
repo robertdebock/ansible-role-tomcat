@@ -5,6 +5,7 @@
   gather_facts: yes
 
   vars:
+    tomcat_address: 127.0.0.1
     tomcat_instances:
       - name: "tomcat"
       - name: "tomcat-version-7"

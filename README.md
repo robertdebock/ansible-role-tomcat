@@ -17,6 +17,7 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
   gather_facts: yes
 
   vars:
+    tomcat_address: 127.0.0.1
     tomcat_instances:
       - name: "tomcat"
       - name: "tomcat-version-7"
@@ -96,9 +97,20 @@ For verification `molecule/resources/verify.yml` run after the role has been app
   become: yes
   gather_facts: yes
 
+  vars:
+    _netcat_package:
+      default: nc
+      Alpine: netcat-openbsd
+      Debian: netcat
+    netcat_package: "{{ _netcat_package[ansible_os_family ] }}"
+
   tasks:
-    - name: check if connection still works
-      ping:
+    - name: install netcat
+      package:
+        name: "{{ netcat_package }}"
+
+    - name: let netcat listen on port 127.0.0.2:8080
+      shell: nc --listen --keep-open 127.0.0.2 8080 &
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
@@ -131,6 +143,10 @@ tomcat_ssl_connector_port: 8443
 tomcat_shutdown_port: 8005
 tomcat_ajp_port: 8009
 tomcat_jre_home: /usr
+# You can bind Tomcat to a specified address globally using this variable, or
+# in the `tomcat_instances`. The `tomcat_instances.address` is more specific
+# so it takes priority over `tomcat_address`.
+tomcat_address: 0.0.0.0
 
 # This role allows multiple installations of Apache Tomcat, each in their own
 # location, potentially of different version.
@@ -149,6 +165,8 @@ tomcat_instances:
     ssl_connector_port: "{{ tomcat_ssl_connector_port }}"
     shutdown_port: "{{ tomcat_shutdown_port }}"
     ajp_port: "{{ tomcat_ajp_port }}"
+    # You can pick an address per instance:
+    # address: 127.0.0.1
     java_opts:
       - name: JRE_HOME
         value: "{{ tomcat_jre_home }}"
@@ -254,6 +272,14 @@ image="debian" tag="stable" tox
 
 Apache-2.0
 
+## [Contributors](#contributors)
+
+I'd like to thank everybody that made contributions to this repository. It motivates me, improves the code and is just fun to collaborate.
+
+- [brunoleon](https://github.com/brunoleon)
+- [patsevanton](https://github.com/patsevanton)
+- [till](https://github.com/till)
+- [DBarthe](https://github.com/DBarthe)
 
 ## [Author Information](#author-information)
 
