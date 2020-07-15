@@ -135,6 +135,8 @@
       - item.name | length > 0
     quiet: yes
   loop: "{{ tomcat_instances }}"
+  loop_control:
+    label: "{{ item.name }}"
 
 - name: test if item.version in tomcat_instances is set correctly
   assert:
@@ -144,6 +146,8 @@
       - item.version in [7, 8, 9]
     quiet: yes
   loop: "{{ tomcat_instances }}"
+  loop_control:
+    label: "{{ item.name }}"
   when:
     - item.version is defined
 
@@ -153,6 +157,8 @@
       - item.group | length > 0
     quiet: yes
   loop: "{{ tomcat_instances }}"
+  loop_control:
+    label: "{{ item.name }}"
   when:
     - item.group is defined
 
@@ -162,6 +168,8 @@
       - item.xms | length > 0
     quiet: yes
   loop: "{{ tomcat_instances }}"
+  loop_control:
+    label: "{{ item.name }}"
   when:
     - item.xms is defined
 
@@ -171,6 +179,8 @@
       - item.xmx | length > 0
     quiet: yes
   loop: "{{ tomcat_instances }}"
+  loop_control:
+    label: "{{ item.name }}"
   when:
     - item.xmx is defined
 
@@ -182,6 +192,8 @@
       - item.non_ssl_connector_port | int < 65536
     quiet: yes
   loop: "{{ tomcat_instances }}"
+  loop_control:
+    label: "{{ item.name }}"
   when:
     - item.non_ssl_connector_port is defined
 
@@ -193,6 +205,8 @@
       - item.ssl_connector_port | int < 65536
     quiet: yes
   loop: "{{ tomcat_instances }}"
+  loop_control:
+    label: "{{ item.name }}"
   when:
     - item.ssl_connector_port is defined
 
@@ -204,6 +218,8 @@
       - item.shutdown_port | int < 65536
     quiet: yes
   loop: "{{ tomcat_instances }}"
+  loop_control:
+    label: "{{ item.name }}"
   when:
     - item.shutdown_port is defined
 
@@ -215,6 +231,8 @@
       - item.ajp_port | int < 65536
     quiet: yes
   loop: "{{ tomcat_instances }}"
+  loop_control:
+    label: "{{ item.name }}"
   when:
     - item.ajp_port is defined
 
@@ -225,6 +243,8 @@
       - item.address | length > 0
     quiet: yes
   loop: "{{ tomcat_instances }}"
+  loop_control:
+    label: "{{ item.name }}"
   when:
     - tomcat_address is not defined
 
@@ -235,6 +255,8 @@
       - item.java_opts is iterable
     quiet: yes
   loop: "{{ tomcat_instances }}"
+  loop_control:
+    label: "{{ item.name }}"
   when:
     - item.java_opts is defined
 
