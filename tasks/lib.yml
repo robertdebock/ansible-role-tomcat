@@ -3,9 +3,6 @@
   get_url:
     url: "{{ lib.url }}"
     dest: "{{ tomcat_directory }}//{{ instance.name }}/lib/"
-  register: tomcat_deploy_lib
-  until: tomcat_deploy_lib is succeeded
-  retries: 3
   when:
     - lib.url is defined
   notify:
