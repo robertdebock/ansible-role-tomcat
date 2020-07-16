@@ -4,8 +4,5 @@
     url: "{{ war.url }}"
     dest: "{{ tomcat_directory }}//{{ instance.name }}/webapps/"
     validate_certs: no
-  register: tomcat_deploy_war_url
-  until: tomcat_deploy_war_url is succeeded
-  retries: 3
   when:
     - war.url is defined
