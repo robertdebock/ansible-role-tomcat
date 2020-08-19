@@ -4,36 +4,42 @@
     that:
       - tomcat_version7 is defined
       - tomcat_version7 | length > 0
+    quiet: yes
 
 - name: test if tomcat_version8 is set correctly
   assert:
     that:
       - tomcat_version8 is defined
       - tomcat_version8 | length > 0
+    quiet: yes
 
 - name: test if tomcat_version9 is set correctly
   assert:
     that:
       - tomcat_version9 is defined
       - tomcat_version9 | length > 0
+    quiet: yes
 
 - name: test if tomcat_mirror is set correctly
   assert:
     that:
       - tomcat_mirror is defined
       - tomcat_mirror | length > 0
+    quiet: yes
 
 - name: test if tomcat_name is set correctly
   assert:
     that:
       - tomcat_name is defined
       - tomcat_name | length > 0
+    quiet: yes
 
 - name: test if tomcat_directory is set correctly
   assert:
     that:
       - tomcat_directory is defined
       - tomcat_directory | length > 0
+    quiet: yes
 
 - name: test if tomcat_version is set correctly
   assert:
@@ -41,30 +47,35 @@
       - tomcat_version is defined
       - tomcat_version | int
       - tomcat_version in [7, 8, 9]
+    quiet: yes
 
 - name: test if tomcat_user is set correctly
   assert:
     that:
       - tomcat_user is defined
       - tomcat_user | length > 0
+    quiet: yes
 
 - name: test if tomcat_group is set correctly
   assert:
     that:
       - tomcat_group is defined
       - tomcat_group | length > 0
+    quiet: yes
 
 - name: test if tomcat_xms is set correctly
   assert:
     that:
       - tomcat_xms is defined
       - tomcat_xms | length > 0
+    quiet: yes
 
 - name: test if tomcat_xmx is set correctly
   assert:
     that:
       - tomcat_xmx is defined
       - tomcat_xmx | length > 0
+    quiet: yes
 
 - name: test if tomcat_non_ssl_connector_port is set correctly
   assert:
@@ -73,6 +84,7 @@
       - tomcat_non_ssl_connector_port | int
       - tomcat_non_ssl_connector_port | int > 0
       - tomcat_non_ssl_connector_port | int < 65536
+    quiet: yes
 
 - name: test if tomcat_ssl_connector_port is set correctly
   assert:
@@ -81,6 +93,7 @@
       - tomcat_ssl_connector_port | int
       - tomcat_ssl_connector_port | int > 0
       - tomcat_ssl_connector_port | int < 65536
+    quiet: yes
 
 - name: test if tomcat_shutdown_port is set correctly
   assert:
@@ -89,6 +102,7 @@
       - tomcat_shutdown_port | int
       - tomcat_shutdown_port | int > 0
       - tomcat_shutdown_port | int < 65536
+    quiet: yes
 
 - name: test if tomcat_ajp_port is set correctly
   assert:
@@ -97,11 +111,13 @@
       - tomcat_ajp_port | int
       - tomcat_ajp_port | int > 0
       - tomcat_ajp_port | int < 65536
+    quiet: yes
 
 - name: test if tomcat_address is set correctly
   assert:
     that:
       - tomcat_address | length > 0
+    quiet: yes
   when:
     - tomcat_address is defined
 
@@ -114,12 +130,14 @@
       - tomcat_ssl_connector_port != tomcat_shutdown_port
       - tomcat_ssl_connector_port != tomcat_ajp_port
       - tomcat_shutdown_port != tomcat_ajp_port
+    quiet: yes
 
 - name: test if tomcat_jre_home is set correctly
   assert:
     that:
       - tomcat_jre_home is defined
       - tomcat_jre_home | length > 0
+    quiet: yes
 
 - name: test if tomcat_instances is set correctly
   assert:
@@ -127,6 +145,7 @@
       - tomcat_instances is defined
       - tomcat_instances | length > 0
       - tomcat_instances is iterable
+    quiet: yes
 
 - name: test if item in tomcat_instances is set correctly
   assert:
@@ -265,3 +284,4 @@
     that:
       - tomcat_validate_certs is defined
       - tomcat_validate_certs | type_debug == "bool"
+    quiet: yes
