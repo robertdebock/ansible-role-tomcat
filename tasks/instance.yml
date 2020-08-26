@@ -18,6 +18,7 @@
     state: directory
     owner: "{{ instance.user | default(tomcat_user) }}"
     group: "{{ instance.group | default(tomcat_group) }}"
+    mode: "0755"
 
 - name: download tomcat source
   get_url:
@@ -34,6 +35,7 @@
     remote_src: yes
     extra_opts: "--strip-components=1"
     creates: "{{ tomcat_directory }}/{{ instance.name }}/bin"
+    mode: "0755"
 
 - name: save instance name
   set_fact:
@@ -43,6 +45,7 @@
   template:
     src: server.xml.j2
     dest: "{{ tomcat_directory }}/{{ instance.name }}/conf/server.xml"
+    mode: "0644"
   notify:
     - restart tomcat instance
 
@@ -50,10 +53,19 @@
   template:
     src: setenv.sh.j2
     dest: "{{ tomcat_directory }}/{{ instance.name }}/bin/setenv.sh"
+    mode: "0644"
   when:
     - (instance.java_opts is defined) or (instance.xms is defined) or (instance.xmx is defined)
   notify:
     - restart tomcat instance
+
+- name: place neutral default page
+  copy:
+    content: "Please select an application by adding the context to the URL."
+    dest: "{{ tomcat_directory }}/{{ instance.name }}/webapps/ROOT/index.html"
+    owner: "{{ instance.user | default(tomcat_user) }}"
+    group: "{{ instance.group | default(tomcat_group) }}"
+    mode: "0640"
 
 - name: create service instance
   import_role:
