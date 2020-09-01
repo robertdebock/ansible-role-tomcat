@@ -112,6 +112,14 @@ For verification `molecule/resources/verify.yml` run after the role has been app
 
     - name: let netcat listen on port 127.0.0.2:8080
       shell: nc --listen --keep-open 127.0.0.2 8080 &
+
+    - name: see if sensitive information is not exposed
+      uri:
+        url: "http://localhost:8080/"
+        return_content: yes
+      register: this
+      failed_when:
+        - "'successfully installed Tomcat' in this.content"
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
