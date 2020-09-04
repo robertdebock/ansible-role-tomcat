@@ -70,7 +70,8 @@
     <Connector port="{{ instance.non_ssl_connector_port | default(tomcat_non_ssl_connector_port) }}"
                address="{{ instance.address | default(tomcat_address) }}"
                protocol="HTTP/1.1"
-               connectionTimeout="20000"{% if instance.ssl_connector_port is not defined %} />{% endif %}
+               connectionTimeout="20000"{% if instance.ssl_connector_port is not defined %} />
+               {% endif %}
                {% if instance.ssl_connector_port is defined %}
                redirectPort="{{ instance.ssl_connector_port | default(tomcat_ssl_connector_port) }}" />
                {% endif %}
