@@ -70,8 +70,10 @@
     <Connector port="{{ instance.non_ssl_connector_port | default(tomcat_non_ssl_connector_port) }}"
                address="{{ instance.address | default(tomcat_address) }}"
                protocol="HTTP/1.1"
-               connectionTimeout="20000"
+               connectionTimeout="20000"{% if instance.ssl_connector_port is not defined %} />{% endif %}
+               {% if instance.ssl_connector_port is defined %}
                redirectPort="{{ instance.ssl_connector_port | default(tomcat_ssl_connector_port) }}" />
+               {% endif %}
     <!-- A "Connector" using the shared thread pool-->
     <!--
     <Connector executor="tomcatThreadPool"
@@ -87,7 +89,7 @@
          Either JSSE or OpenSSL style configuration may be used regardless of
          the SSLImplementation selected. JSSE style configuration is used below.
     -->
-    <!--
+    {% if instance.ssl_connector_port is defined %}
     <Connector port="{{ instance.ssl_connector_port | default(tomcat_ssl_connector_port) }}" protocol="org.apache.coyote.http11.Http11NioProtocol"
                maxThreads="150" SSLEnabled="true">
         <SSLHostConfig>
@@ -95,7 +97,7 @@
                          type="RSA" />
         </SSLHostConfig>
     </Connector>
-    -->
+    {% endif %}
     <!-- Define a SSL/TLS HTTP/1.1 Connector on port 8443 with HTTP/2
          This connector uses the APR/native implementation which always uses
          OpenSSL for TLS.
