@@ -119,12 +119,12 @@
     -->
 
     <!-- Define an AJP 1.3 Connector on port 8009 -->
+    {% if instance.ajp_port is defined %}
     <Connector port="{{ instance.ajp_port | default (tomcat_ajp_port) }}"
               address="{{ instance.address | default(tomcat_address) }}"
               protocol="AJP/1.3"
               redirectPort="{{ instance.ssl_connector_port | default(tomcat_ssl_connector_port) }}" />
-
-
+     {% endif %}
     <!-- An Engine represents the entry point (within Catalina) that processes
          every request.  The Engine implementation for Tomcat stand alone
          analyzes the HTTP headers included with the request, and passes them
