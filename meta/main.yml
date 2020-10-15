@@ -31,7 +31,5 @@ galaxy_info:
 
   galaxy_tags:
     - tomcat
-    - centos
-    - redhat
 
 dependencies: []
