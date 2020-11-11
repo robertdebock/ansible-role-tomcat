@@ -45,7 +45,7 @@
   assert:
     that:
       - tomcat_version is defined
-      - tomcat_version | int
+      - tomcat_version is number
       - tomcat_version in [ 7, 8, 9 ]
     quiet: yes
 
@@ -81,7 +81,7 @@
   assert:
     that:
       - tomcat_non_ssl_connector_port is defined
-      - tomcat_non_ssl_connector_port | int
+      - tomcat_non_ssl_connector_port is number
       - tomcat_non_ssl_connector_port | int > 0
       - tomcat_non_ssl_connector_port | int < 65536
     quiet: yes
@@ -90,7 +90,7 @@
   assert:
     that:
       - tomcat_ssl_connector_port is defined
-      - tomcat_ssl_connector_port | int
+      - tomcat_ssl_connector_port is number
       - tomcat_ssl_connector_port | int > 0
       - tomcat_ssl_connector_port | int < 65536
     quiet: yes
@@ -99,7 +99,7 @@
   assert:
     that:
       - tomcat_shutdown_port is defined
-      - tomcat_shutdown_port | int
+      - tomcat_shutdown_port is number
       - tomcat_shutdown_port | int > 0
       - tomcat_shutdown_port | int < 65536
     quiet: yes
@@ -108,7 +108,7 @@
   assert:
     that:
       - tomcat_ajp_port is defined
-      - tomcat_ajp_port | int
+      - tomcat_ajp_port is number
       - tomcat_ajp_port | int > 0
       - tomcat_ajp_port | int < 65536
     quiet: yes
@@ -161,7 +161,7 @@
   assert:
     that:
       - item.version is defined
-      - item.version | int
+      - item.version is number
       - item.version in [7, 8, 9]
     quiet: yes
   loop: "{{ tomcat_instances }}"
@@ -206,7 +206,7 @@
 - name: test if item.non_ssl_connector_port in tomcat_instances is set correctly
   assert:
     that:
-      - item.non_ssl_connector_port | int
+      - item.non_ssl_connector_port is number
       - item.non_ssl_connector_port | int > 0
       - item.non_ssl_connector_port | int < 65536
     quiet: yes
@@ -219,7 +219,7 @@
 - name: test if item.ssl_connector_port in tomcat_instances is set correctly
   assert:
     that:
-      - item.ssl_connector_port | int
+      - item.ssl_connector_port is number
       - item.ssl_connector_port | int > 0
       - item.ssl_connector_port | int < 65536
     quiet: yes
@@ -232,7 +232,7 @@
 - name: test if item.shutdown_port in tomcat_instances is set correctly
   assert:
     that:
-      - item.shutdown_port | int
+      - item.shutdown_port is number
       - item.shutdown_port | int > 0
       - item.shutdown_port | int < 65536
     quiet: yes
@@ -245,7 +245,7 @@
 - name: test if item.ajp_port in tomcat_instances is set correctly
   assert:
     that:
-      - item.ajp_port | int
+      - item.ajp_port is number
       - item.ajp_port | int > 0
       - item.ajp_port | int < 65536
     quiet: yes
