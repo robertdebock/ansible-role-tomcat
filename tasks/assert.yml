@@ -247,7 +247,7 @@
   loop_control:
     label: "{{ item.name }}"
   when:
-    - tomcat_address is not defined
+    - tomcat_address is undefined
 
 - name: test if item.java_opts in tomcat_instances is set correctly
   assert:
