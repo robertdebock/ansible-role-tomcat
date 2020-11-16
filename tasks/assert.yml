@@ -283,5 +283,5 @@
   assert:
     that:
       - tomcat_validate_certs is defined
-      - tomcat_validate_certs | type_debug == "bool"
+      - tomcat_validate_certs is boolean
     quiet: yes
