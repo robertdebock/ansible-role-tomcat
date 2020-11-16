@@ -3,42 +3,36 @@
   assert:
     that:
       - tomcat_version7 is defined
-      - tomcat_version7 | length > 0
     quiet: yes
 
 - name: test if tomcat_version8 is set correctly
   assert:
     that:
       - tomcat_version8 is defined
-      - tomcat_version8 | length > 0
     quiet: yes
 
 - name: test if tomcat_version9 is set correctly
   assert:
     that:
       - tomcat_version9 is defined
-      - tomcat_version9 | length > 0
     quiet: yes
 
 - name: test if tomcat_mirror is set correctly
   assert:
     that:
       - tomcat_mirror is defined
-      - tomcat_mirror | length > 0
     quiet: yes
 
 - name: test if tomcat_name is set correctly
   assert:
     that:
       - tomcat_name is defined
-      - tomcat_name | length > 0
     quiet: yes
 
 - name: test if tomcat_directory is set correctly
   assert:
     that:
       - tomcat_directory is defined
-      - tomcat_directory | length > 0
     quiet: yes
 
 - name: test if tomcat_version is set correctly
@@ -53,28 +47,24 @@
   assert:
     that:
       - tomcat_user is defined
-      - tomcat_user | length > 0
     quiet: yes
 
 - name: test if tomcat_group is set correctly
   assert:
     that:
       - tomcat_group is defined
-      - tomcat_group | length > 0
     quiet: yes
 
 - name: test if tomcat_xms is set correctly
   assert:
     that:
       - tomcat_xms is defined
-      - tomcat_xms | length > 0
     quiet: yes
 
 - name: test if tomcat_xmx is set correctly
   assert:
     that:
       - tomcat_xmx is defined
-      - tomcat_xmx | length > 0
     quiet: yes
 
 - name: test if tomcat_non_ssl_connector_port is set correctly
@@ -116,7 +106,6 @@
 - name: test if tomcat_address is set correctly
   assert:
     that:
-      - tomcat_address | length > 0
     quiet: yes
   when:
     - tomcat_address is defined
@@ -136,14 +125,12 @@
   assert:
     that:
       - tomcat_jre_home is defined
-      - tomcat_jre_home | length > 0
     quiet: yes
 
 - name: test if tomcat_instances is set correctly
   assert:
     that:
       - tomcat_instances is defined
-      - tomcat_instances | length > 0
       - tomcat_instances is iterable
     quiet: yes
 
@@ -151,7 +138,6 @@
   assert:
     that:
       - item.name is defined
-      - item.name | length > 0
     quiet: yes
   loop: "{{ tomcat_instances }}"
   loop_control:
@@ -173,7 +159,6 @@
 - name: test if item.group in tomcat_instances is set correctly
   assert:
     that:
-      - item.group | length > 0
     quiet: yes
   loop: "{{ tomcat_instances }}"
   loop_control:
@@ -184,7 +169,6 @@
 - name: test if item.xms in tomcat_instances is set correctly
   assert:
     that:
-      - item.xms | length > 0
     quiet: yes
   loop: "{{ tomcat_instances }}"
   loop_control:
@@ -195,7 +179,6 @@
 - name: test if item.xmx in tomcat_instances is set correctly
   assert:
     that:
-      - item.xmx | length > 0
     quiet: yes
   loop: "{{ tomcat_instances }}"
   loop_control:
@@ -259,7 +242,6 @@
   assert:
     that:
       - item.address is defined
-      - item.address | length > 0
     quiet: yes
   loop: "{{ tomcat_instances }}"
   loop_control:
@@ -270,7 +252,6 @@
 - name: test if item.java_opts in tomcat_instances is set correctly
   assert:
     that:
-      - item.java_opts | length > 0
       - item.java_opts is iterable
     quiet: yes
   loop: "{{ tomcat_instances }}"
