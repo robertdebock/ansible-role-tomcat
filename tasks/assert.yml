@@ -103,13 +103,6 @@
       - tomcat_ajp_port < 65536
     quiet: yes
 
-- name: test if tomcat_address is set correctly
-  assert:
-    that:
-    quiet: yes
-  when:
-    - tomcat_address is defined
-
 - name: test if port collisions occur is set correctly
   assert:
     that:
