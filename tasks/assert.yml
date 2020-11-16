@@ -72,8 +72,8 @@
     that:
       - tomcat_non_ssl_connector_port is defined
       - tomcat_non_ssl_connector_port is number
-      - tomcat_non_ssl_connector_port | int > 0
-      - tomcat_non_ssl_connector_port | int < 65536
+      - tomcat_non_ssl_connector_port > 0
+      - tomcat_non_ssl_connector_port < 65536
     quiet: yes
 
 - name: test if tomcat_ssl_connector_port is set correctly
@@ -81,8 +81,8 @@
     that:
       - tomcat_ssl_connector_port is defined
       - tomcat_ssl_connector_port is number
-      - tomcat_ssl_connector_port | int > 0
-      - tomcat_ssl_connector_port | int < 65536
+      - tomcat_ssl_connector_port > 0
+      - tomcat_ssl_connector_port < 65536
     quiet: yes
 
 - name: test if tomcat_shutdown_port is set correctly
@@ -90,8 +90,8 @@
     that:
       - tomcat_shutdown_port is defined
       - tomcat_shutdown_port is number
-      - tomcat_shutdown_port | int > 0
-      - tomcat_shutdown_port | int < 65536
+      - tomcat_shutdown_port > 0
+      - tomcat_shutdown_port < 65536
     quiet: yes
 
 - name: test if tomcat_ajp_port is set correctly
@@ -99,8 +99,8 @@
     that:
       - tomcat_ajp_port is defined
       - tomcat_ajp_port is number
-      - tomcat_ajp_port | int > 0
-      - tomcat_ajp_port | int < 65536
+      - tomcat_ajp_port > 0
+      - tomcat_ajp_port < 65536
     quiet: yes
 
 - name: test if tomcat_address is set correctly
@@ -190,8 +190,8 @@
   assert:
     that:
       - item.non_ssl_connector_port is number
-      - item.non_ssl_connector_port | int > 0
-      - item.non_ssl_connector_port | int < 65536
+      - item.non_ssl_connector_port > 0
+      - item.non_ssl_connector_port < 65536
     quiet: yes
   loop: "{{ tomcat_instances }}"
   loop_control:
@@ -203,8 +203,8 @@
   assert:
     that:
       - item.ssl_connector_port is number
-      - item.ssl_connector_port | int > 0
-      - item.ssl_connector_port | int < 65536
+      - item.ssl_connector_port > 0
+      - item.ssl_connector_port < 65536
     quiet: yes
   loop: "{{ tomcat_instances }}"
   loop_control:
@@ -216,8 +216,8 @@
   assert:
     that:
       - item.shutdown_port is number
-      - item.shutdown_port | int > 0
-      - item.shutdown_port | int < 65536
+      - item.shutdown_port > 0
+      - item.shutdown_port < 65536
     quiet: yes
   loop: "{{ tomcat_instances }}"
   loop_control:
@@ -229,8 +229,8 @@
   assert:
     that:
       - item.ajp_port is number
-      - item.ajp_port | int > 0
-      - item.ajp_port | int < 65536
+      - item.ajp_port > 0
+      - item.ajp_port < 65536
     quiet: yes
   loop: "{{ tomcat_instances }}"
   loop_control:
