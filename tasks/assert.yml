@@ -263,6 +263,7 @@
 - name: test if tomcat_validate_certs is set correctly
   assert:
     that:
-      - tomcat_validate_certs is defined
       - tomcat_validate_certs is boolean
     quiet: yes
+  when:
+    - tomcat_validate_certs is defined
