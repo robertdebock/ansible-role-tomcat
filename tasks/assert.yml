@@ -149,36 +149,6 @@
   when:
     - item.version is defined
 
-- name: test if item.group in tomcat_instances is set correctly
-  assert:
-    that:
-    quiet: yes
-  loop: "{{ tomcat_instances }}"
-  loop_control:
-    label: "{{ item.name }}"
-  when:
-    - item.group is defined
-
-- name: test if item.xms in tomcat_instances is set correctly
-  assert:
-    that:
-    quiet: yes
-  loop: "{{ tomcat_instances }}"
-  loop_control:
-    label: "{{ item.name }}"
-  when:
-    - item.xms is defined
-
-- name: test if item.xmx in tomcat_instances is set correctly
-  assert:
-    that:
-    quiet: yes
-  loop: "{{ tomcat_instances }}"
-  loop_control:
-    label: "{{ item.name }}"
-  when:
-    - item.xmx is defined
-
 - name: test if item.non_ssl_connector_port in tomcat_instances is set correctly
   assert:
     that:
