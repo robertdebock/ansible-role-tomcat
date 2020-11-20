@@ -8,7 +8,7 @@
   include: instance.yml
   loop: "{{ tomcat_instances }}"
   loop_control:
-    loop_control: "{{ instance.name }}"
+    label: "{{ instance.name }}"
     loop_var: instance
   when:
     - tomcat_instances is defined
