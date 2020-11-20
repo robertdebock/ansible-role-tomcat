@@ -99,9 +99,9 @@ These variables are set in `defaults/main.yml`:
 # defaults file for tomcat
 
 # The explicit version to use when referring to the short name.
-tomcat_version7: 7.0.104
-tomcat_version8: 8.5.56
-tomcat_version9: 9.0.36
+tomcat_version7: 7.0.106
+tomcat_version8: 8.5.60
+tomcat_version9: 9.0.40
 
 # The location where to download Apache Tomcat from.
 tomcat_mirror: "https://archive.apache.org"
@@ -141,6 +141,7 @@ tomcat_instances:
     ssl_connector_port: "{{ tomcat_ssl_connector_port }}"
     shutdown_port: "{{ tomcat_shutdown_port }}"
     ajp_port: "{{ tomcat_ajp_port }}"
+    ajp_secret: ""
     # You can pick an address per instance:
     # address: 127.0.0.1
     java_opts:
