@@ -1,4 +1,5 @@
 ---
+
 - name: test if tomcat_version7 is set correctly
   assert:
     that:
