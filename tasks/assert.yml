@@ -4,36 +4,42 @@
   assert:
     that:
       - tomcat_version7 is defined
+      - tomcat_version7 is string
     quiet: yes
 
 - name: test if tomcat_version8 is set correctly
   assert:
     that:
       - tomcat_version8 is defined
+      - tomcat_version8 is string
     quiet: yes
 
 - name: test if tomcat_version9 is set correctly
   assert:
     that:
       - tomcat_version9 is defined
+      - tomcat_version9 is string
     quiet: yes
 
 - name: test if tomcat_mirror is set correctly
   assert:
     that:
       - tomcat_mirror is defined
+      - tomcat_mirror is string
     quiet: yes
 
 - name: test if tomcat_name is set correctly
   assert:
     that:
       - tomcat_name is defined
+      - tomcat_name is string
     quiet: yes
 
 - name: test if tomcat_directory is set correctly
   assert:
     that:
       - tomcat_directory is defined
+      - tomcat_directory is string
     quiet: yes
 
 - name: test if tomcat_version is set correctly
@@ -48,24 +54,28 @@
   assert:
     that:
       - tomcat_user is defined
+      - tomcat_user is string
     quiet: yes
 
 - name: test if tomcat_group is set correctly
   assert:
     that:
       - tomcat_group is defined
+      - tomcat_group is string
     quiet: yes
 
 - name: test if tomcat_xms is set correctly
   assert:
     that:
       - tomcat_xms is defined
+      - tomcat_xms is string
     quiet: yes
 
 - name: test if tomcat_xmx is set correctly
   assert:
     that:
       - tomcat_xmx is defined
+      - tomcat_xmx is string
     quiet: yes
 
 - name: test if tomcat_non_ssl_connector_port is set correctly
@@ -119,6 +129,7 @@
   assert:
     that:
       - tomcat_jre_home is defined
+      - tomcat_jre_home is string
     quiet: yes
 
 - name: test if tomcat_instances is set correctly
@@ -132,6 +143,7 @@
   assert:
     that:
       - tomcat_address is defined
+      - tomcat_address is string
     quiet: yes
 
 - name: test if tomcat_access_log_enabled is set correctly
@@ -181,6 +193,7 @@
   assert:
     that:
       - item.name is defined
+      - item.name is string
     quiet: yes
   loop: "{{ tomcat_instances }}"
   loop_control:
@@ -255,6 +268,7 @@
   assert:
     that:
       - item.address is defined
+      - item.address is string
     quiet: yes
   loop: "{{ tomcat_instances }}"
   loop_control:
