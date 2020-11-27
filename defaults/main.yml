@@ -27,6 +27,13 @@ tomcat_jre_home: /usr
 # so it takes priority over `tomcat_address`.
 tomcat_address: 0.0.0.0
 
+# Configure tomcat access logs
+tomcat_access_log_enabled: yes
+tomcat_access_log_directory: logs
+tomcat_access_log_prefix: localhost_access_log
+tomcat_access_log_suffix: ".txt"
+tomcat_access_log_pattern: "%h %l %u %t &quot;%r&quot; %s %b"
+
 # This role allows multiple installations of Apache Tomcat, each in their own
 # location, potentially of different version.
 # This is done by defining a "tomcat_instances" where "name:" is a unique
@@ -50,6 +57,11 @@ tomcat_instances:
     java_opts:
       - name: JRE_HOME
         value: "{{ tomcat_jre_home }}"
+    access_log_enabled: "{{ tomcat_access_log_enabled }}"
+    access_log_directory: "{{ tomcat_access_log_directory }}"
+    access_log_prefix: "{{ tomcat_access_log_prefix }}"
+    access_log_suffix: "{{ tomcat_access_log_suffix }}"
+    access_log_pattern: "{{ tomcat_access_log_pattern }}"
 
 # When downloading wars, should the SSL certificate be valid? (Impossible for
 # CentOS 6, so default: no.)

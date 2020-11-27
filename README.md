@@ -124,6 +124,13 @@ tomcat_jre_home: /usr
 # so it takes priority over `tomcat_address`.
 tomcat_address: 0.0.0.0
 
+# Configure tomcat access logs
+tomcat_access_log_enabled: yes
+tomcat_access_log_directory: logs
+tomcat_access_log_prefix: localhost_access_log
+tomcat_access_log_suffix: ".txt"
+tomcat_access_log_pattern: "%h %l %u %t &quot;%r&quot; %s %b"
+
 # This role allows multiple installations of Apache Tomcat, each in their own
 # location, potentially of different version.
 # This is done by defining a "tomcat_instances" where "name:" is a unique

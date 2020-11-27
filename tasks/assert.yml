@@ -128,6 +128,55 @@
       - tomcat_instances is iterable
     quiet: yes
 
+- name: test if tomcat_address is set correctly
+  assert:
+    that:
+      - tomcat_address is defined
+    quiet: yes
+
+- name: test if tomcat_access_log_enabled is set correctly
+  assert:
+    that:
+      - tomcat_access_log_enabled is defined
+      - tomcat_access_log_enabled is boolean
+    quiet: yes
+
+- name: test if tomcat_access_log_directory is set correctly
+  assert:
+    that:
+      - tomcat_access_log_directory is defined
+      - tomcat_access_log_directory is string
+    quiet: yes
+  when:
+    - tomcat_access_log_enabled | bool
+
+- name: test if tomcat_access_log_prefix is set correctly
+  assert:
+    that:
+      - tomcat_access_log_prefix is defined
+      - tomcat_access_log_prefix is string
+    quiet: yes
+  when:
+    - tomcat_access_log_enabled | bool
+
+- name: test if tomcat_access_log_suffix is set correctly
+  assert:
+    that:
+      - tomcat_access_log_suffix is defined
+      - tomcat_access_log_suffix is string
+    quiet: yes
+  when:
+    - tomcat_access_log_enabled | bool
+
+- name: test if tomcat_access_log_pattern is set correctly
+  assert:
+    that:
+      - tomcat_access_log_pattern is defined
+      - tomcat_access_log_pattern is string
+    quiet: yes
+  when:
+    - tomcat_access_log_enabled | bool
+
 - name: test if item in tomcat_instances is set correctly
   assert:
     that:

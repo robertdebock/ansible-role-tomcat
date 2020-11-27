@@ -167,9 +167,11 @@
         <!-- Access log processes all example.
              Documentation at: /docs/config/valve.html
              Note: The pattern used is equivalent to using pattern="common" -->
-        <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs"
-               prefix="localhost_access_log" suffix=".txt"
-               pattern="%h %l %u %t &quot;%r&quot; %s %b" />
+{% if instance.access_log_enabled | default(tomcat_access_log_enabled) %}
+        <Valve className="org.apache.catalina.valves.AccessLogValve" directory="{{ instance.access_log_directory | default(tomcat_access_log_directory) }}"
+               prefix="{{ instance.access_log_prefix | default(tomcat_access_log_prefix) }}" suffix="{{ instance.access_log_suffix | default(tomcat_access_log_suffix) }}"
+               pattern="{{ instance.access_log_pattern | default(tomcat_access_log_pattern) }}" />
+{% endif %}
 
       </Host>
     </Engine>
