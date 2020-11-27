@@ -287,7 +287,7 @@
 - name: test if item.access_log_directory in tomcat_instances is set correctly
   assert:
     that:
-      - item.access_log_enabled is string
+      - item.access_log_directory is string
     quiet: yes
   loop: "{{ tomcat_instances }}"
   loop_control:
