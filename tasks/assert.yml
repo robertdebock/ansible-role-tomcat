@@ -331,6 +331,17 @@
   when:
     - item.access_log_pattern is defined
 
+- name: test if item.config_files in tomcat_instances is set correctly
+  assert:
+    that:
+      - item.config_files is iterable
+    quiet: yes
+  loop: "{{ tomcat_instances }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - item.config_files is defined
+
 - name: test if tomcat_validate_certs is set correctly
   assert:
     that:
