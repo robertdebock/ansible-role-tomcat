@@ -67,6 +67,15 @@
     group: "{{ instance.group | default(tomcat_group) }}"
     mode: "0640"
 
+- name: loop over config_files
+  include: config_file.yml
+  loop: "{{ instance.config_files }}"
+  loop_control:
+    loop_var: config_file
+  when: instance.config_files is defined
+  notify:
+    - restart tomcat instance
+
 - name: create service instance
   import_role:
     name: robertdebock.service
