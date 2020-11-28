@@ -74,7 +74,7 @@
         ssl_connector_port: 8451
         ajp_port: 8018
         config_files:
-          - src: "dummy.properties"
+          - src: "{{ role_path }}/files/dummy.properties"
             dest: "./"
             mode: "0644"
 
