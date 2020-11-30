@@ -69,10 +69,10 @@
         access_log_suffix: ".log"
         access_log_pattern: "%h %l %u %t &quot;%r&quot; %s %b"
       - name: "tomcat-config-files"
-        shutdown_port: 8024
-        non_ssl_connector_port: 8089
-        ssl_connector_port: 8451
-        ajp_port: 8018
+        shutdown_port: 8025
+        non_ssl_connector_port: 8090
+        ssl_connector_port: 8452
+        ajp_port: 8019
         config_files:
           - src: "{{ role_path }}/files/dummy.properties"
             dest: "./"
