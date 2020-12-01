@@ -68,6 +68,15 @@
         access_log_prefix: my-access-logs
         access_log_suffix: ".log"
         access_log_pattern: "%h %l %u %t &quot;%r&quot; %s %b"
+      - name: "tomcat-config-files"
+        shutdown_port: 8025
+        non_ssl_connector_port: 8090
+        ssl_connector_port: 8452
+        ajp_port: 8019
+        config_files:
+          - src: "{{ role_path }}/files/dummy.properties"
+            dest: "./"
+            mode: "0644"
 
   roles:
     - role: ansible-role-tomcat

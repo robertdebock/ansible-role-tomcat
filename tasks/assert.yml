@@ -318,18 +318,7 @@
   loop_control:
     label: "{{ item.name }}"
   when:
-    - item.access_log_enabled is defined
-
-- name: test if item.access_log_suffix in tomcat_instances is set correctly
-  assert:
-    that:
-      - item.access_log_suffix is string
-    quiet: yes
-  loop: "{{ tomcat_instances }}"
-  loop_control:
-    label: "{{ item.name }}"
-  when:
-    - item.access_log_enabled is defined
+    - item.access_log_prefix is defined
 
 - name: test if item.access_log_pattern in tomcat_instances is set correctly
   assert:
@@ -340,7 +329,18 @@
   loop_control:
     label: "{{ item.name }}"
   when:
-    - item.access_log_enabled is defined
+    - item.access_log_pattern is defined
+
+- name: test if item.config_files in tomcat_instances is set correctly
+  assert:
+    that:
+      - item.config_files is iterable
+    quiet: yes
+  loop: "{{ tomcat_instances }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - item.config_files is defined
 
 - name: test if tomcat_validate_certs is set correctly
   assert:
