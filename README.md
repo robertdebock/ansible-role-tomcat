@@ -70,6 +70,25 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
         ajp_port: 8017
         libs:
           - url: "https://search.maven.org/remotecontent?filepath=io/prometheus/simpleclient/0.6.0/simpleclient-0.6.0.jar"
+      - name: "tomcat-access-logs"
+        shutdown_port: 8024
+        non_ssl_connector_port: 8089
+        ssl_connector_port: 8451
+        ajp_port: 8018
+        access_log_enabled: yes
+        access_log_directory: "my-logs"
+        access_log_prefix: my-access-logs
+        access_log_suffix: ".log"
+        access_log_pattern: "%h %l %u %t &quot;%r&quot; %s %b"
+      - name: "tomcat-config-files"
+        shutdown_port: 8025
+        non_ssl_connector_port: 8090
+        ssl_connector_port: 8452
+        ajp_port: 8019
+        config_files:
+          - src: "{{ role_path }}/files/dummy.properties"
+            dest: "./"
+            mode: "0644"
 
   roles:
     - role: robertdebock.tomcat
@@ -154,6 +173,11 @@ tomcat_instances:
     java_opts:
       - name: JRE_HOME
         value: "{{ tomcat_jre_home }}"
+    access_log_enabled: "{{ tomcat_access_log_enabled }}"
+    access_log_directory: "{{ tomcat_access_log_directory }}"
+    access_log_prefix: "{{ tomcat_access_log_prefix }}"
+    access_log_suffix: "{{ tomcat_access_log_suffix }}"
+    access_log_pattern: "{{ tomcat_access_log_pattern }}"
 
 # When downloading wars, should the SSL certificate be valid? (Impossible for
 # CentOS 6, so default: no.)
