@@ -1,3 +1,4 @@
+---
 - name: deploy config_file
   template:
     src: "{{ config_file.src }}"
