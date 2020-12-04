@@ -117,14 +117,6 @@ These variables are set in `defaults/main.yml`:
 ---
 # defaults file for tomcat
 
-# The explicit version to use when referring to the short name.
-tomcat_version7: 7.0.106
-tomcat_version8: 8.5.60
-tomcat_version9: 9.0.40
-
-# The location where to download Apache Tomcat from.
-tomcat_mirror: "https://archive.apache.org"
-
 # Some "sane" defaults.
 tomcat_name: tomcat
 tomcat_directory: /opt
@@ -182,6 +174,26 @@ tomcat_instances:
 # When downloading wars, should the SSL certificate be valid? (Impossible for
 # CentOS 6, so default: no.)
 tomcat_validate_certs: no
+
+# The explicit version to use when referring to the short name.
+tomcat_version7: 7.0.107
+tomcat_version8: 8.5.60
+tomcat_version9: 9.0.40
+
+# The location where to download Apache Tomcat from.
+tomcat_mirror: "https://archive.apache.org"
+
+# If you want to download Tomcat from another location, adjust these parameters
+# to your liking. For "normal" use, this does not require modification.
+_tomcat_unarchive_urls:
+  7:
+    url: "{{ tomcat_mirror }}/dist/tomcat/tomcat-7/v{{ tomcat_version7 }}/bin/apache-tomcat-{{ tomcat_version7 }}.tar.gz"
+  8:
+    url: "{{ tomcat_mirror }}/dist/tomcat/tomcat-8/v{{ tomcat_version8 }}/bin/apache-tomcat-{{ tomcat_version8 }}.tar.gz"
+  9:
+    url: "{{ tomcat_mirror }}/dist/tomcat/tomcat-9/v{{ tomcat_version9 }}/bin/apache-tomcat-{{ tomcat_version9 }}.tar.gz"
+
+tomcat_unarchive_url: "{{ _tomcat_unarchive_urls[tomcat_version].url }}"
 ```
 
 ## [Requirements](#requirements)
