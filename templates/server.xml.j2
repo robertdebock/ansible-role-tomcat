@@ -119,6 +119,7 @@
     <Connector port="{{ instance.ajp_port | default (tomcat_ajp_port) }}"
               address="{{ instance.address | default(tomcat_address) }}"
               protocol="AJP/1.3"
+              secretRequired="false"
               redirectPort="{{ instance.ssl_connector_port | default(tomcat_ssl_connector_port) }}" />
 {% if instance.ajp_secret is defined %}
               secret="{{ instance.ajp_secret }}"
