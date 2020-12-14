@@ -2,9 +2,9 @@
 
 Install and configure tomcat on your system.
 
-|Travis|GitHub|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![travis](https://travis-ci.com/robertdebock/ansible-role-tomcat.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-tomcat)|[![github](https://github.com/robertdebock/ansible-role-tomcat/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-tomcat/actions)|[![quality](https://img.shields.io/ansible/quality/22945)](https://galaxy.ansible.com/robertdebock/tomcat)|[![downloads](https://img.shields.io/ansible/role/d/22945)](https://galaxy.ansible.com/robertdebock/tomcat)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-tomcat.svg)](https://github.com/robertdebock/ansible-role-tomcat/releases/)|
+|Travis|GitHub|GitLab|Quality|Downloads|Version|
+|------|------|------|-------|---------|-------|
+|[![travis](https://travis-ci.com/robertdebock/ansible-role-tomcat.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-tomcat)|[![github](https://github.com/robertdebock/ansible-role-tomcat/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-tomcat/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-tomcat/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-tomcat)|[![quality](https://img.shields.io/ansible/quality/22945)](https://galaxy.ansible.com/robertdebock/tomcat)|[![downloads](https://img.shields.io/ansible/role/d/22945)](https://galaxy.ansible.com/robertdebock/tomcat)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-tomcat.svg)](https://github.com/robertdebock/ansible-role-tomcat/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -70,6 +70,25 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
         ajp_port: 8017
         libs:
           - url: "https://search.maven.org/remotecontent?filepath=io/prometheus/simpleclient/0.6.0/simpleclient-0.6.0.jar"
+      - name: "tomcat-access-logs"
+        shutdown_port: 8024
+        non_ssl_connector_port: 8089
+        ssl_connector_port: 8451
+        ajp_port: 8018
+        access_log_enabled: yes
+        access_log_directory: "my-logs"
+        access_log_prefix: my-access-logs
+        access_log_suffix: ".log"
+        access_log_pattern: "%h %l %u %t &quot;%r&quot; %s %b"
+      - name: "tomcat-config-files"
+        shutdown_port: 8025
+        non_ssl_connector_port: 8090
+        ssl_connector_port: 8452
+        ajp_port: 8019
+        config_files:
+          - src: "{{ role_path }}/files/dummy.properties"
+            dest: "./"
+            mode: "0644"
 
   roles:
     - role: robertdebock.tomcat
@@ -97,14 +116,6 @@ These variables are set in `defaults/main.yml`:
 ```yaml
 ---
 # defaults file for tomcat
-
-# The explicit version to use when referring to the short name.
-tomcat_version7: 7.0.106
-tomcat_version8: 8.5.60
-tomcat_version9: 9.0.40
-
-# The location where to download Apache Tomcat from.
-tomcat_mirror: "https://archive.apache.org"
 
 # Some "sane" defaults.
 tomcat_name: tomcat
@@ -154,18 +165,44 @@ tomcat_instances:
     java_opts:
       - name: JRE_HOME
         value: "{{ tomcat_jre_home }}"
+    access_log_enabled: "{{ tomcat_access_log_enabled }}"
+    access_log_directory: "{{ tomcat_access_log_directory }}"
+    access_log_prefix: "{{ tomcat_access_log_prefix }}"
+    access_log_suffix: "{{ tomcat_access_log_suffix }}"
+    access_log_pattern: "{{ tomcat_access_log_pattern }}"
 
 # When downloading wars, should the SSL certificate be valid? (Impossible for
 # CentOS 6, so default: no.)
 tomcat_validate_certs: no
+
+# The explicit version to use when referring to the short name.
+tomcat_version7: 7.0.107
+tomcat_version8: 8.5.60
+tomcat_version9: 9.0.40
+
+# The location where to download Apache Tomcat from.
+tomcat_mirror: "https://archive.apache.org"
+
+# If you want to download Tomcat from another location, adjust these parameters
+# to your liking. For "normal" use, this does not require modification.
+_tomcat_unarchive_urls:
+  7:
+    url: "{{ tomcat_mirror }}/dist/tomcat/tomcat-7/v{{ tomcat_version7 }}/bin/apache-tomcat-{{ tomcat_version7 }}.tar.gz"
+  8:
+    url: "{{ tomcat_mirror }}/dist/tomcat/tomcat-8/v{{ tomcat_version8 }}/bin/apache-tomcat-{{ tomcat_version8 }}.tar.gz"
+  9:
+    url: "{{ tomcat_mirror }}/dist/tomcat/tomcat-9/v{{ tomcat_version9 }}/bin/apache-tomcat-{{ tomcat_version9 }}.tar.gz"
+
+tomcat_unarchive_url: "{{ _tomcat_unarchive_urls[tomcat_version].url }}"
 ```
 
 ## [Requirements](#requirements)
 
-- Access to a repository containing packages, likely on the internet.
-- A recent version of Ansible. (Tests run on the current, previous and next release of Ansible.)
+- pip packages listed in [requirements.txt](https://github.com/robertdebock/ansible-role-tomcat/blob/master/requirements.txt).
 
 ## [Status of requirements](#status-of-requirements)
+
+The following roles are used to prepare a system. You may choose to prepare your system in another way, I have tested these roles as well.
 
 | Requirement | Travis | GitHub |
 |-------------|--------|--------|
