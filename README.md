@@ -296,6 +296,7 @@ Apache-2.0
 I'd like to thank everybody that made contributions to this repository. It motivates me, improves the code and is just fun to collaborate.
 
 - [brunoleon](https://github.com/brunoleon)
+- [javid90khan](https://github.com/javid90khan)
 - [patsevanton](https://github.com/patsevanton)
 - [till](https://github.com/till)
 - [DBarthe](https://github.com/DBarthe)
