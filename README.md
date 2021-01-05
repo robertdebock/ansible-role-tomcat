@@ -171,10 +171,6 @@ tomcat_instances:
     access_log_suffix: "{{ tomcat_access_log_suffix }}"
     access_log_pattern: "{{ tomcat_access_log_pattern }}"
 
-# When downloading wars, should the SSL certificate be valid? (Impossible for
-# CentOS 6, so default: no.)
-tomcat_validate_certs: no
-
 # The explicit version to use when referring to the short name.
 tomcat_version7: 7.0.107
 tomcat_version8: 8.5.60
