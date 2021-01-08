@@ -55,6 +55,7 @@ tomcat_instances:
     access_log_suffix: "{{ tomcat_access_log_suffix }}"
     access_log_pattern: "{{ tomcat_access_log_pattern }}"
     service_state: started
+    service_enabled: yes
 
 # The explicit version to use when referring to the short name.
 tomcat_version7: 7.0.107

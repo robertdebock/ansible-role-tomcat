@@ -87,11 +87,11 @@
         user_name: "{{ instance.user | default(tomcat_user) }}"
         group_name: "{{ instance.group | default(tomcat_group) }}"
 
-- name: set tomcat instance service to {{ instance.service_state }}
+- name: set tomcat instance service to {{ instance.service_state }} and {{ instance.service_enabled }}
   service:
     name: "{{ instance.name }}"
     state: "{{ instance.service_state }}"
-    enabled: yes
+    enabled: "{{ instance.service_enabled }}"
 
 - name: loop over wars
   include: war.yml
