@@ -87,10 +87,10 @@
         user_name: "{{ instance.user | default(tomcat_user) }}"
         group_name: "{{ instance.group | default(tomcat_group) }}"
 
-- name: start and enable tomcat instance
+- name: set tomcat instance service to {{ instance.service_state }}
   service:
     name: "{{ instance.name }}"
-    state: started
+    state: "{{ instance.service_state }}"
     enabled: yes
 
 - name: loop over wars
