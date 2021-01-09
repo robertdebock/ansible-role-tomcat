@@ -130,6 +130,8 @@ tomcat_ssl_connector_port: 8443
 tomcat_shutdown_port: 8005
 tomcat_ajp_port: 8009
 tomcat_jre_home: /usr
+tomcat_service_state: started
+tomcat_service_enabled: yes
 # You can bind Tomcat to a specified address globally using this variable, or
 # in the `tomcat_instances`. The `tomcat_instances.address` is more specific
 # so it takes priority over `tomcat_address`.
@@ -170,6 +172,8 @@ tomcat_instances:
     access_log_prefix: "{{ tomcat_access_log_prefix }}"
     access_log_suffix: "{{ tomcat_access_log_suffix }}"
     access_log_pattern: "{{ tomcat_access_log_pattern }}"
+    service_state: "{{ tomcat_service_state }}"
+    service_enabled: "{{ tomcat_service_enabled }}"
 
 # The explicit version to use when referring to the short name.
 tomcat_version7: 7.0.107
@@ -292,6 +296,7 @@ Apache-2.0
 I'd like to thank everybody that made contributions to this repository. It motivates me, improves the code and is just fun to collaborate.
 
 - [brunoleon](https://github.com/brunoleon)
+- [gaima8](https://github.com/gaima8)
 - [javid90khan](https://github.com/javid90khan)
 - [patsevanton](https://github.com/patsevanton)
 - [till](https://github.com/till)

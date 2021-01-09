@@ -132,6 +132,20 @@
       - tomcat_jre_home is string
     quiet: yes
 
+- name: test if tomcat_service_state is set correctly
+  assert:
+    that:
+      - tomcat_service_state is defined
+      - tomcat_service_state in [ "reloaded", "restarted", "started", "stopped" ]
+    quiet: yes
+
+- name: test if tomcat_service_enabled is set correctly
+  assert:
+    that:
+      - tomcat_service_enabled is defined
+      - tomcat_service_enabled is boolean
+    quiet: yes
+
 - name: test if tomcat_instances is set correctly
   assert:
     that:
@@ -341,3 +355,25 @@
     label: "{{ item.name }}"
   when:
     - item.config_files is defined
+
+- name: test if item.service_state in tomcat_instances is set correctly
+  assert:
+    that:
+      - item service_state in [ "reloaded", "restarted", "started", "stopped" ]
+    quiet: yes
+  loop: "{{ tomcat_instances }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - item.service_state is defined
+
+- name: test if item.service_enabled in tomcat_instances is set correctly
+  assert:
+    that:
+      - item service_enabled is boolean
+    quiet: yes
+  loop: "{{ tomcat_instances }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - item.service_enabled is defined
