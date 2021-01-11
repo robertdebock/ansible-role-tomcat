@@ -359,7 +359,7 @@
 - name: test if item.service_state in tomcat_instances is set correctly
   assert:
     that:
-      - item service_state in [ "reloaded", "restarted", "started", "stopped" ]
+      - item.service_state in [ "reloaded", "restarted", "started", "stopped" ]
     quiet: yes
   loop: "{{ tomcat_instances }}"
   loop_control:
@@ -370,7 +370,7 @@
 - name: test if item.service_enabled in tomcat_instances is set correctly
   assert:
     that:
-      - item service_enabled is boolean
+      - item.service_enabled is boolean
     quiet: yes
   loop: "{{ tomcat_instances }}"
   loop_control:
