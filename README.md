@@ -216,7 +216,7 @@ The following roles are used to prepare a system. You may choose to prepare your
 This role is a part of many compatible roles. Have a look at [the documentation of these roles](https://robertdebock.nl/) for further information.
 
 Here is an overview of related roles:
-![dependencies](https://raw.githubusercontent.com/robertdebock/drawings/artifacts/tomcat.png "Dependency")
+![dependencies](https://raw.githubusercontent.com/robertdebock/ansible-role-tomcat/png/requirements.png "Dependencies")
 
 ## [Compatibility](#compatibility)
 
@@ -295,8 +295,8 @@ Apache-2.0
 
 I'd like to thank everybody that made contributions to this repository. It motivates me, improves the code and is just fun to collaborate.
 
-- [brunoleon](https://github.com/brunoleon)
 - [gaima8](https://github.com/gaima8)
+- [brunoleon](https://github.com/brunoleon)
 - [javid90khan](https://github.com/javid90khan)
 - [patsevanton](https://github.com/patsevanton)
 - [till](https://github.com/till)
