@@ -16,6 +16,9 @@
     - name: install netcat
       package:
         name: "{{ netcat_package }}"
+        state: present
+      notify:
+        - uninstall netcat
 
     - name: let netcat listen on port 127.0.0.2:8080
       shell: nc --listen --keep-open 127.0.0.2 8080 &
@@ -27,3 +30,9 @@
       register: this
       failed_when:
         - "'successfully installed Tomcat' in this.content"
+
+  handlers:
+    - name: uninstall netcat
+      package:
+        name: "{ netcat_package }}"
+        state: absent
