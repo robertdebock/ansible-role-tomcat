@@ -34,5 +34,5 @@
   handlers:
     - name: uninstall netcat
       package:
-        name: "{ netcat_package }}"
+        name: "{{ netcat_package }}"
         state: absent
