@@ -268,7 +268,6 @@ I'd like to thank everybody that made contributions to this repository. It motiv
 - [javid90khan](https://github.com/javid90khan)
 - [patsevanton](https://github.com/patsevanton)
 - [till](https://github.com/till)
-- [DBarthe](https://github.com/DBarthe)
 
 ## [Author Information](#author-information)
 
