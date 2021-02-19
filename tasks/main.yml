@@ -7,7 +7,7 @@
   delegate_to: localhost
 
 - name: loop over tomcat_instances
-  include: instance.yml
+  ansible.builtin.include: instance.yml
   loop: "{{ tomcat_instances }}"
   loop_control:
     label: "{{ instance.name }}"

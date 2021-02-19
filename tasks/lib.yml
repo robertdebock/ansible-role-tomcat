@@ -1,6 +1,6 @@
 ---
 - name: deploy lib
-  get_url:
+  ansible.builtin.get_url:
     url: "{{ lib.url }}"
     dest: "{{ tomcat_directory }}//{{ instance.name }}/lib/"
   when:
