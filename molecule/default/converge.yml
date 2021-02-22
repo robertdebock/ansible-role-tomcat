@@ -30,6 +30,7 @@
         user: "specificuser"
         group: "specificgroup"
         shutdown_port: 8020
+        shutdown_pass: shutme
         non_ssl_connector_port: 8085
         ssl_connector_port: 8448
         ajp_port: 8014

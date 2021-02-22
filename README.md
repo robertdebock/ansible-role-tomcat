@@ -42,6 +42,7 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
         user: "specificuser"
         group: "specificgroup"
         shutdown_port: 8020
+        shutdown_pass: shutme
         non_ssl_connector_port: 8085
         ssl_connector_port: 8448
         ajp_port: 8014
@@ -128,6 +129,7 @@ tomcat_xmx: 1024M
 tomcat_non_ssl_connector_port: 8080
 tomcat_ssl_connector_port: 8443
 tomcat_shutdown_port: 8005
+tomcat_shutdown_pass: SHUTDOWN
 tomcat_ajp_port: 8009
 tomcat_jre_home: /usr
 tomcat_service_state: started
