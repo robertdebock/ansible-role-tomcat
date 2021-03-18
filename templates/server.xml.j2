@@ -125,6 +125,9 @@
 {% else %}
               secretRequired="false"
 {% endif %}
+{% if instance.packet_size is defined %}
+	      packetSize="{{ instance.packet_size }}"
+{% endif %}
     />
 
     <!-- An Engine represents the entry point (within Catalina) that processes
