@@ -14,7 +14,7 @@
 
   tasks:
     - name: install netcat
-      package:
+      ansible.builtin.package:
         name: "{{ netcat_package }}"
         state: present
       notify:
@@ -24,7 +24,7 @@
       shell: nc --listen --keep-open 127.0.0.2 8080 &
 
     - name: see if sensitive information is not exposed
-      uri:
+      ansible.builtin.uri:
         url: "http://localhost:8080/"
         return_content: yes
       register: this
@@ -33,6 +33,6 @@
 
   handlers:
     - name: uninstall netcat
-      package:
+      ansible.builtin.package:
         name: "{{ netcat_package }}"
         state: absent
