@@ -66,6 +66,8 @@
     owner: "{{ instance.user | default(tomcat_user) }}"
     group: "{{ instance.group | default(tomcat_group) }}"
     mode: "0640"
+  when:
+    - instance.neutral_default_page
 
 - name: loop over config_files
   ansible.builtin.include: config_file.yml

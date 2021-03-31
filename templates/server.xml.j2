@@ -160,7 +160,12 @@
       </Realm>
 
       <Host name="localhost"  appBase="webapps"
-            unpackWARs="true" autoDeploy="true">
+            unpackWARs="true" autoDeploy="{{ instance.autodeploy|default("true") }}">
+
+{% if instance.context is defined %}
+        <Context path="{{ instance.context.path }}" docBase="{{ instance.context.docBase }}"
+                 debug="{{ instance.context.debug|default("0") }}" reloadable="{{ instance.context.reloadable|default("true") }}" />
+{% endif %}
 
         <!-- SingleSignOn valve, share authentication between web applications
              Documentation at: /docs/config/valve.html -->
