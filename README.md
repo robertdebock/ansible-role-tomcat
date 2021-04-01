@@ -4,7 +4,7 @@ Install and configure tomcat on your system.
 
 |GitHub|GitLab|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-tomcat/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-tomcat/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-tomcat/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-tomcat)|[![quality](https://img.shields.io/ansible/quality/)](https://galaxy.ansible.com/robertdebock/tomcat)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/robertdebock/tomcat)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-tomcat.svg)](https://github.com/robertdebock/ansible-role-tomcat/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-tomcat/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-tomcat/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-tomcat/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-tomcat)|[![quality](https://img.shields.io/ansible/quality/22945)](https://galaxy.ansible.com/robertdebock/tomcat)|[![downloads](https://img.shields.io/ansible/role/d/22945)](https://galaxy.ansible.com/robertdebock/tomcat)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-tomcat.svg)](https://github.com/robertdebock/ansible-role-tomcat/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
