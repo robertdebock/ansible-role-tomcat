@@ -271,6 +271,7 @@ I'd like to thank everybody that made contributions to this repository. It motiv
 - [gaima8](https://github.com/gaima8)
 - [brunoleon](https://github.com/brunoleon)
 - [javid90khan](https://github.com/javid90khan)
+- [aek-arm](https://github.com/aek-arm)
 - [patsevanton](https://github.com/patsevanton)
 - [till](https://github.com/till)
 
