@@ -68,7 +68,8 @@
     mode: "0640"
 
 - name: loop over config_files
-  ansible.builtin.include_tasks: config_file.yml
+  ansible.builtin.include_tasks:
+    file: config_file.yml
   loop: "{{ instance.config_files }}"
   loop_control:
     loop_var: config_file
@@ -92,7 +93,8 @@
     enabled: "{{ instance.service_enabled | default(tomcat_service_enabled) }}"
 
 - name: loop over wars
-  ansible.builtin.include_tasks: war.yml
+  ansible.builtin.include_tasks:
+    file: war.yml
   loop: "{{ instance.wars }}"
   loop_control:
     loop_var: war
