@@ -102,7 +102,8 @@
     - instance.wars is defined
 
 - name: loop over libs
-  ansible.builtin.include_tasks: lib.yml
+  ansible.builtin.include_tasks:
+    file: lib.yml
   loop: "{{ instance.libs }}"
   loop_control:
     loop_var: lib
