@@ -73,8 +73,6 @@
   loop_control:
     loop_var: config_file
   when: instance.config_files is defined
-  notify:
-    - restart tomcat instance
 
 - name: create service instance
   ansible.builtin.import_role:
