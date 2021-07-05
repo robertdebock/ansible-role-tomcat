@@ -33,9 +33,7 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - image: "centos"
-            tag: "7"
-          - image: "centos"
+          - image: "rockylinux"
             tag: "latest"
           - image: "debian"
             tag: "latest"
