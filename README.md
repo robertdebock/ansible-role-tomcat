@@ -8,7 +8,7 @@ Install and configure tomcat on your system.
 
 ## [Example Playbook](#example-playbook)
 
-This example is taken from `molecule/resources/converge.yml` and is tested on each push, pull request and release.
+This example is taken from `molecule/default/converge.yml` and is tested on each push, pull request and release.
 ```yaml
 ---
 - name: converge
@@ -95,7 +95,7 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
     - role: robertdebock.tomcat
 ```
 
-The machine needs to be prepared in CI this is done using `molecule/resources/prepare.yml`:
+The machine needs to be prepared in CI this is done using `molecule/default/prepare.yml`:
 ```yaml
 ---
 - name: prepare
@@ -268,13 +268,6 @@ Apache-2.0
 
 I'd like to thank everybody that made contributions to this repository. It motivates me, improves the code and is just fun to collaborate.
 
-- [gaima8](https://github.com/gaima8)
-- [brunoleon](https://github.com/brunoleon)
-- [javid90khan](https://github.com/javid90khan)
-- [aek-arm](https://github.com/aek-arm)
-- [patsevanton](https://github.com/patsevanton)
-- [bd-clara](https://github.com/bd-clara)
-- [till](https://github.com/till)
 
 ## [Author Information](#author-information)
 
