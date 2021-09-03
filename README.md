@@ -86,6 +86,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
         non_ssl_connector_port: 8090
         ssl_connector_port: 8452
         ajp_port: 8019
+        ajp_secret: "SoMe-SeCrEt"
         config_files:
           - src: "{{ role_path }}/files/dummy.properties"
             dest: "./"
@@ -132,6 +133,7 @@ tomcat_shutdown_port: 8005
 tomcat_shutdown_pass: SHUTDOWN
 tomcat_ajp_enabled: yes
 tomcat_ajp_port: 8009
+tomcat_ajp_secret: "SoMe-SeCrEt"
 tomcat_jre_home: /usr
 tomcat_service_state: started
 tomcat_service_enabled: yes
@@ -165,7 +167,7 @@ tomcat_instances:
     shutdown_port: "{{ tomcat_shutdown_port }}"
     ajp_enabled: "{{ tomcat_ajp_enabled }}"
     ajp_port: "{{ tomcat_ajp_port }}"
-    ajp_secret: ""
+    ajp_secret: "{{ tomcat_ajp_secret }}"
     # You can pick an address per instance:
     # address: 127.0.0.1
     packet_size: "8192"
@@ -268,6 +270,13 @@ Apache-2.0
 
 I'd like to thank everybody that made contributions to this repository. It motivates me, improves the code and is just fun to collaborate.
 
+- [gaima8](https://github.com/gaima8)
+- [brunoleon](https://github.com/brunoleon)
+- [javid90khan](https://github.com/javid90khan)
+- [aek-arm](https://github.com/aek-arm)
+- [patsevanton](https://github.com/patsevanton)
+- [bd-clara](https://github.com/bd-clara)
+- [till](https://github.com/till)
 
 ## [Author Information](#author-information)
 
