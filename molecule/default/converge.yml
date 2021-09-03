@@ -74,6 +74,7 @@
         non_ssl_connector_port: 8090
         ssl_connector_port: 8452
         ajp_port: 8019
+        ajp_secret: "SoMe-SeCrEt"
         config_files:
           - src: "{{ role_path }}/files/dummy.properties"
             dest: "./"
