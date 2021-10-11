@@ -22,7 +22,9 @@
         - uninstall netcat
 
     - name: let netcat listen on port 127.0.0.2:8080
-      shell: nc --listen --keep-open 127.0.0.2 8080 &
+      ansible.builtin.shell:
+        cmd: nc --listen --keep-open 127.0.0.2 8080 &
+      changed_when: no
 
     - name: see if sensitive information is not exposed
       ansible.builtin.uri:
@@ -33,6 +35,7 @@
         - "'successfully installed Tomcat' in this.content"
 
   handlers:
+
     - name: uninstall netcat
       ansible.builtin.package:
         name: "{{ netcat_package }}"
