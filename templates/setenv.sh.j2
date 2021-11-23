@@ -17,3 +17,7 @@ JAVA_OPTS="-Xms{{ instance.xms }} ${JAVA_OPTS}"
 {% else %}
 JAVA_OPTS="-Xms{{ tomcat_xms }} ${JAVA_OPTS}"
 {% endif %}
+
+{% if instance.catalina_opts is defined %}
+CATALINA_OPTS="{{ instance.catalina_opts }}"
+{% endif %}

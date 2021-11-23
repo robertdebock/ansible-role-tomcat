@@ -71,6 +71,16 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
         ajp_port: 8017
         libs:
           - url: "https://search.maven.org/remotecontent?filepath=io/prometheus/simpleclient/0.6.0/simpleclient-0.6.0.jar"
+      - name: "tomcat-with-jmx"
+        shutdown_port: 8023
+        non_ssl_connector_port: 8088
+        ssl_connector_port: 8450
+        ajp_port: 8017
+        catalina_opts: >-
+          -Dcom.sun.management.jmxremote.port=8375
+          -Dcom.sun.management.jmxremote.ssl=false
+          -Dcom.sun.management.jmxremote.authenticate=false
+          -Djava.rmi.server.hostname=jmx.1.1.1.10.nip.io          
       - name: "tomcat-access-logs"
         shutdown_port: 8024
         non_ssl_connector_port: 8089
