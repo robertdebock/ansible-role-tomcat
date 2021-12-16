@@ -20,47 +20,59 @@
     group: "{{ instance.group | default(tomcat_group) }}"
     mode: "0755"
 
-- name: Get sha1sum of existing tomcat source
-  ansible.builtin.stat:
-    path: "{{ tomcat_directory }}/{{ instance.name }}/tomcat_src.tar.gz"
-    checksum_algorithm: sha1
-    get_checksum: yes
-  register: sha_existing
+- name: check if sha512 files exists fromk previous run
+  ansible.builtin.stat: 
+    path: "{{ tomcat_directory }}/tomcat_src.tar.gz.sha512"
+  register: sha512file
 
-- name: Remove existing tomcat source
-  ansible.builtin.file:
-    path: "{{ tomcat_directory }}/{{ instance.name }}/tomcat_src.tar.gz"
-    state: absent
+- name: load sha512 data
+  ansible.builtin.slurp:
+    src: "{{ tomcat_directory }}/tomcat_src.tar.gz.sha512"
+  register: slurped_sha512hash
+  when: sha512file.stat.exists
 
-- name: download tomcat source
-  ansible.builtin.get_url:
-    url: "{{ tomcat_unarchive_url }}"
-    dest: "{{ tomcat_directory }}/{{ instance.name }}/tomcat_src.tar.gz"
-    mode: "440"
+- name: store old sha512 as variable
+  ansible.builtin.set_fact:
+    tomcat_existing_sha512: "{{ slurped_sha512hash.content | b64decode }}"
+  when: slurped_sha512hash.content is defined
 
-- name: Get sha1sum of downloaded tomcat source
-  ansible.builtin.stat:
-    path: "{{ tomcat_directory }}/{{ instance.name }}/tomcat_src.tar.gz"
-    checksum_algorithm: sha1
-    get_checksum: yes
-  register: sha_new
+- name: install / update tomcat instance
+  vars:
+    tomcat_download_sha512: "{{ lookup('url', '{{ tomcat_unarchive_url }}.sha512') }}"
+  block:
+  - name: remove old tomcat files
+    ansible.builtin.file:
+      path: "{{ item }}"
+      state: absent
+    with_items:
+    - "{{ tomcat_directory }}/bin"
+    - "{{ tomcat_directory }}/tomcat_src.tar.gz"
+    - "{{ tomcat_directory }}/tomcat_src.tar.gz.sha512"
 
-- name: If checksums are different, then remove bin and extract
-  ansible.builtin.file:
-    path: "{{ tomcat_directory }}/{{ instance.name }}/bin"
-    state: absent
-  when: (not sha_existing.stat.checksum is defined) or (sha_existing.stat.checksum != sha_new.stat.checksum)
+  - name: download tomcat source
+    ansible.builtin.get_url:
+      url: "{{ tomcat_unarchive_url }}"
+      dest: "{{ tomcat_directory }}/tomcat_src.tar.gz"
+      checksum: "sha512:{{ tomcat_unarchive_url }}.sha512"
+      mode: "440"
 
-- name: install tomcat instance
-  ansible.builtin.unarchive:
-    src: "{{ tomcat_directory }}/{{ instance.name }}/tomcat_src.tar.gz"
-    dest: "{{ tomcat_directory }}/{{ instance.name }}"
-    owner: "{{ instance.user | default(tomcat_user) }}"
-    group: "{{ instance.group | default(tomcat_group) }}"
-    remote_src: yes
-    extra_opts: "--strip-components=1"
-    creates: "{{ tomcat_directory }}/{{ instance.name }}/bin"
-    mode: "0755"
+  - name: download sha512 of tomcat source
+    ansible.builtin.get_url:
+      url: "{{ tomcat_unarchive_url }}.sha512"
+      dest: "{{ tomcat_directory }}/tomcat_src.tar.gz.sha512"
+      mode: "440"
+
+  - name: install tomcat instance
+    ansible.builtin.unarchive:
+      src: "{{ tomcat_directory }}/{{ instance.name }}/tomcat_src.tar.gz"
+      dest: "{{ tomcat_directory }}/{{ instance.name }}"
+      owner: "{{ instance.user | default(tomcat_user) }}"
+      group: "{{ instance.group | default(tomcat_group) }}"
+      remote_src: yes
+      extra_opts: "--strip-components=1"
+      creates: "{{ tomcat_directory }}/{{ instance.name }}/bin"
+      mode: "0755"
+  when: not tomcat_existing_sha512 is defined or tomcat_existing_sha512 != tomcat_download_sha512
 
 - name: save instance name
   ansible.builtin.set_fact:
