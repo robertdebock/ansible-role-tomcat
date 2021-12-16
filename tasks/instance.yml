@@ -45,9 +45,9 @@
         path: "{{ item }}"
         state: absent
       with_items:
-      - "{{ tomcat_directory }}/bin"
-      - "{{ tomcat_directory }}/tomcat_src.tar.gz"
-      - "{{ tomcat_directory }}/tomcat_src.tar.gz.sha512"
+        - "{{ tomcat_directory }}/bin"
+        - "{{ tomcat_directory }}/tomcat_src.tar.gz"
+        - "{{ tomcat_directory }}/tomcat_src.tar.gz.sha512"
 
     - name: download tomcat source
       ansible.builtin.get_url:
