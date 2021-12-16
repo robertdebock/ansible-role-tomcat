@@ -21,7 +21,7 @@
     mode: "0755"
 
 - name: check if sha512 files exists fromk previous run
-  ansible.builtin.stat: 
+  ansible.builtin.stat:
     path: "{{ tomcat_directory }}/tomcat_src.tar.gz.sha512"
   register: sha512file
 
