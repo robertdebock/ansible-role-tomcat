@@ -68,6 +68,7 @@ tomcat_instances:
 tomcat_version7: "7.0.109"
 tomcat_version8: "8.5.73"
 tomcat_version9: "9.0.55"
+tomcat_version10: "10.0.22"
 
 # The location where to download Apache Tomcat from.
 tomcat_mirror: "https://archive.apache.org"
@@ -81,5 +82,7 @@ _tomcat_unarchive_urls:
     url: "{{ tomcat_mirror }}/dist/tomcat/tomcat-8/v{{ tomcat_version8 }}/bin/apache-tomcat-{{ tomcat_version8 }}.tar.gz"
   9:
     url: "{{ tomcat_mirror }}/dist/tomcat/tomcat-9/v{{ tomcat_version9 }}/bin/apache-tomcat-{{ tomcat_version9 }}.tar.gz"
+  10:
+    url: "{{ tomcat_mirror }}/dist/tomcat/tomcat-10/v{{ tomcat_version10 }}/bin/apache-tomcat-{{ tomcat_version10 }}.tar.gz"
 
 tomcat_unarchive_url: "{{ _tomcat_unarchive_urls[tomcat_version].url }}"
