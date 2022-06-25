@@ -21,6 +21,13 @@
       - tomcat_version9 is string
     quiet: yes
 
+- name: test if tomcat_version10 is set correctly
+  ansible.builtin.assert:
+    that:
+      - tomcat_version10 is defined
+      - tomcat_version10 is string
+    quiet: yes
+
 - name: test if tomcat_mirror is set correctly
   ansible.builtin.assert:
     that:
@@ -47,7 +54,7 @@
     that:
       - tomcat_version is defined
       - tomcat_version is number
-      - tomcat_version in [ 7, 8, 9 ]
+      - tomcat_version in [7, 8, 9, 10]
     quiet: yes
 
 - name: test if tomcat_user is set correctly
@@ -227,7 +234,7 @@
     that:
       - item.version is defined
       - item.version is number
-      - item.version in [7, 8, 9]
+      - item.version in [7, 8, 9, 10]
     quiet: yes
   loop: "{{ tomcat_instances }}"
   loop_control:
