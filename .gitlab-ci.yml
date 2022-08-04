@@ -18,7 +18,7 @@ molecule:
   parallel:
     matrix:
       - image: "enterpriselinux"
-        tag: "latest"
+        tag: "8"
       - image: "debian"
         tag: "latest"
       - image: "debian"
