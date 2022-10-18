@@ -2,7 +2,7 @@
 - name: Deploy lib
   ansible.builtin.get_url:
     url: "{{ lib.url }}"
-    dest: "{{ tomcat_directory }}//{{ instance.name }}/lib/"
+    dest: "{{ tomcat_directory }}//{{ instance.folder | default(tomcat_folder) }}/lib/"
   when:
     - lib.url is defined
   notify:

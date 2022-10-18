@@ -14,7 +14,7 @@
 
 - name: Ensure instance directory exists
   ansible.builtin.file:
-    path: "{{ tomcat_directory }}/{{ instance.name }}"
+    path: "{{ tomcat_directory }}/{{ instance.folder | default(tomcat_folder) }}"
     state: directory
     owner: "{{ instance.user | default(tomcat_user) }}"
     group: "{{ instance.group | default(tomcat_group) }}"
@@ -23,18 +23,18 @@
 - name: Download tomcat source
   ansible.builtin.get_url:
     url: "{{ tomcat_unarchive_url }}"
-    dest: "{{ tomcat_directory }}/{{ instance.name }}/tomcat_src.tar.gz"
+    dest: "{{ tomcat_directory }}/{{ instance.folder | default(tomcat_folder) }}/tomcat_src.tar.gz"
     mode: "440"
 
 - name: Install tomcat instance
   ansible.builtin.unarchive:
-    src: "{{ tomcat_directory }}/{{ instance.name }}/tomcat_src.tar.gz"
-    dest: "{{ tomcat_directory }}/{{ instance.name }}"
+    src: "{{ tomcat_directory }}/{{ instance.folder | default(tomcat_folder) }}/tomcat_src.tar.gz"
+    dest: "{{ tomcat_directory }}/{{ instance.folder | default(tomcat_folder) }}"
     owner: "{{ instance.user | default(tomcat_user) }}"
     group: "{{ instance.group | default(tomcat_group) }}"
     remote_src: yes
     extra_opts: "--strip-components=1"
-    creates: "{{ tomcat_directory }}/{{ instance.name }}/bin"
+    creates: "{{ tomcat_directory }}/{{ instance.folder | default(tomcat_folder) }}/bin"
     mode: "0755"
 
 - name: Save instance name
@@ -44,7 +44,7 @@
 - name: Configure tomcat instance - server.xml
   ansible.builtin.template:
     src: server.xml.j2
-    dest: "{{ tomcat_directory }}/{{ instance.name }}/conf/server.xml"
+    dest: "{{ tomcat_directory }}/{{ instance.folder | default(tomcat_folder) }}/conf/server.xml"
     mode: "0644"
   notify:
     - Restart tomcat instance
@@ -52,7 +52,7 @@
 - name: Configure tomcat instance - setenv.sh
   ansible.builtin.template:
     src: setenv.sh.j2
-    dest: "{{ tomcat_directory }}/{{ instance.name }}/bin/setenv.sh"
+    dest: "{{ tomcat_directory }}/{{ instance.folder | default(tomcat_folder) }}/bin/setenv.sh"
     mode: "0644"
   when:
     - (instance.java_opts is defined) or (instance.xms is defined) or (instance.xmx is defined)
@@ -62,7 +62,7 @@
 - name: Place neutral default page
   ansible.builtin.copy:
     content: "Please select an application by adding the context to the URL."
-    dest: "{{ tomcat_directory }}/{{ instance.name }}/webapps/ROOT/index.html"
+    dest: "{{ tomcat_directory }}/{{ instance.folder | default(tomcat_folder) }}/webapps/ROOT/index.html"
     owner: "{{ instance.user | default(tomcat_user) }}"
     group: "{{ instance.group | default(tomcat_group) }}"
     mode: "0640"
@@ -83,7 +83,7 @@
     service_list:
       - name: "{{ instance.name | default(tomcat_name) }}"
         description: "{{ instance.name | default(tomcat_name) }}"
-        start_command: "/bin/bash {{ tomcat_directory }}/{{ instance.name | default(tomcat_directory) }}/bin/catalina.sh run"
+        start_command: "/bin/bash {{ tomcat_directory }}/{{ instance.folder | default(tomcat_folder) }}/bin/catalina.sh run"
         user_name: "{{ instance.user | default(tomcat_user) }}"
         group_name: "{{ instance.group | default(tomcat_group) }}"
 

@@ -42,6 +42,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
       # - name: "tomcat-specific"
       #   user: "specificuser"
       #   group: "specificgroup"
+      #   folder: "myinstancewithfancyname"
       #   shutdown_port: 8020
       #   shutdown_pass: shutme
       #   non_ssl_connector_port: 8085
@@ -125,6 +126,7 @@ The default values for the variables are set in `defaults/main.yml`:
 # Some "sane" defaults.
 tomcat_name: tomcat
 tomcat_directory: /opt
+tomcat_folder: tomcat_8
 tomcat_version: 8
 tomcat_user: tomcat
 tomcat_group: tomcat
@@ -163,6 +165,7 @@ tomcat_instances:
     version: "{{ tomcat_version }}"
     user: "{{ tomcat_user }}"
     group: "{{ tomcat_group }}"
+    folder: "{{ tomcat_folder }}"
     xms: "{{ tomcat_xms }}"
     xmx: "{{ tomcat_xmx }}"
     non_ssl_connector_port: "{{ tomcat_non_ssl_connector_port }}"
