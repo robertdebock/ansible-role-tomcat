@@ -30,6 +30,8 @@ tomcat_access_log_directory: logs
 tomcat_access_log_prefix: localhost_access_log
 tomcat_access_log_suffix: ".txt"
 tomcat_access_log_pattern: "%h %l %u %t &quot;%r&quot; %s %b"
+tomcat_access_log_max_days: "1"
+tomcat_access_log_file_date_format: ".yyyy-MM-dd.HH"
 
 # This role allows multiple installations of Apache Tomcat, each in their own
 # location, potentially of different version.
@@ -61,6 +63,8 @@ tomcat_instances:
     access_log_prefix: "{{ tomcat_access_log_prefix }}"
     access_log_suffix: "{{ tomcat_access_log_suffix }}"
     access_log_pattern: "{{ tomcat_access_log_pattern }}"
+    access_log_max_days: "{{ tomcat_access_log_max_days }}"
+    access_log_file_date_format: "{{ tomcat_access_log_date_format }}"
     service_state: "{{ tomcat_service_state }}"
     service_enabled: "{{ tomcat_service_enabled }}"
 
