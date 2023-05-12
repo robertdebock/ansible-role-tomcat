@@ -13,19 +13,19 @@
     netcat_package: "{{ _netcat_package[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default (_netcat_package[ansible_os_family] | default(_netcat_package['default'])) }}"
 
   tasks:
-    - name: install netcat
+    - name: Install netcat
       ansible.builtin.package:
         name: "{{ netcat_package }}"
         state: present
       notify:
         - uninstall netcat
 
-    - name: let netcat listen on port 127.0.0.2:8080
+    - name: Let netcat listen on port 127.0.0.2:8080
       ansible.builtin.shell:
         cmd: nc --listen --keep-open 127.0.0.2 8080 &
       changed_when: no
 
-    - name: see if sensitive information is not exposed
+    - name: See if sensitive information is not exposed
       ansible.builtin.uri:
         url: "http://localhost:8080/"
         return_content: yes
@@ -35,7 +35,7 @@
 
   handlers:
 
-    - name: uninstall netcat
+    - name: Uninstall netcat
       ansible.builtin.package:
         name: "{{ netcat_package }}"
         state: absent
