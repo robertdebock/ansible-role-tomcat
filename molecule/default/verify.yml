@@ -18,7 +18,7 @@
         name: "{{ netcat_package }}"
         state: present
       notify:
-        - uninstall netcat
+        - Uninstall netcat
 
     - name: Let netcat listen on port 127.0.0.2:8080
       ansible.builtin.shell:
@@ -34,7 +34,6 @@
         - "'successfully installed Tomcat' in this.content"
 
   handlers:
-
     - name: Uninstall netcat
       ansible.builtin.package:
         name: "{{ netcat_package }}"
