@@ -67,6 +67,9 @@
     owner: "{{ instance.user | default(tomcat_user) }}"
     group: "{{ instance.group | default(tomcat_group) }}"
     mode: "0640"
+  when:
+    - instance.neutral_default_page is defined
+    - instance.neutral_default_page
 
 - name: instance | Loop over config_files
   ansible.builtin.include_tasks:
