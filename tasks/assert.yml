@@ -5,6 +5,7 @@
     that:
       - tomcat_version7 is defined
       - tomcat_version7 is string
+      - tomcat_version7 is not none
     quiet: yes
 
 - name: assert | Test if tomcat_version8 is set correctly
@@ -12,6 +13,7 @@
     that:
       - tomcat_version8 is defined
       - tomcat_version8 is string
+      - tomcat_version8 is not none
     quiet: yes
 
 - name: assert | Test if tomcat_version9 is set correctly
@@ -19,6 +21,7 @@
     that:
       - tomcat_version9 is defined
       - tomcat_version9 is string
+      - tomcat_version9 is not none
     quiet: yes
 
 - name: assert | Test if tomcat_mirror is set correctly
@@ -26,6 +29,7 @@
     that:
       - tomcat_mirror is defined
       - tomcat_mirror is string
+      - tomcat_mirror is not none
     quiet: yes
 
 - name: assert | Test if tomcat_name is set correctly
@@ -33,6 +37,7 @@
     that:
       - tomcat_name is defined
       - tomcat_name is string
+      - tomcat_name is not none
     quiet: yes
 
 - name: assert | Test if tomcat_directory is set correctly
@@ -40,6 +45,7 @@
     that:
       - tomcat_directory is defined
       - tomcat_directory is string
+      - tomcat_directory is not none
     quiet: yes
 
 - name: assert | Test if tomcat_version is set correctly
@@ -55,6 +61,7 @@
     that:
       - tomcat_user is defined
       - tomcat_user is string
+      - tomcat_user is not none
     quiet: yes
 
 - name: assert | Test if tomcat_group is set correctly
@@ -62,6 +69,7 @@
     that:
       - tomcat_group is defined
       - tomcat_group is string
+      - tomcat_group is not none
     quiet: yes
 
 - name: assert | Test if tomcat_xms is set correctly
@@ -69,6 +77,7 @@
     that:
       - tomcat_xms is defined
       - tomcat_xms is string
+      - tomcat_xms is not none
     quiet: yes
 
 - name: assert | Test if tomcat_xmx is set correctly
@@ -76,6 +85,7 @@
     that:
       - tomcat_xmx is defined
       - tomcat_xmx is string
+      - tomcat_xmx is not none
     quiet: yes
 
 - name: assert | Test if tomcat_non_ssl_connector_port is set correctly
@@ -137,6 +147,7 @@
     that:
       - tomcat_jre_home is defined
       - tomcat_jre_home is string
+      - tomcat_jre_home is not none
     quiet: yes
 
 - name: assert | Test if tomcat_service_state is set correctly
@@ -165,6 +176,7 @@
     that:
       - tomcat_address is defined
       - tomcat_address is string
+      - tomcat_address is not none
     quiet: yes
 
 - name: assert | Test if tomcat_access_log_enabled is set correctly
@@ -179,6 +191,7 @@
     that:
       - tomcat_access_log_directory is defined
       - tomcat_access_log_directory is string
+      - tomcat_access_log_directory is not none
     quiet: yes
   when:
     - tomcat_access_log_enabled
@@ -188,6 +201,7 @@
     that:
       - tomcat_access_log_prefix is defined
       - tomcat_access_log_prefix is string
+      - tomcat_access_log_prefix is not none
     quiet: yes
   when:
     - tomcat_access_log_enabled
@@ -197,6 +211,7 @@
     that:
       - tomcat_access_log_suffix is defined
       - tomcat_access_log_suffix is string
+      - tomcat_access_log_suffix is not none
     quiet: yes
   when:
     - tomcat_access_log_enabled
@@ -206,6 +221,7 @@
     that:
       - tomcat_access_log_pattern is defined
       - tomcat_access_log_pattern is string
+      - tomcat_access_log_pattern is not none
     quiet: yes
   when:
     - tomcat_access_log_enabled
@@ -303,6 +319,7 @@
     that:
       - item.address is defined
       - item.address is string
+      - item.address is not none
     quiet: yes
   loop: "{{ tomcat_instances }}"
   loop_control:
@@ -336,6 +353,7 @@
   ansible.builtin.assert:
     that:
       - item.access_log_directory is string
+      - item.access_log_directory is not none
     quiet: yes
   loop: "{{ tomcat_instances }}"
   loop_control:
@@ -347,6 +365,7 @@
   ansible.builtin.assert:
     that:
       - item.access_log_prefix is string
+      - item.access_log_prefix is not none
     quiet: yes
   loop: "{{ tomcat_instances }}"
   loop_control:
@@ -358,6 +377,7 @@
   ansible.builtin.assert:
     that:
       - item.access_log_suffix is string
+      - item.access_log_suffix is not none
     quiet: yes
   loop: "{{ tomcat_instances }}"
   loop_control:
@@ -369,6 +389,7 @@
   ansible.builtin.assert:
     that:
       - item.access_log_pattern is string
+      - item.access_log_pattern is not none
     quiet: yes
   loop: "{{ tomcat_instances }}"
   loop_control:
@@ -426,7 +447,7 @@
   ansible.builtin.assert:
     that:
       - item.ajp_secret is string
-      - item.ajp_secret | length > 0
+      - item.ajp_secret is not none
     quiet: yes
   loop: "{{ tomcat_instances }}"
   loop_control:
