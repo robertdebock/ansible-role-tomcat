@@ -2,9 +2,9 @@
 
 Install and configure tomcat on your system.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-tomcat/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-tomcat/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-tomcat/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-tomcat)|[![quality](https://img.shields.io/ansible/quality/22945)](https://galaxy.ansible.com/robertdebock/tomcat)|[![downloads](https://img.shields.io/ansible/role/d/22945)](https://galaxy.ansible.com/robertdebock/tomcat)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-tomcat.svg)](https://github.com/robertdebock/ansible-role-tomcat/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-tomcat/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-tomcat/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-tomcat/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-tomcat)|[![downloads](https://img.shields.io/ansible/role/d/24608)](https://galaxy.ansible.com/robertdebock/tomcat)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-tomcat.svg)](https://github.com/robertdebock/ansible-role-tomcat/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -240,7 +240,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-tomcat/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-tomcat/issues).
 
 ## [License](#license)
 
