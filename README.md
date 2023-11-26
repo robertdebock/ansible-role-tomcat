@@ -1,4 +1,4 @@
-# Ansible role [tomcat](#tomcat)
+# [Ansible role tomcat](#tomcat)
 
 Install and configure tomcat on your system.
 
