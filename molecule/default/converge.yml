@@ -1,8 +1,8 @@
 ---
 - name: Converge
   hosts: all
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   vars:
     # tomcat_address: "127.0.0.1"
@@ -64,7 +64,7 @@
       #   non_ssl_connector_port: 8089
       #   ssl_connector_port: 8451
       #   ajp_port: 8018
-      #   access_log_enabled: yes
+      #   access_log_enabled: true
       #   access_log_directory: "my-logs"
       #   access_log_prefix: my-access-logs
       #   access_log_suffix: ".log"

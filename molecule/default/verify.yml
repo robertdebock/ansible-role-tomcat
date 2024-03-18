@@ -1,8 +1,8 @@
 ---
 - name: Verify
   hosts: all
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   tasks:
     - name: Check if port 8080 is available
@@ -16,7 +16,7 @@
     - name: See if sensitive information is not exposed
       ansible.builtin.uri:
         url: "http://localhost:8080/"
-        return_content: yes
+        return_content: true
       register: this
       failed_when:
         - "'successfully installed Tomcat' in this.content"
