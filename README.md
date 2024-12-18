@@ -57,6 +57,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
       #   wars:
       #     - url: https://tomcat.apache.org/tomcat-7.0-doc/appdev/sample/sample.war
       #     - url: "https://github.com/aeimer/java-example-helloworld-war/raw/master/dist/helloworld.war"
+      #       context_name: "my-helloworld"  # Store helloword.war as my-helloworld
       # - name: "tomcat-java_opts"
       #   shutdown_port: 8022
       #   non_ssl_connector_port: 8087
