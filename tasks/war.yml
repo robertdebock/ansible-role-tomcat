@@ -1,6 +1,6 @@
 ---
 
-- name: war | Set destination
+- name: war | Append .war to context name
   ansible.builtin.set_fact:
     war_destination: "{{ war.context_name + '.war' }}"
   when:
