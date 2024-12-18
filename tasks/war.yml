@@ -12,5 +12,7 @@
     dest: "{{ tomcat_directory }}/{{ instance.name }}/webapps/{{ war_destination | default(omit) }}"
     validate_certs: false
     mode: "0640"
+    owner: "{{ instance.user | default(tomcat_user) }}"
+    group: "{{ instance.group | default(tomcat_group) }}"
   when:
     - war.url is defined
