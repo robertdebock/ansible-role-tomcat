@@ -25,7 +25,7 @@ molecule:
         tag: "bullseye"
         python: ['python:3.9', 'python:3.10']
       - image: "fedora"
-        tag: "39"
+        tag: "40"
         python: ['python:3.9', 'python:3.10']
       - image: "fedora"
         tag: "latest"
