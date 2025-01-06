@@ -79,6 +79,8 @@
     group: "{{ instance.group | default(tomcat_group) }}"
   when:
     - instance.context is defined
+  notify:
+    - Restart tomcat instance
 
 - name: instance | Loop over config_files
   ansible.builtin.include_tasks:
