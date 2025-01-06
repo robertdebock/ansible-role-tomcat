@@ -70,6 +70,16 @@
     group: "{{ instance.group | default(tomcat_group) }}"
     mode: "0640"
 
+- name: instance | Place context.xml
+  ansible.builtin.copy:
+    content: "{{ instance.context }}"
+    dest: "{{ tomcat_directory }}/{{ instance.name }}/conf/context.xml"
+    mode: "0640"
+    owner: "{{ instance.user | default(tomcat_user) }}"
+    group: "{{ instance.group | default(tomcat_group) }}"
+  when:
+    - instance.context is defined
+
 - name: instance | Loop over config_files
   ansible.builtin.include_tasks:
     file: config_file.yml

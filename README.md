@@ -93,6 +93,16 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
       #     - src: "{{ role_path }}/files/dummy.properties"
       #       dest: "./"
       #       mode: "0644"
+      # - name: "tomcat-context"
+      #   shutdown_port: 8026
+      #   shutdown_pass: shutme
+      #   non_ssl_connector_port: 8091
+      #   ssl_connector_port: 8453
+      #   ajp_port: 8020
+      #   context: |
+      #     <Context>
+      #       <Manager className="org.apache.catalina.session.PersistentManager" maxIdleSwap="10000" maxIdleBackup="10000" />
+      #     </Context>
 
   roles:
     - role: robertdebock.tomcat
