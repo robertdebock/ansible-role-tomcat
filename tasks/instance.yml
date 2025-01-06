@@ -69,6 +69,16 @@
     owner: "{{ instance.user | default(tomcat_user) }}"
     group: "{{ instance.group | default(tomcat_group) }}"
     mode: "0640"
+  when:
+    - instance.remove_webapps not in ["ROOT"]
+
+- name: instance | Remove selected webapps
+  ansible.builtin.file:
+    path: "{{ tomcat_directory }}/{{ instance.name }}/webapps/{{ item }}"
+    state: absent
+  loop: "{{ instance.remove_webapps }}"
+  when:
+    - instance.remove_webapps is defined
 
 - name: instance | Place context.xml
   ansible.builtin.copy:

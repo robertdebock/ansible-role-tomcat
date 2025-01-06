@@ -430,3 +430,14 @@
     label: "{{ item.name }}"
   when:
     - item.ajp_secret is defined
+
+- name: assert | Test item.remove_webapps in tomcat_instances
+  ansible.builtin.assert:
+    that:
+      - item.remove_webapps is iterable
+    quiet: true
+  loop: "{{ tomcat_instances }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - item.remove_webapps is defined

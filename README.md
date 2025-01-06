@@ -103,6 +103,19 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
       #     <Context>
       #       <Manager className="org.apache.catalina.session.PersistentManager" maxIdleSwap="10000" maxIdleBackup="10000" />
       #     </Context>
+      # - name: "tomcat-empty"
+      #   shutdown_port: 8027
+      #   shutdown_pass: shutme
+      #   non_ssl_connector_port: 8092
+      #   ssl_connector_port: 8454
+      #   ajp_port: 8021
+      #   cleanup_enabled: true
+      #   remove_webapps:
+      #     - docs
+      #     - examples
+      #     - host-manager
+      #     - manager
+      #     - ROOT
 
   roles:
     - role: robertdebock.tomcat
