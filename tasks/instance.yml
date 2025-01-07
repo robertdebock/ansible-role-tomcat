@@ -70,9 +70,7 @@
     group: "{{ instance.group | default(tomcat_group) }}"
     mode: "0640"
   when:
-    - instance.remove_webapps is defined
-    - instance.remove_webapps is iterable
-    - "'ROOT' not in instance.remove_webapps"
+    - instance.remove_webapps is not defined or (instance.remove_webapps is defined and instance.remove_webapps is iterable and "'ROOT' not in instance.remove_webapps")
 
 - name: instance | Remove selected webapps
   ansible.builtin.file:
