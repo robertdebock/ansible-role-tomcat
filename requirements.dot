@@ -1,0 +1,15 @@
+digraph PhiloDilemma {
+  label = "Robert de Bock" ;
+  overlap=false
+  {
+    "tomcat" [fillcolor=yellow style=filled penwidth=3]
+    "robertdebock.bootstrap" [fillcolor=green style=filled]
+    "robertdebock.core_dependencies" [fillcolor=green style=filled]
+    "robertdebock.java" [fillcolor=green style=filled]
+    "robertdebock.service" [fillcolor=green style=filled]
+  }
+  "tomcat" -> "robertdebock.bootstrap"
+  "tomcat" -> "robertdebock.core_dependencies"
+  "tomcat" -> "robertdebock.java"
+  "tomcat" -> "robertdebock.service"
+}
