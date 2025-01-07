@@ -71,7 +71,7 @@
     mode: "0640"
   when:
     - instance.remove_webapps is defined
-    - instance.remove_webapps
+    - instance.remove_webapps is iterable
     - "'ROOT' not in instance.remove_webapps"
 
 - name: instance | Remove selected webapps
