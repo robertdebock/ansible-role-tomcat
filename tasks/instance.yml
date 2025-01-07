@@ -70,7 +70,9 @@
     group: "{{ instance.group | default(tomcat_group) }}"
     mode: "0640"
   when:
-    - "'ROOT' not in (instance.remove_webapps | default([]))"
+    - instance.remove_webapps is defined
+    - instance.remove_webapps
+    - "'ROOT' not in instance.remove_webapps"
 
 - name: instance | Remove selected webapps
   ansible.builtin.file:
