@@ -116,6 +116,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
       #     - host-manager
       #     - manager
       #     - ROOT
+      # - name: "tomcat-java_home"
+      #   java_home: "/opt/java/jdk-17"
 
   roles:
     - role: robertdebock.tomcat
@@ -154,7 +156,7 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 # Some "sane" defaults.
 tomcat_name: tomcat
 tomcat_directory: /opt
-tomcat_version: 9
+tomcat_version: 10
 tomcat_user: tomcat
 tomcat_group: tomcat
 tomcat_xms: 512M
@@ -216,9 +218,9 @@ tomcat_instances:
 
 # The explicit version to use when referring to the short name.
 tomcat_version7: "7.0.109"
-tomcat_version8: "8.5.73"
-tomcat_version9: "9.0.55"
-tomcat_version10: "10.1.12"
+tomcat_version8: "8.5.100"
+tomcat_version9: "9.0.100"
+tomcat_version10: "10.1.36"
 
 # The location where to download Apache Tomcat from.
 tomcat_mirror: "https://archive.apache.org"

@@ -103,6 +103,8 @@
       #     - host-manager
       #     - manager
       #     - ROOT
+      # - name: "tomcat-java_home"
+      #   java_home: "/opt/java/jdk-17"
 
   roles:
     - role: ansible-role-tomcat
