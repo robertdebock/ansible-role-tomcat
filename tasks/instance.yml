@@ -58,7 +58,8 @@
   when:
     - instance.java_opts is defined or
       instance.xms is defined or
-      instance.xmx is defined
+      instance.xmx is defined or
+      instance.java_home is defined
   notify:
     - Restart tomcat instance
 

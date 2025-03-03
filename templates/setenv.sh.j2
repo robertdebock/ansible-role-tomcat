@@ -1,8 +1,8 @@
 {{ ansible_managed | comment }}
 
 {% if instance.java_home is defined %}
-JAVA_HOME="{{ instance.java_home }}"
-PATH=$JAVA_HOME/bin:/$PATH
+export JAVA_HOME="{{ instance.java_home }}"
+export PATH=$JAVA_HOME/bin:/$PATH
 {% endif %}
 
 {% if instance.java_opts is defined %}
@@ -12,13 +12,13 @@ PATH=$JAVA_HOME/bin:/$PATH
 {% endif %}
 
 {% if instance.xmx is defined %}
-JAVA_OPTS="-Xmx{{ instance.xmx }} ${JAVA_OPTS}"
+export JAVA_OPTS="-Xmx{{ instance.xmx }} ${JAVA_OPTS}"
 {% else %}
-JAVA_OPTS="-Xmx{{ tomcat_xmx }} ${JAVA_OPTS}"
+export JAVA_OPTS="-Xmx{{ tomcat_xmx }} ${JAVA_OPTS}"
 {% endif %}
 
 {% if instance.xms is defined %}
-JAVA_OPTS="-Xms{{ instance.xms }} ${JAVA_OPTS}"
+export JAVA_OPTS="-Xms{{ instance.xms }} ${JAVA_OPTS}"
 {% else %}
-JAVA_OPTS="-Xms{{ tomcat_xms }} ${JAVA_OPTS}"
+export JAVA_OPTS="-Xms{{ tomcat_xms }} ${JAVA_OPTS}"
 {% endif %}
