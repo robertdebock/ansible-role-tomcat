@@ -120,7 +120,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
       #   java_home: "/opt/java/jdk-17"
 
   roles:
-    - role: ansible-role-tomcat
+    - role: robertdebock.tomcat
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-tomcat/blob/master/molecule/default/prepare.yml):

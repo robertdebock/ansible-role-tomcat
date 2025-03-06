@@ -107,4 +107,4 @@
       #   java_home: "/opt/java/jdk-17"
 
   roles:
-    - role: ansible-role-tomcat
+    - role: robertdebock.tomcat
