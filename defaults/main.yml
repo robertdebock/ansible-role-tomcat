@@ -4,7 +4,7 @@
 # Some "sane" defaults.
 tomcat_name: tomcat
 tomcat_directory: /opt
-tomcat_version: 10
+tomcat_version: 11
 tomcat_user: tomcat
 tomcat_group: tomcat
 tomcat_xms: 512M
@@ -69,6 +69,7 @@ tomcat_version7: "7.0.109"
 tomcat_version8: "8.5.100"
 tomcat_version9: "9.0.100"
 tomcat_version10: "10.1.36"
+tomcat_version11: "11.0.8"
 
 # The location where to download Apache Tomcat from.
 tomcat_mirror: "https://archive.apache.org"
