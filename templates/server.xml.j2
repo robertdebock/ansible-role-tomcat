@@ -176,6 +176,8 @@
 {% if instance.access_log_enabled | default(tomcat_access_log_enabled) %}
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="{{ instance.access_log_directory | default(tomcat_access_log_directory) }}"
                prefix="{{ instance.access_log_prefix | default(tomcat_access_log_prefix) }}" suffix="{{ instance.access_log_suffix | default(tomcat_access_log_suffix) }}"
+               fileDateFormat="{{ instance.access_log_file_date_format | default(tomcat_access_log_file_date_format) }}"
+               maxDays="{{ instance.access_log_max_days | default(tomcat_access_log_max_days) }}"
                pattern="{{ instance.access_log_pattern | default(tomcat_access_log_pattern) }}" />
 {% endif %}
 
