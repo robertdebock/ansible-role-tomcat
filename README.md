@@ -17,110 +17,108 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   become: true
   gather_facts: true
 
-  vars:
-    # tomcat_address: "127.0.0.1"
-    tomcat_instances:
-      - name: "tomcat"
-      # - name: "tomcat-version-7"
-      #   version: 7
-      #   shutdown_port: 8007
-      #   non_ssl_connector_port: 8082
-      #   ssl_connector_port: 8445
-      #   ajp_port: 8011
-      # - name: "tomcat-version-8"
-      #   version: 8
-      #   shutdown_port: 8008
-      #   non_ssl_connector_port: 8083
-      #   ssl_connector_port: 8446
-      #   ajp_port: 8012
-      # - name: "tomcat-version-9"
-      #   version: 9
-      #   shutdown_port: 8019
-      #   non_ssl_connector_port: 8084
-      #   ssl_connector_port: 8447
-      #   ajp_port: 8013
-      # - name: "tomcat-specific"
-      #   user: "specificuser"
-      #   group: "specificgroup"
-      #   shutdown_port: 8020
-      #   shutdown_pass: shutme
-      #   non_ssl_connector_port: 8085
-      #   ssl_connector_port: 8448
-      #   ajp_port: 8014
-      #   xms: 256M
-      #   xmx: 512M
-      # - name: "tomcat-with-wars"
-      #   shutdown_port: 8021
-      #   non_ssl_connector_port: 8086
-      #   ssl_connector_port: 8449
-      #   ajp_port: 8015
-      #   wars:
-      #     - url: https://tomcat.apache.org/tomcat-7.0-doc/appdev/sample/sample.war
-      #     - url: "https://github.com/aeimer/java-example-helloworld-war/raw/master/dist/helloworld.war"
-      #       context_name: "my-helloworld"  # Store helloword.war as my-helloworld
-      # - name: "tomcat-java_opts"
-      #   shutdown_port: 8022
-      #   non_ssl_connector_port: 8087
-      #   ssl_connector_port: 8449
-      #   ajp_port: 8016
-      #   java_opts:
-      #     - name: UMASK
-      #       value: "0007"
-      # - name: "tomcat-with_lib"
-      #   shutdown_port: 8023
-      #   non_ssl_connector_port: 8088
-      #   ssl_connector_port: 8450
-      #   ajp_port: 8017
-      #   libs:
-      #     - url: "https://search.maven.org/remotecontent?filepath=io/prometheus/simpleclient/0.6.0/simpleclient-0.6.0.jar"
-      # - name: "tomcat-access-logs"
-      #   shutdown_port: 8024
-      #   non_ssl_connector_port: 8089
-      #   ssl_connector_port: 8451
-      #   ajp_port: 8018
-      #   access_log_enabled: true
-      #   access_log_directory: "my-logs"
-      #   access_log_prefix: my-access-logs
-      #   access_log_suffix: ".log"
-      #   access_log_pattern: "%h %l %u %t &quot;%r&quot; %s %b"
-      # - name: "tomcat-config-files"
-      #   shutdown_port: 8025
-      #   non_ssl_connector_port: 8090
-      #   ssl_connector_port: 8452
-      #   ajp_port: 8019
-      #   ajp_secret: "SoMe-SeCrEt"
-      #   config_files:
-      #     - src: "{{ role_path }}/files/dummy.properties"
-      #       dest: "./"
-      #       mode: "0644"
-      # - name: "tomcat-context"
-      #   shutdown_port: 8026
-      #   shutdown_pass: shutme
-      #   non_ssl_connector_port: 8091
-      #   ssl_connector_port: 8453
-      #   ajp_port: 8020
-      #   context: |
-      #     <Context>
-      #       <Manager className="org.apache.catalina.session.PersistentManager" maxIdleSwap="10000" maxIdleBackup="10000" />
-      #     </Context>
-      # - name: "tomcat-empty"
-      #   shutdown_port: 8027
-      #   shutdown_pass: shutme
-      #   non_ssl_connector_port: 8092
-      #   ssl_connector_port: 8454
-      #   ajp_port: 8021
-      #   cleanup_enabled: true
-      #   remove_webapps:
-      #     - docs
-      #     - examples
-      #     - host-manager
-      #     - manager
-      #     - ROOT
-      # - name: "tomcat-java_home"
-      #   java_home: "/opt/java/jdk-17"
-
   roles:
     - role: robertdebock.tomcat
+      # tomcat_address: "127.0.0.1"
+      tomcat_instances:
+        - name: "tomcat"
+        # - name: "tomcat-version-7"
+        #   version: 7
+        #   shutdown_port: 8007
+        #   non_ssl_connector_port: 8082
+        #   ssl_connector_port: 8445
+        #   ajp_port: 8011
+        # - name: "tomcat-version-8"
+        #   version: 8
+        #   shutdown_port: 8008
+        #   non_ssl_connector_port: 8083
+        #   ssl_connector_port: 8446
+        #   ajp_port: 8012
+        # - name: "tomcat-version-9"
+        #   version: 9
+        #   shutdown_port: 8019
+        #   non_ssl_connector_port: 8084
+        #   ssl_connector_port: 8447
+        #   ajp_port: 8013
+        # - name: "tomcat-specific"
+        #   user: "specificuser"
+        #   group: "specificgroup"
+        #   shutdown_port: 8020
+        #   shutdown_pass: shutme
+        #   non_ssl_connector_port: 8085
+        #   ssl_connector_port: 8448
+        #   ajp_port: 8014
+        #   xms: 256M
+        #   xmx: 512M
+        # - name: "tomcat-with-wars"
+        #   shutdown_port: 8021
+        #   non_ssl_connector_port: 8086
+        #   ssl_connector_port: 8449
+        #   ajp_port: 8015
+        #   wars:
+        #     - url: https://tomcat.apache.org/tomcat-7.0-doc/appdev/sample/sample.war
+        #     - url: "https://github.com/aeimer/java-example-helloworld-war/raw/master/dist/helloworld.war"
+        #       context_name: "my-helloworld"  # Store helloword.war as my-helloworld
+        # - name: "tomcat-java_opts"
+        #   shutdown_port: 8022
+        #   non_ssl_connector_port: 8087
+        #   ssl_connector_port: 8449
+        #   ajp_port: 8016
+        #   java_opts:
+        #     - name: UMASK
+        #       value: "0007"
+        # - name: "tomcat-with_lib"
+        #   shutdown_port: 8023
+        #   non_ssl_connector_port: 8088
+        #   ssl_connector_port: 8450
+        #   ajp_port: 8017
+        #   libs:
+        #     - url: "https://search.maven.org/remotecontent?filepath=io/prometheus/simpleclient/0.6.0/simpleclient-0.6.0.jar"
+        # - name: "tomcat-access-logs"
+        #   shutdown_port: 8024
+        #   non_ssl_connector_port: 8089
+        #   ssl_connector_port: 8451
+        #   ajp_port: 8018
+        #   access_log_enabled: true
+        #   access_log_directory: "my-logs"
+        #   access_log_prefix: my-access-logs
+        #   access_log_suffix: ".log"
+        #   access_log_pattern: "%h %l %u %t &quot;%r&quot; %s %b"
+        # - name: "tomcat-config-files"
+        #   shutdown_port: 8025
+        #   non_ssl_connector_port: 8090
+        #   ssl_connector_port: 8452
+        #   ajp_port: 8019
+        #   ajp_secret: "SoMe-SeCrEt"
+        #   config_files:
+        #     - src: "{{ role_path }}/files/dummy.properties"
+        #       dest: "./"
+        #       mode: "0644"
+        # - name: "tomcat-context"
+        #   shutdown_port: 8026
+        #   shutdown_pass: shutme
+        #   non_ssl_connector_port: 8091
+        #   ssl_connector_port: 8453
+        #   ajp_port: 8020
+        #   context: |
+        #     <Context>
+        #       <Manager className="org.apache.catalina.session.PersistentManager" maxIdleSwap="10000" maxIdleBackup="10000" />
+        #     </Context>
+        # - name: "tomcat-empty"
+        #   shutdown_port: 8027
+        #   shutdown_pass: shutme
+        #   non_ssl_connector_port: 8092
+        #   ssl_connector_port: 8454
+        #   ajp_port: 8021
+        #   cleanup_enabled: true
+        #   remove_webapps:
+        #     - docs
+        #     - examples
+        #     - host-manager
+        #     - manager
+        #     - ROOT
+        # - name: "tomcat-java_home"
+        #   java_home: "/opt/java/jdk-17"
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-tomcat/blob/master/molecule/default/prepare.yml):
