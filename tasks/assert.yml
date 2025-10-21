@@ -29,7 +29,7 @@
     that:
       - tomcat_version is defined
       - tomcat_version is number
-      - tomcat_version in [ 7, 8, 9, 10 ]
+      - tomcat_version in [ 7, 8, 9, 10, 11 ]
     quiet: true
 
 - name: assert | Test tomcat_user
