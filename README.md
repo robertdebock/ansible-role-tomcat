@@ -219,6 +219,7 @@ tomcat_version7: "7.0.109"
 tomcat_version8: "8.5.100"
 tomcat_version9: "9.0.100"
 tomcat_version10: "10.1.36"
+tomcat_version11: "11.0.8"
 
 # The location where to download Apache Tomcat from.
 tomcat_mirror: "https://archive.apache.org"

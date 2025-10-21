@@ -4,7 +4,7 @@
 # Some "sane" defaults.
 tomcat_name: tomcat
 tomcat_directory: /opt
-tomcat_version: 11
+tomcat_version: 10
 tomcat_user: tomcat
 tomcat_group: tomcat
 tomcat_xms: 512M
