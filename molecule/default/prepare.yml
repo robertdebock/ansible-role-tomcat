@@ -8,8 +8,4 @@
     - role: robertdebock.bootstrap
     - role: robertdebock.core_dependencies
     - role: robertdebock.java
-      # __java_version:
-      #   default: 8
-      #   Debian: 11
-      #   Debian-bookworm: 17
-      # java_version: "{{ _desired_java_version[ansible_distribution ~ '-' ~ ansible_distribution_release] | default(_desired_java_version[ansible_distribution] | default(_desired_java_version['default'])) }}"
+      java_version: 17
