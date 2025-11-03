@@ -134,11 +134,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
     - role: robertdebock.bootstrap
     - role: robertdebock.core_dependencies
     - role: robertdebock.java
-      # __java_version:
-      #   default: 8
-      #   Debian: 11
-      #   Debian-bookworm: 17
-      # java_version: "{{ _desired_java_version[ansible_distribution ~ '-' ~ ansible_distribution_release] | default(_desired_java_version[ansible_distribution] | default(_desired_java_version['default'])) }}"
+      java_version: 17
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
@@ -154,7 +150,7 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 # Some "sane" defaults.
 tomcat_name: tomcat
 tomcat_directory: /opt
-tomcat_version: 10
+tomcat_version: 11
 tomcat_user: tomcat
 tomcat_group: tomcat
 tomcat_xms: 512M
