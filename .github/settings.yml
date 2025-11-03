@@ -5,4 +5,4 @@
 repository:
   description: Install and configure tomcat on your system.
   homepage: https://robertdebock.nl/
-  topics: tomcat, system, ansible, molecule, tox, playbook
+  topics: tomcat, system, ansible, molecule, playbook
