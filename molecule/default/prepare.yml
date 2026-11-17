@@ -8,4 +8,3 @@
     - role: robertdebock.bootstrap
     - role: robertdebock.core_dependencies
     - role: robertdebock.java
-      java_version: 17
